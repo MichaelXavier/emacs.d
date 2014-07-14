@@ -1,0 +1,11 @@
+*.elc
+tramp
+places
+projectile.cache
+projectile-bookmarks.eld
+backups/
+url/
+auto-save-list/
+eshell/
+.org-id-locations
+*~
