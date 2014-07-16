@@ -255,8 +255,6 @@
 ;; http://stackoverflow.com/questions/3465567/how-to-use-ssh-and-sudo-together-with-tramp-in-emacs
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
-(server-start)
-
 ;; Easily navigate around buffers
 (global-set-key (kbd "C-S-p") 'previous-multiframe-window)
 (global-set-key (kbd "C-S-n") 'next-multiframe-window)
