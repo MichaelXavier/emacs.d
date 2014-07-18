@@ -67,7 +67,7 @@
  '(dabbrev-case-fold-search nil)
  '(enh-ruby-bounce-deep-indent nil)
  '(enh-ruby-deep-indent-paren-style nil)
- '(erc-autojoin-channels-alist (quote (("freenode.net" "haskell" "nothaskell"))))
+ '(erc-autojoin-channels-alist (quote (("freenode.net" "#haskell" "#nothaskell"))))
  '(erc-nick "NemesisD")
  '(flycheck-rubocop-lint-only t)
  '(haskell-process-check-cabal-config-on-load t)
