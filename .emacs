@@ -277,6 +277,12 @@
       (goto-char start)
       (insert reversed) )) )
 
+(defun decamelize-region (start end)
+  "region to decamelize"
+  (interactive "r")
+  (progn (replace-regexp "\\B\\([A-Z]\\)" "_\\1" nil (region-beginning) (region-end))
+         (downcase-region (region-beginning) (region-end))))
+
 (defun save-buffer-always ()
   "Save the buffer even if it is not modified. Useful for triggering file-watching tools."
   (interactive)
