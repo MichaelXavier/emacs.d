@@ -306,5 +306,9 @@
 
 (global-set-key (kbd "C-c t") 'multi-term)
 
+(add-hook 'erc-mode-hook
+          (lambda ()
+            (setq show-trailing-whitespace nil)))
+
 (provide 'emacs)
 ;;; .emacs ends here
