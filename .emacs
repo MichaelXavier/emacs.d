@@ -150,7 +150,8 @@
 (when (fboundp 'winner-mode)
       (winner-mode 1))
 
-(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
 ;; hooks for all the modes i work in
 (setq allhooks '(enh-ruby-mode-hook
