@@ -71,6 +71,7 @@
  '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp track)))
  '(erc-nick "NemesisD")
  '(erc-prompt-for-nickserv-password t)
+ '(erc-server-auto-reconnect t)
  '(exec-path (quote ("/usr/lib/erlang/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/games" "/usr/local/games" "/usr/lib/emacs/24.3/x86_64-linux-gnu" "/opt/ghc/7.8.2/bin")))
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
