@@ -82,6 +82,7 @@
  '(js-indent-level 2)
  '(magit-use-overlays nil)
  '(show-trailing-whitespace t)
+ '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
  '(suggest-key-bindings t)
  '(typescript-indent-level 2)
  '(web-mode-disable-auto-opening t)
