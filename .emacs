@@ -74,7 +74,7 @@
  '(haskell-process-check-cabal-config-on-load t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl))
+ '(haskell-process-type 'cabal-repl)
  '(ido-auto-merge-work-directories-length -1)
  '(inferior-haskell-wait-and-jump t)
  '(inhibit-startup-screen t)
