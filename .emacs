@@ -49,14 +49,9 @@
 ;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
 ;;(set-face-background 'shm-current-face "#eee8d5")
 ;;(set-face-background 'shm-quarantine-face "lemonchiffon")
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
-(global-linum-mode 1)
-(column-number-mode 1)
-;;(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+(define-key haskell-mode-map [f8] 'haskell-navigate-imports)
+;; reminder: C-c C-. reformats imports
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -72,11 +67,16 @@
  '(erc-nick "NemesisD")
  '(erc-prompt-for-nickserv-password t)
  '(erc-server-auto-reconnect t)
- '(exec-path (quote ("/usr/lib/erlang/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/games" "/usr/local/games" "/usr/lib/emacs/24.3/x86_64-linux-gnu" "/opt/ghc/7.8.2/bin")))
+ '(exec-path (quote ("/usr/lib/erlang/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/games" "/usr/local/games" "/usr/lib/emacs/24.3/x86_64-linux-gnu" "/opt/ghc/7.8.2/bin" "/opt/cabal/1.20/bin")))
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
+ '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-check-cabal-config-on-load t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
  '(ido-auto-merge-work-directories-length -1)
+ '(inferior-haskell-wait-and-jump t)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice t)
  '(js-indent-level 2)
@@ -87,6 +87,27 @@
  '(typescript-indent-level 2)
  '(web-mode-disable-auto-opening t)
  '(web-mode-disable-auto-pairing t))
+
+;; rebind inferior mode to interactive mode
+(eval-after-load "haskell-mode"
+  '(progn
+     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+     (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+     (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+     (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+     (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+     (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+     (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+     (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+(global-linum-mode 1)
+(column-number-mode 1)
+;;(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
