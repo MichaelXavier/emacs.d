@@ -344,5 +344,7 @@
           (lambda ()
             (setq show-trailing-whitespace nil)))
 
+(exec-path-from-shell-initialize)
+
 (provide 'emacs)
 ;;; .emacs ends here
