@@ -283,6 +283,7 @@
 (defalias 'dtw 'delete-trailing-whitespace)
 (defalias 'cr 'comment-region)
 (defalias 'ucr 'uncomment-region)
+(defalias 'bu 'browse-url)
 
 ;; org mode settings
 (setq org-directory "~/Dropbox/org")
