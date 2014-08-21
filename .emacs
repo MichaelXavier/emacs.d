@@ -375,5 +375,8 @@
 
 (setq ring-bell-function 'ignore)
 
+;; startup buffers
+(ielm) ;; more useful than scratcb
+
 (provide 'emacs)
 ;;; .emacs ends here
