@@ -378,5 +378,9 @@
 ;; startup buffers
 (ielm) ;; more useful than scratcb
 
+;; for browser textareas
+(require 'edit-server)
+(edit-server-start)
+
 (provide 'emacs)
 ;;; .emacs ends here
