@@ -99,7 +99,9 @@
      (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
      (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
      (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
-     (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+     (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+     (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
+     (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)))
 
 ;; haddocks with w3m cargo culted from https://github.com/haskell/haskell-mode/wiki/Browsing-Haddocks
 (setq w3m-mode-map (make-sparse-keymap))
@@ -125,6 +127,9 @@
 (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)
 
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+
+(require 'haskell-debug)
+
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
