@@ -1,0 +1,12 @@
+;; ruby configurations
+(add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Bowerfile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".gemspec$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".ru$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".rake$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".god$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".rabl$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Procfile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("yml.sample$" . yaml-mode))
