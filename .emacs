@@ -44,8 +44,8 @@
  '(web-mode-disable-auto-opening t)
  '(web-mode-disable-auto-pairing t))
 
-(load "~/.emacs.d/haskell_config.el")
 (load "~/.emacs.d/general_config.el")
+(load "~/.emacs.d/haskell_config.el")
 (load "~/.emacs.d/ruby_config.el")
 (load "~/.emacs.d/typescript_config.el")
 (load "~/.emacs.d/web_config.el")

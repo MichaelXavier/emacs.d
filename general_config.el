@@ -212,3 +212,6 @@
 ;; for browser textareas
 (require 'edit-server)
 (edit-server-start)
+
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
