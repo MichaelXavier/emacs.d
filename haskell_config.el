@@ -51,3 +51,29 @@
 
 ;; use a template when starting a new module
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+
+(setq ghc-debug t)
+
+(add-to-list 'load-path
+               "~/.cabal/share/x86_64-linux-ghc-7.8.3/ghc-mod-5.0.1/")
+
+(require 'ghc)
+
+(defvar my-ghc-initialized)
+(setq my-ghc-initialized nil) ;;christallfuckingmighty
+
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (ghc-abbrev-init)
+            (ghc-type-init)
+            (unless my-ghc-initialized
+              (ghc-comp-init)
+              ;; (snip) misc keybinding here..
+              (setq my-ghc-initialized t))
+            (ghc-import-module)))
+
+
+;; https://github.com/iquiw/company-ghc/issues/5#issuecomment-53142599
+;;(add-hook 'haskell-mode-hook 'ghc-comp-init)
+
+(add-to-list 'company-backends 'company-ghc)
