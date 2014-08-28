@@ -31,6 +31,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote cabal-repl))
  '(haskell-stylish-on-save nil)
+ '(haskell-tags-on-save t)
  '(ido-auto-merge-work-directories-length -1)
  '(inferior-haskell-wait-and-jump t)
  '(inhibit-startup-screen t)
