@@ -72,8 +72,6 @@
               (setq my-ghc-initialized t))
             (ghc-import-module)))
 
-
-;; https://github.com/iquiw/company-ghc/issues/5#issuecomment-53142599
-;;(add-hook 'haskell-mode-hook 'ghc-comp-init)
+(add-hook 'haskell-mode-hook 'company-mode)
 
 (add-to-list 'company-backends 'company-ghc)
