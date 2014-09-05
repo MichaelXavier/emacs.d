@@ -17,7 +17,7 @@
  '(dabbrev-case-fold-search nil)
  '(enh-ruby-bounce-deep-indent nil)
  '(enh-ruby-deep-indent-paren-style nil)
- '(erc-autojoin-channels-alist (quote (("freenode.net" "#emacs" "#haskell" "#nothaskell" "#atunit"))))
+ '(erc-autojoin-channels-alist (quote (("freenode.net" "#emacs" "#haskell" "#nothaskell" "#atunit" "##guitar"))))
  '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp track)))
  '(erc-nick "NemesisD")
  '(erc-prompt-for-nickserv-password t)
