@@ -55,7 +55,7 @@
 (setq ghc-debug t)
 
 (add-to-list 'load-path
-               "~/.cabal/share/x86_64-linux-ghc-7.8.3/ghc-mod-5.0.1/")
+               "~/.cabal/share/x86_64-linux-ghc-7.6.3/ghc-mod-5.0.1.2/")
 
 (require 'ghc)
 
