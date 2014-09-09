@@ -76,6 +76,15 @@
 
 (add-to-list 'company-backends 'company-ghc)
 
+(defun hackage-doc (&optional pkg)
+  "Open browser pointing to hackage for the given pkg. Opens hackage if pkg not specified."
+  (interactive "sPackage (none for hackage homepage): ")
+  (if (and pkg
+           (> (length pkg) 0))
+      (browse-url (concat "http://hackage.haskell.org/package/" pkg))
+      (browse-url "http://hackage.haskell.org")))
+
+
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
