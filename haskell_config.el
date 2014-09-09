@@ -75,3 +75,7 @@
 (add-hook 'haskell-mode-hook 'company-mode)
 
 (add-to-list 'company-backends 'company-ghc)
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+
