@@ -224,4 +224,7 @@
     (interactive)
     (setq require-final-newline nil))
 
+;: prevent emacs from asking if I want to reload the TAGS file all the time
+(setq tags-revert-without-query 1)
+
 (require 'company)
