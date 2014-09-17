@@ -15,6 +15,7 @@
 (eval-after-load "haskell-mode"
   '(progn
      (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+     (define-key haskell-mode-map (kbd "C-c C-;") 'haskell-process-reload-file)
      (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
      (define-key haskell-mode-map (kbd "C-c C-f") 'haskell-mode-stylish-buffer)
      (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
@@ -84,6 +85,11 @@
       (browse-url "http://hackage.haskell.org")))
 
 (defalias 'hd 'hackage-doc)
+
+
+;; In keeping with soostone style guide
+(add-hook 'haskell-mode-hook
+          '(lambda () (column-marker-1 78)))
 
 
 (eval-after-load 'flycheck
