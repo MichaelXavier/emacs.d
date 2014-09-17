@@ -218,4 +218,10 @@
 (global-set-key (kbd "M-S-<down>") 'shrink-window)
 (global-set-key (kbd "M-S-<up>") 'enlarge-window)
 
+(yas-global-mode 1)
+
+(defun disable-final-newline ()
+    (interactive)
+    (setq require-final-newline nil))
+
 (require 'company)
