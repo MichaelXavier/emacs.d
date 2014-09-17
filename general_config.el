@@ -210,8 +210,9 @@
 (require 'edit-server)
 (edit-server-start)
 
-(global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-+") 'zoom-frm-in)
+(global-set-key (kbd "C--") 'zoom-frm-out)
+(global-set-key (kbd "C-0") 'zoom-frm-unzoom)
 
 (global-set-key (kbd "M-S-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "M-S-<right>") 'enlarge-window-horizontally)
