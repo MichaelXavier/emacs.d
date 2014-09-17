@@ -83,6 +83,8 @@
       (browse-url (concat "http://hackage.haskell.org/package/" pkg))
       (browse-url "http://hackage.haskell.org")))
 
+(defalias 'hd 'hackage-doc)
+
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
