@@ -38,6 +38,8 @@
  '(initial-buffer-choice t)
  '(js-indent-level 2)
  '(magit-use-overlays nil)
+ '(popwin-mode t)
+ '(popwin:special-display-config (quote ((ag-mode) ("*All*" :height 15 :noselect t) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Backtrace*" :height 15 :noselect t) ("*Messages*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t) ("*Warnings*" :height 15 :noselect t) ("*ag search" :height 15 :noselect t) ("*All*" :height 15 :noselect t) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Backtrace*" :height 15 :noselect t) ("*Messages*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t) ("*Warnings*" :height 15 :noselect t) ("*Miniedit Help*" :noselect t) (help-mode) (completion-list-mode :noselect t) (compilation-mode :noselect t) (grep-mode :noselect t) (occur-mode :noselect t) ("*Pp Macroexpand Output*" :noselect t) ("*Shell Command Output*") ("*vc-diff*") ("*vc-change-log*") (" *undo-tree*" :width 60 :position right) ("^\\*anything.*\\*$" :regexp t) ("*slime-apropos*") ("*slime-macroexpansion*") ("*slime-description*") ("*slime-compilation*" :noselect t) ("*slime-xref*") (sldb-mode :stick t) (slime-repl-mode) (slime-connection-list-mode))))
  '(show-trailing-whitespace t)
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
  '(suggest-key-bindings t)
