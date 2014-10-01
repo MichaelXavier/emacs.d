@@ -229,3 +229,6 @@
 (setq tags-revert-without-query 1)
 
 (require 'company)
+
+(require 'popwin)
+(popwin-mode 1)
