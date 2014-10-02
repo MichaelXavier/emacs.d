@@ -73,10 +73,6 @@
               (setq my-ghc-initialized t))
             (ghc-import-module)))
 
-(add-hook 'haskell-mode-hook 'company-mode)
-
-(add-to-list 'company-backends 'company-ghc)
-
 (defun hackage-doc (&optional pkg)
   "Open browser pointing to hackage for the given pkg. Opens hackage if pkg not specified."
   (interactive "sPackage (none for hackage homepage): ")
