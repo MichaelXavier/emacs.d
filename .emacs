@@ -45,6 +45,7 @@
 
 (load "~/.emacs.d/general_config.el")
 (load "~/.emacs.d/haskell_config.el")
+(load "~/.emacs.d/purescript_config.el")
 (load "~/.emacs.d/ruby_config.el")
 (load "~/.emacs.d/typescript_config.el")
 (load "~/.emacs.d/web_config.el")
