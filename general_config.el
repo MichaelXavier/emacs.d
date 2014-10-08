@@ -239,3 +239,13 @@
   "Start dired in the current dir (needed for a nullary dired function)"
   (interactive)
   (dired "."))
+
+
+;; alignment aliases
+(defun align-colons (beg end)
+  (interactive "r")
+  (align-regexp beg end ":\\(\\s-*\\)" 1 1 t))
+
+(defun align-c-comment (beg end)
+  (interactive "r")
+  (align-regexp beg end "\\(-*\\)//" 1 0 t))
