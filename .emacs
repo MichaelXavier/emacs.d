@@ -20,6 +20,7 @@
  '(exec-path (quote ("/usr/lib/erlang/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/games" "/usr/local/games" "/usr/lib/emacs/24.3/x86_64-linux-gnu" "/opt/ghc/7.6.3/bin" "/opt/cabal/1.20/bin")))
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
+ '(haskell-align-imports-pad-after-name nil)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-check-cabal-config-on-load t)
  '(haskell-process-log t)
