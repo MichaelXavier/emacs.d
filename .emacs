@@ -46,6 +46,7 @@
  '(web-mode-disable-auto-pairing t))
 
 (load "~/.emacs.d/general_config.el")
+(load "~/.emacs.d/blog_config.el")
 (load "~/.emacs.d/haskell_config.el")
 (load "~/.emacs.d/purescript_config.el")
 (load "~/.emacs.d/ruby_config.el")
