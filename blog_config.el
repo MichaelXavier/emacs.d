@@ -9,7 +9,7 @@
                       "posts/%s-%s.org"
                       date
                       (replace-regexp-in-string (rx (1+ (not word))) "-" title)))
-           (heading (format "#+TITLE: %s\n" title)))
+           (heading (format "---\ntitle: %s\n---\n" title)))
       (find-file filename)
       (if (= 0 (buffer-size))
           (insert heading)))))
