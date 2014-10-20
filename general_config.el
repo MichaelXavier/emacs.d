@@ -246,6 +246,10 @@
   (interactive "r")
   (align-regexp beg end ":\\(\\s-*\\)" 1 1 t))
 
+(defun align-dcolons (beg end)
+  (interactive "r")
+  (align-regexp beg end "::\\(\\s-*\\)" 1 1 t))
+
 (defun align-c-comment (beg end)
   (interactive "r")
   (align-regexp beg end "\\(-*\\)//" 1 0 t))
