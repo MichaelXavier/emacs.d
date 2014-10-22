@@ -6,3 +6,6 @@
 (add-to-list 'auto-mode-alist '(".liquid$" . web-mode))
 (add-to-list 'auto-mode-alist '(".html.erb$" . web-mode))
 (add-to-list 'auto-mode-alist '(".tpl$" . web-mode))
+
+(define-key web-mode-map (kbd "C-c C-s") 'yas/insert-snippet)
+

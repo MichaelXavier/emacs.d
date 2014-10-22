@@ -221,6 +221,8 @@
 
 (yas-global-mode 1)
 
+(global-set-key (kbd "C-c C-s") 'yas/insert-snippet)
+
 (defun disable-final-newline ()
     (interactive)
     (setq require-final-newline nil))

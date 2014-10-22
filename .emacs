@@ -48,7 +48,8 @@
  '(suggest-key-bindings t)
  '(typescript-indent-level 2)
  '(web-mode-disable-auto-opening t)
- '(web-mode-disable-auto-pairing t))
+ '(web-mode-disable-auto-pairing t)
+ '(yas-prompt-functions (quote (yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt))))
 
 (load "~/.emacs.d/general_config.el")
 (load "~/.emacs.d/blog_config.el")
