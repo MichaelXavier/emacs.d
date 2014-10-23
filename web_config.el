@@ -1,4 +1,5 @@
 ;; web-mode stuff
+(require 'web-mode)
 ;;TODO: DRY
 (add-to-list 'auto-mode-alist '(".html$" . web-mode))
 (add-to-list 'auto-mode-alist '(".eco$" . web-mode))
