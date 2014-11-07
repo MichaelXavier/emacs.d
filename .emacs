@@ -23,6 +23,7 @@
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
  '(haskell-align-imports-pad-after-name nil)
+ '(haskell-mode-contextual-import-completion nil)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-check-cabal-config-on-load t)
  '(haskell-process-log t)
@@ -40,16 +41,18 @@
  '(js-indent-level 2)
  '(magit-use-overlays nil)
  '(package-archives (quote (("marmalade" . "http://marmalade-repo.org/packages/") ("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
- '(popwin:special-display-config (quote ((ag-mode) ("*All*" :height 15 :noselect t) ("*Flycheck error messages*" :regexp nil :height 15 :noselect t) ("*haskell process log*" :regexp nil :height 15 :noselect nil) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Backtrace*" :height 15 :noselect t) ("*Messages*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t) ("*Warnings*" :height 15 :noselect t) ("*ag search" :height 15 :noselect t) ("*All*" :height 15 :noselect t) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Backtrace*" :height 15 :noselect t) ("*Messages*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t) ("*Warnings*" :height 15 :noselect t) ("*Miniedit Help*" :noselect t) (help-mode) (completion-list-mode :noselect t) (compilation-mode :noselect t) (grep-mode :noselect t) (occur-mode :noselect t) ("*Pp Macroexpand Output*" :noselect t) ("*Shell Command Output*") ("*vc-diff*") ("*vc-change-log*") (" *undo-tree*" :width 60 :position right) ("^\\*anything.*\\*$" :regexp t) ("*slime-apropos*") ("*slime-macroexpansion*") ("*slime-description*") ("*slime-compilation*" :noselect t) ("*slime-xref*") (sldb-mode :stick t) (slime-repl-mode) (slime-connection-list-mode))))
+ '(popwin:special-display-config (quote ((ag-mode) ("*All*" :height 15 :noselect t) ("*Flycheck error messages*" :regexp nil :height 15 :noselect t) ("*haskell-process-log*" :regexp nil :height 15 :noselect nil) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Backtrace*" :height 15 :noselect t) ("*Messages*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t) ("*Warnings*" :height 15 :noselect t) ("*ag search" :height 15 :noselect t) ("*All*" :height 15 :noselect t) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Backtrace*" :height 15 :noselect t) ("*Messages*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t) ("*Warnings*" :height 15 :noselect t) ("*Miniedit Help*" :noselect t) (help-mode) (completion-list-mode :noselect t) (compilation-mode :noselect t) (grep-mode :noselect t) (occur-mode :noselect t) ("*Pp Macroexpand Output*" :noselect t) ("*Shell Command Output*") ("*vc-diff*") ("*vc-change-log*") (" *undo-tree*" :width 60 :position right) ("^\\*anything.*\\*$" :regexp t) ("*slime-apropos*") ("*slime-macroexpansion*") ("*slime-description*") ("*slime-compilation*" :noselect t) ("*slime-xref*") (sldb-mode :stick t) (slime-repl-mode) (slime-connection-list-mode))))
  '(projectile-switch-project-action (quote dired-cwd))
  '(show-trailing-whitespace t)
  '(sp-autoescape-string-quote nil)
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
+ '(sql-product (quote postgres))
  '(sql-server "localhost")
  '(suggest-key-bindings t)
  '(typescript-indent-level 2)
  '(web-mode-disable-auto-opening t)
  '(web-mode-disable-auto-pairing t)
+ '(yas-indent-line (quote fixed))
  '(yas-prompt-functions (quote (yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt))))
 
 (load "~/.emacs.d/general_config.el")
@@ -71,3 +74,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'upcase-region 'disabled nil)
