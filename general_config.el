@@ -242,6 +242,9 @@
   (interactive)
   (dired "."))
 
+;; Start org mode and markdown mode with auto-fill paragraphs
+(add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))
+(add-hook 'markdown-mode-hook (lambda () (auto-fill-mode 1)))
 
 ;; alignment aliases
 (defun align-colons (beg end)
