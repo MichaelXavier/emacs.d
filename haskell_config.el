@@ -1,4 +1,5 @@
 ;; haskell mode configuration
+(require 'f)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; haskell uses camelcase
 (add-hook 'haskell-mode-hook 'subword-mode)
@@ -81,6 +82,33 @@
       (browse-url "http://hackage.haskell.org")))
 
 (defalias 'hd 'hackage-doc)
+
+(defun browse-local-hackage-doc (pkg)
+  "Find the given package name in your local cabal sandbox"
+  (browse-url (f-join (sandbox-doc-root) pkg "html" "index.html")))
+
+(defun sandbox-doc-root ()
+  "Find the docs directory for the current sandbox"
+  (let*
+      ((session       (haskell-session))
+       (cabal-dir     (haskell-session-cabal-dir session))
+       (doc-root      (f-join cabal-dir ".cabal-sandbox" "share" "doc"))
+       (arch-name     (car (f-directories doc-root))))
+    (f-join doc-root arch-name)))
+
+(defun list-sandbox-docs ()
+  "List package docs for the current sandbox for auto completion"
+  (mapcar 'f-filename (f-directories (sandbox-doc-root))))
+
+
+(defun local-hackage-doc (&optional pkg)
+  "Open browser pointing to hackage for the given local pkg from the sandbox."
+  (interactive "P")
+  (browse-local-hackage-doc
+   (funcall 'ido-completing-read "Package name: "
+            (list-sandbox-docs))))
+
+(defalias 'lhd 'local-hackage-doc)
 
 
 ;; In keeping with soostone style guide
