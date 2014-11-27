@@ -1,3 +1,0 @@
-(:name highline
-       :description "minor mode to highlight current line in buffer"
-       :type emacsmirror)

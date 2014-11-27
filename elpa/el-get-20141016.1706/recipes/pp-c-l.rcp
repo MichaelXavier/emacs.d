@@ -1,3 +1,0 @@
-(:name pp-c-l
-       :description "Display Control-l characters in a pretty way"
-       :type emacsmirror)
