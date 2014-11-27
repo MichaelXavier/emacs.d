@@ -18,7 +18,6 @@
  '(erc-prompt-for-nickserv-password t)
  '(erc-server-auto-reconnect t)
  '(erc-server-reconnect-attempts 5)
- '(exec-path (quote ("/usr/lib/erlang/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/games" "/usr/local/games" "/usr/lib/emacs/24.3/x86_64-linux-gnu" "/opt/ghc/7.6.3/bin" "/opt/cabal/1.20/bin")))
  '(flycheck-display-errors-function (quote flycheck-display-error-messages-unless-error-list))
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
