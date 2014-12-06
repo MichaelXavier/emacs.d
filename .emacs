@@ -50,8 +50,12 @@
  '(sql-server "localhost")
  '(suggest-key-bindings t)
  '(typescript-indent-level 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
  '(web-mode-disable-auto-opening t)
  '(web-mode-disable-auto-pairing t)
+ '(web-mode-markup-indent-offset 2)
+ '(web-mode-sql-indent-offset 2)
  '(yas-indent-line (quote fixed))
  '(yas-prompt-functions (quote (yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt))))
 
