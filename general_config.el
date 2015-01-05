@@ -233,10 +233,6 @@
 (require 'popwin)
 (popwin-mode 1)
 
-(require 'el-get)
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
-
 (defun dired-cwd ()
   "Start dired in the current dir (needed for a nullary dired function)"
   (interactive)

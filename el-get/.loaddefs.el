@@ -3,374 +3,125 @@
 ;;; Code:
 
 
-;;;### (autoloads (purescript-align-imports) "purescript-mode/purescript-align-imports"
-;;;;;;  "purescript-mode/purescript-align-imports.el" (21548 35902
-;;;;;;  970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-align-imports.el
+;;;### (autoloads (el-get el-get-self-checksum el-get-checksum el-get-make-recipes
+;;;;;;  el-get-cd el-get-reinstall el-get-remove el-get-self-update
+;;;;;;  el-get-update-packages-of-type el-get-update-all el-get-update
+;;;;;;  el-get-install el-get-version) "el-get/el-get" "el-get/el-get.el"
+;;;;;;  (21674 47635 650435 594000))
+;;; Generated autoloads from el-get/el-get.el
 
-(autoload 'purescript-align-imports "purescript-mode/purescript-align-imports" "\
-Align all the imports in the buffer.
+(autoload 'el-get-version "el-get/el-get" "\
+Message the current el-get version
+
+\(fn)" t nil)
+
+(autoload 'el-get-install "el-get/el-get" "\
+Cause the named PACKAGE to be installed after all of its
+dependencies (if any).
+
+PACKAGE may be either a string or the corresponding symbol.
+
+\(fn PACKAGE)" t nil)
+
+(autoload 'el-get-update "el-get/el-get" "\
+Update PACKAGE.
+
+\(fn PACKAGE)" t nil)
+
+(autoload 'el-get-update-all "el-get/el-get" "\
+Performs update of all installed packages.
+
+\(fn &optional NO-PROMPT)" t nil)
+
+(autoload 'el-get-update-packages-of-type "el-get/el-get" "\
+Update all installed packages of type TYPE.
+
+\(fn TYPE)" t nil)
+
+(autoload 'el-get-self-update "el-get/el-get" "\
+Update el-get itself.  The standard recipe takes care of reloading the code.
+
+\(fn)" t nil)
+
+(autoload 'el-get-remove "el-get/el-get" "\
+Remove any PACKAGE that is know to be installed or required.
+
+\(fn PACKAGE &optional PACKAGE-STATUS-ALIST)" t nil)
+
+(autoload 'el-get-reinstall "el-get/el-get" "\
+Remove PACKAGE and then install it again.
+
+\(fn PACKAGE)" t nil)
+
+(autoload 'el-get-cd "el-get/el-get" "\
+Open dired in the package directory.
+
+\(fn PACKAGE)" t nil)
+
+(autoload 'el-get-make-recipes "el-get/el-get" "\
+Loop over `el-get-sources' and write a recipe file for each
+entry which is not a symbol and is not already a known recipe.
+
+\(fn &optional DIR)" t nil)
+
+(autoload 'el-get-checksum "el-get/el-get" "\
+Compute the checksum of the given package, and put it in the kill-ring
+
+\(fn PACKAGE &optional PACKAGE-STATUS-ALIST)" t nil)
+
+(autoload 'el-get-self-checksum "el-get/el-get" "\
+Compute the checksum of the running version of el-get itself.
+
+Also put the checksum in the kill-ring.
+
+\(fn)" t nil)
+
+(autoload 'el-get "el-get/el-get" "\
+Ensure that packages have been downloaded once and init them as needed.
+
+This will not update the sources by using `apt-get install' or
+`git pull', but it will ensure that:
+
+* the packages have been installed
+* load-path is set so their elisp files can be found
+* Info-directory-list is set so their info files can be found
+* Autoloads have been prepared and evaluated for each package
+* Any post-installation setup (e.g. `(require 'feature)') happens
+
+When SYNC is nil (the default), all installations run
+concurrently, in the background.
+
+When SYNC is 'sync, each package will be installed synchronously,
+and any error will stop it all.
+
+Please note that the `el-get-init' part of `el-get' is always
+done synchronously. There's `byte-compile' support though, and
+the packages you use are welcome to use `autoload' too.
+
+PACKAGES is expected to be a list of packages you want to install
+or init.  When PACKAGES is omited (the default), the list of
+already installed packages is considered.
+
+\(fn &optional SYNC &rest PACKAGES)" nil nil)
+
+;;;***
+
+;;;### (autoloads (el-get-list-packages) "el-get/el-get-list-packages"
+;;;;;;  "el-get/el-get-list-packages.el" (21674 47635 646437 594000))
+;;; Generated autoloads from el-get/el-get-list-packages.el
+
+(autoload 'el-get-list-packages "el-get/el-get-list-packages" "\
+Display a list of packages.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (purescript-decl-scan-mode turn-on-purescript-decl-scan
-;;;;;;  purescript-ds-create-imenu-index) "purescript-mode/purescript-decl-scan"
-;;;;;;  "purescript-mode/purescript-decl-scan.el" (21548 35902 970472
-;;;;;;  251000))
-;;; Generated autoloads from purescript-mode/purescript-decl-scan.el
-
-(autoload 'purescript-ds-create-imenu-index "purescript-mode/purescript-decl-scan" "\
-Function for finding `imenu' declarations in PureScript mode.
-Finds all declarations (classes, variables, imports, instances and
-datatypes) in a PureScript file for the `imenu' package.
-
-\(fn)" nil nil)
-
-(autoload 'turn-on-purescript-decl-scan "purescript-mode/purescript-decl-scan" "\
-Unconditionally activate `purescript-decl-scan-mode'.
-
-\(fn)" t nil)
-
-(autoload 'purescript-decl-scan-mode "purescript-mode/purescript-decl-scan" "\
-Toggle PureScript declaration scanning minor mode on or off.
-With a prefix argument ARG, enable minor mode if ARG is
-positive, and disable it otherwise.  If called from Lisp, enable
-the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
-
-See also info node `(purescript-mode)purescript-decl-scan-mode' for
-more details about this minor mode.
-
-Top-level declarations are scanned and listed in the menu item
-\"Declarations\" (if enabled via option
-`purescript-decl-scan-add-to-menubar').  Selecting an item from this
-menu will take point to the start of the declaration.
-
-\\[beginning-of-defun] and \\[end-of-defun] move forward and backward to the start of a declaration.
-
-This may link with `purescript-doc-mode'.
-
-For non-literate and LaTeX-style literate scripts, we assume the
-common convention that top-level declarations start at the first
-column.  For Bird-style literate scripts, we assume the common
-convention that top-level declarations start at the third column,
-ie. after \"> \".
-
-Anything in `font-lock-comment-face' is not considered for a
-declaration.  Therefore, using PureScript font locking with comments
-coloured in `font-lock-comment-face' improves declaration scanning.
-
-Literate PureScript scripts are supported: If the value of
-`purescript-literate' (set automatically by `literate-purescript-mode')
-is `bird', a Bird-style literate script is assumed.  If it is nil
-or `tex', a non-literate or LaTeX-style literate script is
-assumed, respectively.
-
-Invokes `purescript-decl-scan-mode-hook' on activation.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (purescript-font-lock-choose-keywords) "purescript-mode/purescript-font-lock"
-;;;;;;  "purescript-mode/purescript-font-lock.el" (21548 35902 970472
-;;;;;;  251000))
-;;; Generated autoloads from purescript-mode/purescript-font-lock.el
-
-(autoload 'purescript-font-lock-choose-keywords "purescript-mode/purescript-font-lock" "\
-
-
-\(fn)" nil nil)
-
-;;;***
-
-;;;### (autoloads (purescript-indent-mode turn-on-purescript-indent)
-;;;;;;  "purescript-mode/purescript-indent" "purescript-mode/purescript-indent.el"
-;;;;;;  (21548 35902 970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-indent.el
-
-(autoload 'turn-on-purescript-indent "purescript-mode/purescript-indent" "\
-Turn on ``intelligent'' PureScript indentation mode.
-
-\(fn)" nil nil)
-
-(autoload 'purescript-indent-mode "purescript-mode/purescript-indent" "\
-``Intelligent'' PureScript indentation mode.
-This deals with the layout rule of PureScript.
-\\[purescript-indent-cycle] starts the cycle which proposes new
-possibilities as long as the TAB key is pressed.  Any other key
-or mouse click terminates the cycle and is interpreted except for
-RET which merely exits the cycle.
-Other special keys are:
-    \\[purescript-indent-insert-equal]
-      inserts an =
-    \\[purescript-indent-insert-guard]
-      inserts an |
-    \\[purescript-indent-insert-otherwise]
-      inserts an | otherwise =
-these functions also align the guards and rpurs of the current definition
-    \\[purescript-indent-insert-where]
-      inserts a where keyword
-    \\[purescript-indent-align-guards-and-rpurs]
-      aligns the guards and rpurs of the region
-    \\[purescript-indent-put-region-in-literate]
-      makes the region a piece of literate code in a literate script
-
-Invokes `purescript-indent-hook' if not nil.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (turn-on-purescript-indentation purescript-indentation-mode)
-;;;;;;  "purescript-mode/purescript-indentation" "purescript-mode/purescript-indentation.el"
-;;;;;;  (21548 35902 970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-indentation.el
-
-(autoload 'purescript-indentation-mode "purescript-mode/purescript-indentation" "\
-PureScript indentation mode that deals with the layout rule.
-It rebinds RET, DEL and BACKSPACE, so that indentations can be
-set and deleted as if they were real tabs.  It supports
-autofill-mode.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'turn-on-purescript-indentation "purescript-mode/purescript-indentation" "\
-Turn on the purescript-indentation minor mode.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (literate-purescript-mode purescript-mode purescript-customize
-;;;;;;  purescript-mode-view-news purescript-version) "purescript-mode/purescript-mode"
-;;;;;;  "purescript-mode/purescript-mode.el" (21548 35902 970472
-;;;;;;  251000))
-;;; Generated autoloads from purescript-mode/purescript-mode.el
-
-(autoload 'purescript-version "purescript-mode/purescript-mode" "\
-Show the `purescript-mode` version in the echo area.
-With prefix argument HERE, insert it at point.
-When FULL is non-nil, use a verbose version string.
-When MESSAGE is non-nil, display a message with the version.
-
-\(fn &optional HERE)" t nil)
-
-(autoload 'purescript-mode-view-news "purescript-mode/purescript-mode" "\
-Display information on recent changes to purescript-mode.
-
-\(fn)" t nil)
-
-(autoload 'purescript-customize "purescript-mode/purescript-mode" "\
-Browse the purescript customize sub-tree.
-This calls 'customize-browse' with purescript as argument and makes
-sure all purescript customize definitions have been loaded.
-
-\(fn)" t nil)
-
-(defvar purescript-mode-map (let ((map (make-sparse-keymap))) (define-key map (kbd "C-c C-.") 'purescript-mode-format-imports) (define-key map [remap delete-indentation] 'purescript-delete-indentation) map) "\
-Keymap used in PureScript mode.")
-
-(autoload 'purescript-mode "purescript-mode/purescript-mode" "\
-Major mode for editing PureScript programs.
-
-See also Info node `(purescript-mode)Getting Started' for more
-information about this mode.
-
-\\<purescript-mode-map>
-Literate scripts are supported via `literate-purescript-mode'.
-The variable `purescript-literate' indicates the style of the script in the
-current buffer.  See the documentation on this variable for more details.
-
-Use `purescript-version' to find out what version of PureScript mode you are
-currently using.
-
-Additional PureScript mode modules can be hooked in via `purescript-mode-hook';
-see documentation for that variable for more details.
-
-\(fn)" t nil)
-
-(autoload 'literate-purescript-mode "purescript-mode/purescript-mode" "\
-As `purescript-mode' but for literate scripts.
-
-\(fn)" t nil)
-(add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
-
-;;;***
-
-;;;### (autoloads (purescript-move-nested-left purescript-move-nested-right
-;;;;;;  purescript-move-nested) "purescript-mode/purescript-move-nested"
-;;;;;;  "purescript-mode/purescript-move-nested.el" (21548 35902
-;;;;;;  970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-move-nested.el
-
-(autoload 'purescript-move-nested "purescript-mode/purescript-move-nested" "\
-Shift the nested off-side-rule block adjacent to point by COLS columns to the right.
-
-In Transient Mark mode, if the mark is active, operate on the contents
-of the region instead.
-
-\(fn COLS)" nil nil)
-
-(autoload 'purescript-move-nested-right "purescript-mode/purescript-move-nested" "\
-Increase indentation of the following off-side-rule block adjacent to point.
-
-Use a numeric prefix argument to indicate amount of indentation to apply.
-
-In Transient Mark mode, if the mark is active, operate on the contents
-of the region instead.
-
-\(fn COLS)" t nil)
-
-(autoload 'purescript-move-nested-left "purescript-mode/purescript-move-nested" "\
-Decrease indentation of the following off-side-rule block adjacent to point.
-
-Use a numeric prefix argument to indicate amount of indentation to apply.
-
-In Transient Mark mode, if the mark is active, operate on the contents
-of the region instead.
-
-\(fn COLS)" t nil)
-
-;;;***
-
-;;;### (autoloads (purescript-navigate-imports-return purescript-navigate-imports-go
-;;;;;;  purescript-navigate-imports) "purescript-mode/purescript-navigate-imports"
-;;;;;;  "purescript-mode/purescript-navigate-imports.el" (21548 35902
-;;;;;;  970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-navigate-imports.el
-
-(autoload 'purescript-navigate-imports "purescript-mode/purescript-navigate-imports" "\
-Cycle the PureScript import lines or return to point (with prefix arg).
-
-\(fn &optional RETURN)" t nil)
-
-(autoload 'purescript-navigate-imports-go "purescript-mode/purescript-navigate-imports" "\
-Go to the first line of a list of consequtive import lines. Cycles.
-
-\(fn)" t nil)
-
-(autoload 'purescript-navigate-imports-return "purescript-mode/purescript-navigate-imports" "\
-Return to the non-import point we were at before going to the module list.
-   If we were originally at an import list, we can just cycle through easily.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (purescript-show-parse purescript-show-parse-and-insert
-;;;;;;  purescript-show-replace) "purescript-mode/purescript-show"
-;;;;;;  "purescript-mode/purescript-show.el" (21548 35902 970472
-;;;;;;  251000))
-;;; Generated autoloads from purescript-mode/purescript-show.el
-
-(autoload 'purescript-show-replace "purescript-mode/purescript-show" "\
-Replace the given region containing a Show value with a pretty
-  printed collapsible version.
-
-\(fn START END)" nil nil)
-
-(autoload 'purescript-show-parse-and-insert "purescript-mode/purescript-show" "\
-Parse a `string' containing a Show instance value and insert
-  it pretty printed into the current buffer.
-
-\(fn GIVEN)" nil nil)
-
-(autoload 'purescript-show-parse "purescript-mode/purescript-show" "\
-Parse the given input into a tree.
-
-\(fn GIVEN)" nil nil)
-
-;;;***
-
-;;;### (autoloads (turn-on-purescript-simple-indent purescript-simple-indent-mode)
-;;;;;;  "purescript-mode/purescript-simple-indent" "purescript-mode/purescript-simple-indent.el"
-;;;;;;  (21548 35902 970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-simple-indent.el
-
-(autoload 'purescript-simple-indent-mode "purescript-mode/purescript-simple-indent" "\
-Simple PureScript indentation mode that uses simple heuristic.
-In this minor mode, `indent-for-tab-command' (bound to <tab> by
-default) will move the cursor to the next indent point in the
-previous nonblank line, whereas `purescript-simple-indent-backtab'
-\(bound to <backtab> by default) will move the cursor the
-previous indent point.  An indent point is a non-whitespace
-character following whitespace.
-
-Runs `purescript-simple-indent-hook' on activation.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'turn-on-purescript-simple-indent "purescript-mode/purescript-simple-indent" "\
-Turn on function `purescript-simple-indent-mode'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (purescript-sort-imports) "purescript-mode/purescript-sort-imports"
-;;;;;;  "purescript-mode/purescript-sort-imports.el" (21548 35902
-;;;;;;  970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-sort-imports.el
-
-(autoload 'purescript-sort-imports "purescript-mode/purescript-sort-imports" "\
-
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (purescript-is-prefix-of purescript-string-take
-;;;;;;  purescript-trim) "purescript-mode/purescript-string" "purescript-mode/purescript-string.el"
-;;;;;;  (21548 35902 970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-string.el
-
-(autoload 'purescript-trim "purescript-mode/purescript-string" "\
-
-
-\(fn STRING)" nil nil)
-
-(autoload 'purescript-string-take "purescript-mode/purescript-string" "\
-Take n chars from string.
-
-\(fn STRING N)" nil nil)
-
-(autoload 'purescript-is-prefix-of "purescript-mode/purescript-string" "\
-Is x string a prefix of y string?
-
-\(fn X Y)" nil nil)
-
-;;;***
-
-;;;### (autoloads (turn-on-purescript-unicode-input-method) "purescript-mode/purescript-unicode-input-method"
-;;;;;;  "purescript-mode/purescript-unicode-input-method.el" (21548
-;;;;;;  35902 970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-unicode-input-method.el
-
-(autoload 'turn-on-purescript-unicode-input-method "purescript-mode/purescript-unicode-input-method" "\
-Set input method `purescript-unicode'.
-See Info node `Unicode(purescript-mode)' for more details.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (purescript-yas-complete) "purescript-mode/purescript-yas"
-;;;;;;  "purescript-mode/purescript-yas.el" (21548 35902 970472 251000))
-;;; Generated autoloads from purescript-mode/purescript-yas.el
-
-(autoload 'purescript-yas-complete "purescript-mode/purescript-yas" "\
-
-
-\(fn &rest ARGS)" nil nil)
-
-;;;***
-
-;;;### (autoloads nil nil ("purescript-mode/purescript-collapse.el"
-;;;;;;  "purescript-mode/purescript-package.el" "purescript-mode/purescript-presentation-mode.el"
-;;;;;;  "purescript-mode/purescript-str.el" "purescript-mode/purescript-utils.el")
-;;;;;;  (21548 35903 640491 666000))
+;;;### (autoloads nil nil ("el-get/el-get-autoloading.el" "el-get/el-get-build.el"
+;;;;;;  "el-get/el-get-byte-compile.el" "el-get/el-get-core.el" "el-get/el-get-custom.el"
+;;;;;;  "el-get/el-get-dependencies.el" "el-get/el-get-install.el"
+;;;;;;  "el-get/el-get-methods.el" "el-get/el-get-notify.el" "el-get/el-get-recipes.el"
+;;;;;;  "el-get/el-get-status.el") (21674 47636 820836 564000))
 
 ;;;***
 
