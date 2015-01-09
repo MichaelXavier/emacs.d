@@ -18,6 +18,7 @@
  '(erc-prompt-for-nickserv-password t)
  '(erc-server-auto-reconnect t)
  '(erc-server-reconnect-attempts 5)
+ '(flycheck-disabled-checkers (quote (make)))
  '(flycheck-display-errors-function (quote flycheck-display-error-messages-unless-error-list))
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
