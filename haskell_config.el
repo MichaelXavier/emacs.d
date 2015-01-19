@@ -121,3 +121,6 @@
 
 (require 'flymake-haskell-multi)
 (add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
+
+;; So smartparens doesn't get confused at language pragmas
+(sp-local-pair 'haskell-mode "{-#" "#-}")
