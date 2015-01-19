@@ -51,7 +51,7 @@
 ;; original definition of closing pair.
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
 
-(defun sp-lisp-invalid-hyperlink-p (_ action _)
+(defun sp-lisp-invalid-hyperlink-p (_1 action _2)
   (when (eq action 'navigate)
     (or (and (looking-at "\\sw\\|\\s_")
              (save-excursion
@@ -81,6 +81,8 @@
                                  (or (sp-lisp-invalid-hyperlink-p "`" 'navigate '_)
                                      (not (sp-point-in-string-or-comment))))
                                 (t (not (sp-point-in-string-or-comment)))))))
+
+(sp-local-pair 'emacs-lisp-mode "\\\\{" "}" :when '(sp-in-string-p))
 
 ;; NOTE: Normally, `sp-local-pair' accepts list of modes (or a single
 ;; mode) as a first argument.  The macro `sp-with-modes' adds this
