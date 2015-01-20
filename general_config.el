@@ -256,3 +256,6 @@
   (align-regexp beg end "\\(-*\\)//" 1 0 t))
 
 (rxt-global-mode 1)
+
+;; Disasble the freeze-emacs-for-no-reason key
+(global-set-key (kbd "C-z") 'ignore)
