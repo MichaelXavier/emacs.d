@@ -130,13 +130,13 @@
 (define-key sp-keymap (kbd "H-s s") 'sp-split-sexp)
 
 ;; via yegge
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(global-set-key (kbd "C-c C-m") 'execute-extended-command)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-x C-k") 'kill-region)
+(global-set-key (kbd "C-c C-k") 'kill-region)
 ;; so I can stop drafting emails
-(global-set-key "\C-xm" 'execute-extended-command)
+(global-set-key (kbd "C-x m") 'execute-extended-command)
 
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'arx 'align-regexp)
@@ -190,7 +190,7 @@
   (set-buffer-modified-p t)
   (save-buffer))
 
-(global-set-key "\C-x\C-s" 'save-buffer-always)
+(global-set-key (kbd "C-x C-s") 'save-buffer-always)
 
 (setq browse-url-browser-function 'browse-url-generic
           browse-url-generic-program "google-chrome-beta")
