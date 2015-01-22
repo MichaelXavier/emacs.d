@@ -14,3 +14,37 @@
   (local-set-key (kbd "C-c , g") 'jump-to-cucumber-step)
   )
 (add-hook 'feature-mode-hook 'swap-cucumber-key-bindings)
+
+
+
+;; Lifted from github.com/acowley/dotfiles
+;;;; Project Task Capture
+
+;; I use a convention where projects have a ProjectName-notes.org file
+;; in the project root directory. This file is used for design notes
+;; and task lists. It can be good to setq `org-agenda-files' to
+;; include all your active projects so that the tasks show up in the
+;; org agenda view. I set this value in the
+;; [[%3B%3B%3B%20Private%20Configuration][Private Configuration]]
+;; section of this file.
+
+;; With the given configuration "C-c c p" adds a TODO item to the
+;; current project's notes file.
+(defun find-project-notes ()
+  "A project's notes file is defined as ProjectName-notes.org in
+  the project root directory."
+  (concat (file-name-as-directory projectile-project-root) "README.org"))
+
+;; Capture templates for quick notetaking
+(setq org-capture-templates
+      '(("s" "Shortlist")
+        ("st" "Today" entry (file+headline "shortlist.org" "Today")
+              "* TODO %?\n")
+        ("sw" "This Week" entry (file+headline "shortlist.org" "This Week")
+              "* TODO %?\n")
+        ("se" "Eventually" entry (file+headline "shortlist.org" "Eventually")
+              "* TODO %?\n")
+        ("p" "Project Task" entry (file+headline (find-project-notes) "Tasks")
+         "* TODO %?\n")))
+
+(global-set-key (kbd "C-c c") 'org-capture)
