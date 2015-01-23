@@ -33,7 +33,7 @@
 (defun find-project-notes ()
   "A project's notes file is defined as ProjectName-notes.org in
   the project root directory."
-  (concat (file-name-as-directory projectile-project-root) "README.org"))
+  (concat (file-name-as-directory (projectile-project-root)) "README.org"))
 
 ;; Capture templates for quick notetaking
 (setq org-capture-templates
