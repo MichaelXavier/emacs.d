@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: language overloadedstrings
-# key: los
+# name: language recordwildcards
+# key: lrwc
 # binding: direct-keybinding
 # --
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards #-}
