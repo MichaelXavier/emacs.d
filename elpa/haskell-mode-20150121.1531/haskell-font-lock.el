@@ -353,7 +353,7 @@ Returns keywords suitable for `font-lock-keywords'."
 
          ;; Top-level declarations
          (topdecl-var
-          (concat line-prefix "\\(" varid "\\)\\s-*"
+          (concat line-prefix "\\(" varid "\\(?:\\s-*,\\s-*" varid "\\)*" "\\)\\s-*"
                   ;; optionally allow for a single newline after identifier
                   ;; NOTE: not supported for bird-style .lhs files
                   (if (eq literate 'bird) nil "\\([\n]\\s-+\\)?")
@@ -364,6 +364,8 @@ Returns keywords suitable for `font-lock-keywords'."
                   "\\(" varid "\\|" conid "\\|::\\|∷\\|=\\||\\|\\s(\\|[0-9\"']\\)"))
          (topdecl-var2
           (concat line-prefix "\\(" varid "\\|" conid "\\)\\s-*`\\(" varid "\\)`"))
+         (topdecl-bangpat
+          (concat line-prefix "\\(" varid "\\)\\s-*!"))
          (topdecl-sym
           (concat line-prefix "\\(" varid "\\|" conid "\\)\\s-*\\(" sym "\\)"))
          (topdecl-sym2 (concat line-prefix "(\\(" sym "\\))"))
@@ -392,7 +394,7 @@ Returns keywords suitable for `font-lock-keywords'."
             (,reservedsym 1 haskell-operator-face)
             ;; Special case for `as', `hiding', `safe' and `qualified', which are
             ;; keywords in import statements but are not otherwise reserved.
-            ("\\<import[ \t]+\\(?:\\(safe\\>\\)[ \t]*\\)?\\(?:\\(qualified\\>\\)[ \t]*\\)?[^ \t\n()]+[ \t]*\\(?:\\(\\<as\\>\\)[ \t]*[^ \t\n()]+[ \t]*\\)?\\(\\<hiding\\>\\)?"
+            ("\\<import[ \t]+\\(?:\\(safe\\>\\)[ \t]*\\)?\\(?:\\(qualified\\>\\)[ \t]*\\)?\\(?:\"[^\"]*\"[\t ]*\\)?[^ \t\n()]+[ \t]*\\(?:\\(\\<as\\>\\)[ \t]*[^ \t\n()]+[ \t]*\\)?\\(\\<hiding\\>\\)?"
              (1 haskell-keyword-face nil lax)
              (2 haskell-keyword-face nil lax)
              (3 haskell-keyword-face nil lax)
@@ -419,6 +421,7 @@ Returns keywords suitable for `font-lock-keywords'."
             ;; Place them *before* generic id-and-op highlighting.
             (,topdecl-var  (1 haskell-definition-face))
             (,topdecl-var2 (2 haskell-definition-face))
+            (,topdecl-bangpat  (1 haskell-definition-face))
             (,topdecl-sym  (2 haskell-definition-face))
             (,topdecl-sym2 (1 haskell-definition-face))
 
@@ -692,6 +695,16 @@ Invokes `haskell-font-lock-hook' if not nil."
 (defun turn-off-haskell-font-lock ()
   "Turns off font locking in current buffer."
   (font-lock-mode -1))
+
+(defun haskell-fontify-as-mode (text mode)
+  "Fontify TEXT as MODE, returning the fontified text."
+  (with-temp-buffer
+    (funcall mode)
+    (insert text)
+    (if (fboundp 'font-lock-ensure)
+        (font-lock-ensure)
+      (with-no-warnings (font-lock-fontify-buffer)))
+    (buffer-substring (point-min) (point-max))))
 
 ;; Provide ourselves:
 

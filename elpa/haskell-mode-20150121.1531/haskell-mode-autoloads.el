@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (ghc-core-mode ghc-core-create-core) "ghc-core"
-;;;;;;  "ghc-core.el" (21627 58701 732998 474000))
+;;;;;;  "ghc-core.el" (21697 39589 688015 298000))
 ;;; Generated autoloads from ghc-core.el
 
 (autoload 'ghc-core-create-core "ghc-core" "\
@@ -21,8 +21,126 @@ Major mode for GHC Core files.
 
 ;;;***
 
+;;;### (autoloads (haskell-process-minimal-imports haskell-process-cabal
+;;;;;;  haskell-process-cabal-build haskell-process-load-or-reload
+;;;;;;  haskell-process-reload-file haskell-process-load-file haskell-interactive-bring
+;;;;;;  haskell-mode-tag-find haskell-mode-after-save-handler haskell-mode-jump-to-tag
+;;;;;;  haskell-mode-contextual-space haskell-interactive-mode-visit-error
+;;;;;;  haskell-kill-session-process haskell-session-change haskell-interactive-switch
+;;;;;;  haskell-session haskell-interactive-kill haskell-session-kill
+;;;;;;  haskell-interactive-mode-return interactive-haskell-mode)
+;;;;;;  "haskell" "haskell.el" (21697 39589 712015 298000))
+;;; Generated autoloads from haskell.el
+
+(autoload 'interactive-haskell-mode "haskell" "\
+Minor mode for enabling haskell-process interaction.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'haskell-interactive-mode-return "haskell" "\
+Handle the return key.
+
+\(fn)" t nil)
+
+(autoload 'haskell-session-kill "haskell" "\
+Kill the session process and buffer, delete the session.
+0. Prompt to kill all associated buffers.
+1. Kill the process.
+2. Kill the interactive buffer.
+3. Walk through all the related buffers and set their haskell-session to nil.
+4. Remove the session from the sessions list.
+
+\(fn &optional LEAVE-INTERACTIVE-BUFFER)" t nil)
+
+(autoload 'haskell-interactive-kill "haskell" "\
+Kill the buffer and (maybe) the session.
+
+\(fn)" t nil)
+
+(autoload 'haskell-session "haskell" "\
+Get the Haskell session, prompt if there isn't one or fail.
+
+\(fn)" nil nil)
+
+(autoload 'haskell-interactive-switch "haskell" "\
+Switch to the interactive mode for this session.
+
+\(fn)" t nil)
+
+(autoload 'haskell-session-change "haskell" "\
+Change the session for the current buffer.
+
+\(fn)" t nil)
+
+(autoload 'haskell-kill-session-process "haskell" "\
+Kill the process.
+
+\(fn &optional SESSION)" t nil)
+
+(autoload 'haskell-interactive-mode-visit-error "haskell" "\
+Visit the buffer of the current (or last) error message.
+
+\(fn)" t nil)
+
+(autoload 'haskell-mode-contextual-space "haskell" "\
+Contextually do clever stuff when hitting space.
+
+\(fn)" t nil)
+
+(autoload 'haskell-mode-jump-to-tag "haskell" "\
+Jump to the tag of the given identifier.
+
+\(fn &optional NEXT-P)" t nil)
+
+(autoload 'haskell-mode-after-save-handler "haskell" "\
+Function that will be called after buffer's saving.
+
+\(fn)" nil nil)
+
+(autoload 'haskell-mode-tag-find "haskell" "\
+The tag find function, specific for the particular session.
+
+\(fn &optional NEXT-P)" t nil)
+
+(autoload 'haskell-interactive-bring "haskell" "\
+Bring up the interactive mode for this session.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-load-file "haskell" "\
+Load the current buffer file.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-reload-file "haskell" "\
+Re-load the current buffer file.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-load-or-reload "haskell" "\
+Load or reload. Universal argument toggles which.
+
+\(fn &optional TOGGLE)" t nil)
+
+(autoload 'haskell-process-cabal-build "haskell" "\
+Build the Cabal project.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-cabal "haskell" "\
+Prompts for a Cabal command to run.
+
+\(fn P)" t nil)
+
+(autoload 'haskell-process-minimal-imports "haskell" "\
+Dump minimal imports.
+
+\(fn)" t nil)
+
+;;;***
+
 ;;;### (autoloads (haskell-align-imports) "haskell-align-imports"
-;;;;;;  "haskell-align-imports.el" (21627 58702 64998 487000))
+;;;;;;  "haskell-align-imports.el" (21697 39590 68015 304000))
 ;;; Generated autoloads from haskell-align-imports.el
 
 (autoload 'haskell-align-imports "haskell-align-imports" "\
@@ -32,8 +150,8 @@ Align all the imports in the buffer.
 
 ;;;***
 
-;;;### (autoloads (haskell-c-mode) "haskell-c" "haskell-c.el" (21627
-;;;;;;  58702 100998 488000))
+;;;### (autoloads (haskell-c-mode) "haskell-c" "haskell-c.el" (21697
+;;;;;;  39590 112015 305000))
 ;;; Generated autoloads from haskell-c.el
 
 (add-to-list 'auto-mode-alist '("\\.hsc\\'" . haskell-c-mode))
@@ -46,8 +164,8 @@ Major mode for Haskell FFI files.
 ;;;***
 
 ;;;### (autoloads (haskell-cabal-visit-file haskell-cabal-get-dir
-;;;;;;  haskell-cabal-mode) "haskell-cabal" "haskell-cabal.el" (21627
-;;;;;;  58702 20998 485000))
+;;;;;;  haskell-cabal-mode) "haskell-cabal" "haskell-cabal.el" (21697
+;;;;;;  39589 996015 303000))
 ;;; Generated autoloads from haskell-cabal.el
 
 (add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))
@@ -76,8 +194,130 @@ OTHER-WINDOW use `find-file-other-window'.
 
 ;;;***
 
+;;;### (autoloads (haskell-mode-find-uses haskell-mode-stylish-buffer
+;;;;;;  haskell-session-change-target haskell-process-unignore haskell-process-generate-tags
+;;;;;;  haskell-mode-show-type-at haskell-process-cabal-macros haskell-process-cd
+;;;;;;  haskell-mode-jump-to-def haskell-mode-goto-loc haskell-mode-jump-to-def-or-tag
+;;;;;;  haskell-process-do-type haskell-process-do-info haskell-rgrep
+;;;;;;  haskell-describe haskell-process-touch-buffer haskell-process-interrupt
+;;;;;;  haskell-process-clear haskell-process-restart) "haskell-commands"
+;;;;;;  "haskell-commands.el" (21697 39590 48015 304000))
+;;; Generated autoloads from haskell-commands.el
+
+(autoload 'haskell-process-restart "haskell-commands" "\
+Restart the inferior Haskell process.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-clear "haskell-commands" "\
+Clear the current process.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-interrupt "haskell-commands" "\
+Interrupt the process (SIGINT).
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-touch-buffer "haskell-commands" "\
+Updates mtime on the file for BUFFER by queing a touch on
+PROCESS.
+
+\(fn PROCESS BUFFER)" t nil)
+
+(autoload 'haskell-describe "haskell-commands" "\
+Describe the given identifier.
+
+\(fn IDENT)" t nil)
+
+(autoload 'haskell-rgrep "haskell-commands" "\
+Grep the effective project for the symbol at point. Very
+useful for codebase navigation. Prompts for an arbitrary regexp
+given a prefix arg.
+
+\(fn &optional PROMPT)" t nil)
+
+(autoload 'haskell-process-do-info "haskell-commands" "\
+Print info on the identifier at point.
+If PROMPT-VALUE is non-nil, request identifier via mini-buffer.
+
+\(fn &optional PROMPT-VALUE)" t nil)
+
+(autoload 'haskell-process-do-type "haskell-commands" "\
+Print the type of the given expression.
+
+\(fn &optional INSERT-VALUE)" t nil)
+
+(autoload 'haskell-mode-jump-to-def-or-tag "haskell-commands" "\
+Jump to the definition (by consulting GHCi), or (fallback)
+jump to the tag.
+
+Remember: If GHCi is busy doing something, this will delay, but
+it will always be accurate, in contrast to tags, which always
+work but are not always accurate.
+
+If the definition or tag is found, the location from which you
+jumped will be pushed onto `find-tag-marker-ring', so you can
+return to that position with `pop-tag-mark'.
+
+\(fn &optional NEXT-P)" t nil)
+
+(autoload 'haskell-mode-goto-loc "haskell-commands" "\
+Go to the location of the thing at point. Requires the :loc-at
+command from GHCi.
+
+\(fn)" t nil)
+
+(autoload 'haskell-mode-jump-to-def "haskell-commands" "\
+Jump to definition of identifier at point.
+
+\(fn IDENT)" t nil)
+
+(autoload 'haskell-process-cd "haskell-commands" "\
+Change directory.
+
+\(fn &optional NOT-INTERACTIVE)" t nil)
+
+(autoload 'haskell-process-cabal-macros "haskell-commands" "\
+Send the cabal macros string.
+
+\(fn)" t nil)
+
+(autoload 'haskell-mode-show-type-at "haskell-commands" "\
+Show the type of the thing at point.
+
+\(fn &optional INSERT-VALUE)" t nil)
+
+(autoload 'haskell-process-generate-tags "haskell-commands" "\
+Regenerate the TAGS table.
+
+\(fn &optional AND-THEN-FIND-THIS-TAG)" t nil)
+
+(autoload 'haskell-process-unignore "haskell-commands" "\
+Unignore any files that were specified as being ignored by the
+  inferior GHCi process.
+
+\(fn)" t nil)
+
+(autoload 'haskell-session-change-target "haskell-commands" "\
+Set the build target for cabal repl
+
+\(fn TARGET)" t nil)
+
+(autoload 'haskell-mode-stylish-buffer "haskell-commands" "\
+Apply stylish-haskell to the current buffer.
+
+\(fn)" t nil)
+
+(autoload 'haskell-mode-find-uses "haskell-commands" "\
+Find uses of the identifier at point, highlight them all.
+
+\(fn)" t nil)
+
+;;;***
+
 ;;;### (autoloads (haskell-compile) "haskell-compile" "haskell-compile.el"
-;;;;;;  (21627 58702 24998 485000))
+;;;;;;  (21697 39590 12015 303000))
 ;;; Generated autoloads from haskell-compile.el
 
 (autoload 'haskell-compile "haskell-compile" "\
@@ -105,9 +345,22 @@ node `(haskell-mode)compilation' for more details.
 
 ;;;***
 
+;;;### (autoloads (haskell-customize) "haskell-customize" "haskell-customize.el"
+;;;;;;  (21697 39590 8015 303000))
+;;; Generated autoloads from haskell-customize.el
+
+(autoload 'haskell-customize "haskell-customize" "\
+Browse the haskell customize sub-tree.
+This calls 'customize-browse' with haskell as argument and makes
+sure all haskell customize definitions have been loaded.
+
+\(fn)" t nil)
+
+;;;***
+
 ;;;### (autoloads (haskell-decl-scan-mode turn-on-haskell-decl-scan
 ;;;;;;  haskell-ds-create-imenu-index) "haskell-decl-scan" "haskell-decl-scan.el"
-;;;;;;  (21627 58702 128998 489000))
+;;;;;;  (21697 39590 148015 306000))
 ;;; Generated autoloads from haskell-decl-scan.el
 
 (autoload 'haskell-ds-create-imenu-index "haskell-decl-scan" "\
@@ -163,8 +416,8 @@ Invokes `haskell-decl-scan-mode-hook' on activation.
 ;;;***
 
 ;;;### (autoloads (haskell-doc-show-type haskell-doc-current-info
-;;;;;;  haskell-doc-mode) "haskell-doc" "haskell-doc.el" (21627 58701
-;;;;;;  740998 475000))
+;;;;;;  haskell-doc-mode) "haskell-doc" "haskell-doc.el" (21697 39589
+;;;;;;  696015 298000))
 ;;; Generated autoloads from haskell-doc.el
 
 (autoload 'haskell-doc-mode "haskell-doc" "\
@@ -195,7 +448,7 @@ current buffer.
 ;;;***
 
 ;;;### (autoloads (haskell-font-lock-choose-keywords) "haskell-font-lock"
-;;;;;;  "haskell-font-lock.el" (21627 58701 972998 483000))
+;;;;;;  "haskell-font-lock.el" (21697 39589 932015 302000))
 ;;; Generated autoloads from haskell-font-lock.el
 
 (autoload 'haskell-font-lock-choose-keywords "haskell-font-lock" "\
@@ -206,7 +459,7 @@ current buffer.
 ;;;***
 
 ;;;### (autoloads (haskell-indent-mode turn-on-haskell-indent) "haskell-indent"
-;;;;;;  "haskell-indent.el" (21627 58702 96998 488000))
+;;;;;;  "haskell-indent.el" (21697 39590 108015 305000))
 ;;; Generated autoloads from haskell-indent.el
 
 (autoload 'turn-on-haskell-indent "haskell-indent" "\
@@ -243,8 +496,8 @@ Invokes `haskell-indent-hook' if not nil.
 ;;;***
 
 ;;;### (autoloads (turn-on-haskell-indentation haskell-indentation-mode)
-;;;;;;  "haskell-indentation" "haskell-indentation.el" (21627 58701
-;;;;;;  940998 482000))
+;;;;;;  "haskell-indentation" "haskell-indentation.el" (21697 39589
+;;;;;;  904015 302000))
 ;;; Generated autoloads from haskell-indentation.el
 
 (autoload 'haskell-indentation-mode "haskell-indentation" "\
@@ -262,47 +515,48 @@ Turn on the haskell-indentation minor mode.
 
 ;;;***
 
-;;;### (autoloads (haskell-interactive-mode-reset-error haskell-interactive-mode-echo
-;;;;;;  haskell-interactive-switch haskell-interactive-bring haskell-interactive-mode)
-;;;;;;  "haskell-interactive-mode" "haskell-interactive-mode.el"
-;;;;;;  (21627 58701 652998 471000))
+;;;### (autoloads (haskell-process-do-simple-echo haskell-interactive-mode-echo
+;;;;;;  haskell-interactive-mode-reset-error) "haskell-interactive-mode"
+;;;;;;  "haskell-interactive-mode.el" (21697 39589 624015 296000))
 ;;; Generated autoloads from haskell-interactive-mode.el
-
-(autoload 'haskell-interactive-mode "haskell-interactive-mode" "\
-Interactive mode for Haskell.
-
-See Info node `(haskell-mode)haskell-interactive-mode' for more
-information.
-
-Key bindings:
-\\{haskell-interactive-mode-map}
-
-\(fn)" t nil)
-
-(autoload 'haskell-interactive-bring "haskell-interactive-mode" "\
-Bring up the interactive mode for this session.
-
-\(fn)" t nil)
-
-(autoload 'haskell-interactive-switch "haskell-interactive-mode" "\
-Switch to the interactive mode for this session.
-
-\(fn)" t nil)
-
-(autoload 'haskell-interactive-mode-echo "haskell-interactive-mode" "\
-Echo a read only piece of text before the prompt.
-
-\(fn SESSION MESSAGE &optional MODE)" nil nil)
 
 (autoload 'haskell-interactive-mode-reset-error "haskell-interactive-mode" "\
 Reset the error cursor position.
 
 \(fn SESSION)" t nil)
 
+(autoload 'haskell-interactive-mode-echo "haskell-interactive-mode" "\
+Echo a read only piece of text before the prompt.
+
+\(fn SESSION MESSAGE &optional MODE)" nil nil)
+
+(autoload 'haskell-process-do-simple-echo "haskell-interactive-mode" "\
+Send LINE to the GHCi process and echo the result in some
+fashion, such as printing in the minibuffer, or using
+haskell-present, depending on configuration.
+
+\(fn LINE &optional MODE)" nil nil)
+
+;;;***
+
+;;;### (autoloads (haskell-process-reload-devel-main) "haskell-load"
+;;;;;;  "haskell-load.el" (21697 39589 568015 295000))
+;;; Generated autoloads from haskell-load.el
+
+(autoload 'haskell-process-reload-devel-main "haskell-load" "\
+Reload the module `DevelMain' and then run
+`DevelMain.update'. This is for doing live update of the code of
+servers or GUI applications. Put your development version of the
+program in `DevelMain', and define `update' to auto-start the
+program on a new thread, and use the `foreign-store' package to
+access the running context across :load/:reloads in GHCi.
+
+\(fn)" t nil)
+
 ;;;***
 
 ;;;### (autoloads (haskell-menu) "haskell-menu" "haskell-menu.el"
-;;;;;;  (21627 58701 980998 484000))
+;;;;;;  (21697 39589 956015 302000))
 ;;; Generated autoloads from haskell-menu.el
 
 (autoload 'haskell-menu "haskell-menu" "\
@@ -313,9 +567,9 @@ Launch the Haskell sessions menu.
 ;;;***
 
 ;;;### (autoloads (haskell-hayoo hoogle-lookup-from-local haskell-hoogle
-;;;;;;  literate-haskell-mode haskell-mode haskell-customize haskell-mode-view-news
-;;;;;;  haskell-version) "haskell-mode" "haskell-mode.el" (21627
-;;;;;;  58702 76998 487000))
+;;;;;;  literate-haskell-mode haskell-mode haskell-mode-view-news
+;;;;;;  haskell-version) "haskell-mode" "haskell-mode.el" (21697
+;;;;;;  39590 80015 305000))
 ;;; Generated autoloads from haskell-mode.el
 
 (autoload 'haskell-version "haskell-mode" "\
@@ -328,13 +582,6 @@ When MESSAGE is non-nil, display a message with the version.
 
 (autoload 'haskell-mode-view-news "haskell-mode" "\
 Display information on recent changes to haskell-mode.
-
-\(fn)" t nil)
-
-(autoload 'haskell-customize "haskell-mode" "\
-Browse the haskell customize sub-tree.
-This calls 'customize-browse' with haskell as argument and makes
-sure all haskell customize definitions have been loaded.
 
 \(fn)" t nil)
 
@@ -364,10 +611,16 @@ see documentation for that variable for more details.
 As `haskell-mode' but for literate scripts.
 
 \(fn)" t nil)
-(add-to-list 'auto-mode-alist        '("\\.\\(?:[gh]s\\|hi\\)\\'" . haskell-mode))
-(add-to-list 'auto-mode-alist        '("\\.l[gh]s\\'" . literate-haskell-mode))
+
+(add-to-list 'auto-mode-alist '("\\.[gh]s\\'" . haskell-mode))
+
+(add-to-list 'auto-mode-alist '("\\.l[gh]s\\'" . literate-haskell-mode))
+
 (add-to-list 'interpreter-mode-alist '("runghc" . haskell-mode))
+
 (add-to-list 'interpreter-mode-alist '("runhaskell" . haskell-mode))
+
+(add-to-list 'completion-ignored-extensions ".hi")
 
 (autoload 'haskell-hoogle "haskell-mode" "\
 Do a Hoogle search for QUERY.
@@ -395,9 +648,34 @@ Do a Hayoo search for QUERY.
 
 ;;;***
 
+;;;### (autoloads (haskell-session-project-modules haskell-session-all-modules
+;;;;;;  haskell-session-installed-modules) "haskell-modules" "haskell-modules.el"
+;;;;;;  (21697 39590 120015 305000))
+;;; Generated autoloads from haskell-modules.el
+
+(autoload 'haskell-session-installed-modules "haskell-modules" "\
+Get the modules installed in the current package set.
+If DONTCREATE is non-nil don't create a new session.
+
+\(fn SESSION &optional DONTCREATE)" nil nil)
+
+(autoload 'haskell-session-all-modules "haskell-modules" "\
+Get all modules -- installed or in the current project.
+If DONTCREATE is non-nil don't create a new session.
+
+\(fn SESSION &optional DONTCREATE)" nil nil)
+
+(autoload 'haskell-session-project-modules "haskell-modules" "\
+Get the modules of the current project.
+If DONTCREATE is non-nil don't create a new session.
+
+\(fn SESSION &optional DONTCREATE)" nil nil)
+
+;;;***
+
 ;;;### (autoloads (haskell-move-nested-left haskell-move-nested-right
 ;;;;;;  haskell-move-nested) "haskell-move-nested" "haskell-move-nested.el"
-;;;;;;  (21627 58702 84998 488000))
+;;;;;;  (21697 39590 92015 305000))
 ;;; Generated autoloads from haskell-move-nested.el
 
 (autoload 'haskell-move-nested "haskell-move-nested" "\
@@ -432,7 +710,7 @@ of the region instead.
 
 ;;;### (autoloads (haskell-navigate-imports-return haskell-navigate-imports-go
 ;;;;;;  haskell-navigate-imports) "haskell-navigate-imports" "haskell-navigate-imports.el"
-;;;;;;  (21627 58702 124998 489000))
+;;;;;;  (21697 39590 132015 306000))
 ;;; Generated autoloads from haskell-navigate-imports.el
 
 (autoload 'haskell-navigate-imports "haskell-navigate-imports" "\
@@ -453,96 +731,13 @@ Return to the non-import point we were at before going to the module list.
 
 ;;;***
 
-;;;### (autoloads (interactive-haskell-mode haskell-process haskell-process-start
-;;;;;;  haskell-process-cabal haskell-process-cabal-build haskell-process-load-or-reload
-;;;;;;  haskell-process-reload-file haskell-process-load-file haskell-process-do-info
-;;;;;;  haskell-process-do-type haskell-process-generate-tags) "haskell-process"
-;;;;;;  "haskell-process.el" (21627 58701 932998 482000))
-;;; Generated autoloads from haskell-process.el
-
-(autoload 'haskell-process-generate-tags "haskell-process" "\
-Regenerate the TAGS table.
-
-\(fn &optional AND-THEN-FIND-THIS-TAG)" t nil)
-
-(autoload 'haskell-process-do-type "haskell-process" "\
-Print the type of the given expression.
-
-\(fn &optional INSERT-VALUE)" t nil)
-
-(autoload 'haskell-process-do-info "haskell-process" "\
-Print info on the identifier at point.
-If PROMPT-VALUE is non-nil, request identifier via mini-buffer.
-
-\(fn &optional PROMPT-VALUE)" t nil)
-
-(autoload 'haskell-process-load-file "haskell-process" "\
-Load the current buffer file.
-
-\(fn)" t nil)
-
-(autoload 'haskell-process-reload-file "haskell-process" "\
-Re-load the current buffer file.
-
-\(fn)" t nil)
-
-(autoload 'haskell-process-load-or-reload "haskell-process" "\
-Load or reload. Universal argument toggles which.
-
-\(fn &optional TOGGLE)" t nil)
-
-(autoload 'haskell-process-cabal-build "haskell-process" "\
-Build the Cabal project.
-
-\(fn)" t nil)
-
-(autoload 'haskell-process-cabal "haskell-process" "\
-Prompts for a Cabal command to run.
-
-\(fn P)" t nil)
-
-(autoload 'haskell-process-start "haskell-process" "\
-Start the inferior Haskell process.
-
-\(fn SESSION)" nil nil)
-
-(autoload 'haskell-process "haskell-process" "\
-Get the current process from the current session.
-
-\(fn)" nil nil)
-
-(autoload 'interactive-haskell-mode "haskell-process" "\
-Minor mode for enabling haskell-process interaction.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (haskell-session-process haskell-session haskell-session-maybe
-;;;;;;  haskell-session-installed-modules haskell-session-all-modules)
-;;;;;;  "haskell-session" "haskell-session.el" (21627 58701 944998
-;;;;;;  482000))
+;;;### (autoloads (haskell-session-process haskell-session-maybe)
+;;;;;;  "haskell-session" "haskell-session.el" (21697 39589 912015
+;;;;;;  302000))
 ;;; Generated autoloads from haskell-session.el
-
-(autoload 'haskell-session-all-modules "haskell-session" "\
-Get all modules -- installed or in the current project.
-If DONTCREATE is non-nil don't create a new session.
-
-\(fn &optional DONTCREATE)" nil nil)
-
-(autoload 'haskell-session-installed-modules "haskell-session" "\
-Get the modules installed in the current package set.
-If DONTCREATE is non-nil don't create a new session.
-
-\(fn &optional DONTCREATE)" nil nil)
 
 (autoload 'haskell-session-maybe "haskell-session" "\
 Maybe get the Haskell session, return nil if there isn't one.
-
-\(fn)" nil nil)
-
-(autoload 'haskell-session "haskell-session" "\
-Get the Haskell session, prompt if there isn't one or fail.
 
 \(fn)" nil nil)
 
@@ -554,8 +749,8 @@ Get the session process.
 ;;;***
 
 ;;;### (autoloads (haskell-show-parse haskell-show-parse-and-insert
-;;;;;;  haskell-show-replace) "haskell-show" "haskell-show.el" (21627
-;;;;;;  58702 44998 486000))
+;;;;;;  haskell-show-replace) "haskell-show" "haskell-show.el" (21697
+;;;;;;  39590 20015 304000))
 ;;; Generated autoloads from haskell-show.el
 
 (autoload 'haskell-show-replace "haskell-show" "\
@@ -578,8 +773,8 @@ Parse the given input into a tree.
 ;;;***
 
 ;;;### (autoloads (turn-on-haskell-simple-indent haskell-simple-indent-mode)
-;;;;;;  "haskell-simple-indent" "haskell-simple-indent.el" (21627
-;;;;;;  58701 708998 473000))
+;;;;;;  "haskell-simple-indent" "haskell-simple-indent.el" (21697
+;;;;;;  39589 664015 297000))
 ;;; Generated autoloads from haskell-simple-indent.el
 
 (autoload 'haskell-simple-indent-mode "haskell-simple-indent" "\
@@ -603,7 +798,7 @@ Turn on function `haskell-simple-indent-mode'.
 ;;;***
 
 ;;;### (autoloads (haskell-sort-imports) "haskell-sort-imports" "haskell-sort-imports.el"
-;;;;;;  (21627 58702 12998 485000))
+;;;;;;  (21697 39589 980015 303000))
 ;;; Generated autoloads from haskell-sort-imports.el
 
 (autoload 'haskell-sort-imports "haskell-sort-imports" "\
@@ -618,8 +813,8 @@ within that region.
 ;;;***
 
 ;;;### (autoloads (haskell-is-prefix-of haskell-string-take haskell-trim)
-;;;;;;  "haskell-string" "haskell-string.el" (21627 58702 112998
-;;;;;;  489000))
+;;;;;;  "haskell-string" "haskell-string.el" (21697 39590 116015
+;;;;;;  305000))
 ;;; Generated autoloads from haskell-string.el
 
 (autoload 'haskell-trim "haskell-string" "\
@@ -640,7 +835,7 @@ Is x string a prefix of y string?
 ;;;***
 
 ;;;### (autoloads (turn-on-haskell-unicode-input-method) "haskell-unicode-input-method"
-;;;;;;  "haskell-unicode-input-method.el" (21627 58701 692998 473000))
+;;;;;;  "haskell-unicode-input-method.el" (21697 39589 656015 297000))
 ;;; Generated autoloads from haskell-unicode-input-method.el
 
 (autoload 'turn-on-haskell-unicode-input-method "haskell-unicode-input-method" "\
@@ -652,7 +847,7 @@ See Info node `Unicode(haskell-mode)' for more details.
 ;;;***
 
 ;;;### (autoloads (haskell-snippets-initialize haskell-yas-complete)
-;;;;;;  "haskell-yas" "haskell-yas.el" (21627 58702 92998 488000))
+;;;;;;  "haskell-yas" "haskell-yas.el" (21697 39590 96015 305000))
 ;;; Generated autoloads from haskell-yas.el
 
 (autoload 'haskell-yas-complete "haskell-yas" "\
@@ -669,11 +864,22 @@ Register haskell snippets with yasnippet.
 
 ;;;***
 
+;;;### (autoloads (highlight-uses-mode) "highlight-uses-mode" "highlight-uses-mode.el"
+;;;;;;  (21697 39590 32015 304000))
+;;; Generated autoloads from highlight-uses-mode.el
+
+(autoload 'highlight-uses-mode "highlight-uses-mode" "\
+Minor mode for highlighting and jumping between uses.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
 ;;;### (autoloads (inf-haskell-mode inferior-haskell-find-haddock
 ;;;;;;  inferior-haskell-find-definition inferior-haskell-info inferior-haskell-kind
 ;;;;;;  inferior-haskell-type inferior-haskell-send-decl inferior-haskell-load-and-run
 ;;;;;;  inferior-haskell-load-file switch-to-haskell) "inf-haskell"
-;;;;;;  "inf-haskell.el" (21627 58701 636998 471000))
+;;;;;;  "inf-haskell.el" (21697 39589 580015 296000))
 ;;; Generated autoloads from inf-haskell.el
 
 (defalias 'run-haskell 'switch-to-haskell)
@@ -746,11 +952,12 @@ Minor mode for enabling inf-haskell process interaction.
 
 ;;;***
 
-;;;### (autoloads nil nil ("haskell-bot.el" "haskell-checkers.el"
-;;;;;;  "haskell-collapse.el" "haskell-compat.el" "haskell-complete-module.el"
-;;;;;;  "haskell-debug.el" "haskell-mode-pkg.el" "haskell-package.el"
-;;;;;;  "haskell-presentation-mode.el" "haskell-str.el" "haskell-utils.el"
-;;;;;;  "w3m-haddock.el") (21627 58702 138481 887000))
+;;;### (autoloads nil nil ("ghci-script-mode.el" "haskell-bot.el"
+;;;;;;  "haskell-checkers.el" "haskell-collapse.el" "haskell-compat.el"
+;;;;;;  "haskell-complete-module.el" "haskell-debug.el" "haskell-mode-pkg.el"
+;;;;;;  "haskell-package.el" "haskell-presentation-mode.el" "haskell-process.el"
+;;;;;;  "haskell-repl.el" "haskell-sandbox.el" "haskell-str.el" "haskell-utils.el"
+;;;;;;  "w3m-haddock.el") (21697 39590 167692 947000))
 
 ;;;***
 
