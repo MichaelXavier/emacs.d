@@ -1,6 +1,6 @@
 ;; haskell mode configuration
 (require 'f)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 ;; haskell uses camelcase
 (add-hook 'haskell-mode-hook 'subword-mode)
 ;;(require 'shm)
