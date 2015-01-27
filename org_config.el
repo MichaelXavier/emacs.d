@@ -1,3 +1,6 @@
+(require 'org)
+(require 'org-mobile)
+(require 'projectile)
 (setq org-log-done 'time)
 
 ;; org mode settings
@@ -48,3 +51,10 @@
          "* TODO %?\n")))
 
 (global-set-key (kbd "C-c c") 'org-capture)
+
+(defun open-org-file ()
+  "Open one of the files in org-directory"
+  (interactive)
+  (ido-find-file-in-dir org-directory))
+
+(global-set-key (kbd "C-c o") 'open-org-file)
