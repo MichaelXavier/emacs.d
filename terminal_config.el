@@ -1,3 +1,5 @@
+(require 'multi-term)
+(require 'tramp)
 ;; shell-mode
 (defun sh ()
   (interactive)
@@ -21,5 +23,4 @@
 
 (global-set-key (kbd "C-c t") 'multi-term)
 
-(require 'tramp)
 (setq tramp-default-method "ssh")

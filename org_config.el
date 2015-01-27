@@ -1,5 +1,6 @@
 (require 'org)
 (require 'org-mobile)
+(require 'org-capture)
 (require 'projectile)
 (setq org-log-done 'time)
 

@@ -9,4 +9,3 @@
 (add-to-list 'auto-mode-alist '(".tpl$" . web-mode))
 
 (define-key web-mode-map (kbd "C-c C-s") 'yas/insert-snippet)
-

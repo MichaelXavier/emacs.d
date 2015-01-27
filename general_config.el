@@ -1,3 +1,10 @@
+(require 'flx-ido)
+(require 'smart-tab)
+(require 'smartparens-config)
+(require 'edit-server)
+(require 'popwin)
+(require 'winner)
+(require 'browse-url)
 ;;
 ;; ace jump mode major function
 ;;
@@ -40,7 +47,6 @@
 (setq backup-inhibited t)
 (setq auto-save-default nil)
 
-(require 'flx-ido)
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
@@ -49,7 +55,6 @@
 
 (setq create-lockfiles nil)
 
-(require 'smart-tab)
 (global-smart-tab-mode 1)
 
 ;; assume all new files are modified so you can save them
@@ -62,15 +67,13 @@
       (winner-mode 1))
 
 ;; hooks for all the modes i work in
-(setq allhooks '(enh-ruby-mode-hook
-                 prog-mode-hook))
-(dolist (hook allhooks)
-  (add-hook hook
-            '(lambda () (column-marker-1 80))))
-(dolist (hook allhooks)
-  (add-hook hook 'flycheck-mode))
+(let ((allhooks '(enh-ruby-mode-hook
+                  prog-mode-hook)))
+  (dolist (hook allhooks)
+    (add-hook hook
+              '(lambda () (column-marker-1 80)))
+    (add-hook hook 'flycheck-mode)))
 
-(require 'smartparens-config)
 (smartparens-global-mode t)
 
 ;; highlights matching pairs
@@ -178,10 +181,16 @@
       (goto-char start)
       (insert reversed) )) )
 
+(defun replace-regexp-quiet (regexp to-string start end)
+  (save-excursion
+    (goto-char start)
+    (while (re-search-forward regexp end t) ; NOERROR
+      (replace-match to-string) )))
+
 (defun decamelize-region (start end)
   "region to decamelize"
   (interactive "r")
-  (progn (replace-regexp "\\B\\([A-Z]\\)" "_\\1" nil (region-beginning) (region-end))
+  (progn (replace-regexp-quiet "\\B\\([A-Z]\\)" "_\\1" (region-beginning) (region-end))
          (downcase-region (region-beginning) (region-end))))
 
 (defun save-buffer-always ()
@@ -207,7 +216,6 @@
 (ielm) ;; more useful than scratcb
 
 ;; for browser textareas
-(require 'edit-server)
 (edit-server-start)
 
 (global-set-key (kbd "C-+") 'zoom-frm-in)
@@ -227,10 +235,6 @@
     (interactive)
     (setq require-final-newline nil))
 
-;: prevent emacs from asking if I want to reload the TAGS file all the time
-(setq tags-revert-without-query 1)
-
-(require 'popwin)
 (popwin-mode 1)
 
 (defun dired-cwd ()

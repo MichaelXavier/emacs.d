@@ -1,6 +1,6 @@
+(require 'flycheck)
 ;; typescript configurations
 (add-to-list 'auto-mode-alist '(".ts$" . typescript-mode))
-(require 'flycheck)
 (flycheck-define-checker tslint
   "Use tslint to flycheck TypeScript code."
   :command ("tslint"
