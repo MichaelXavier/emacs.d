@@ -62,3 +62,9 @@
 
 (add-hook 'after-init-hook 'org-mobile-pull)
 (add-hook 'kill-emacs-hook 'org-mobile-push)
+
+
+(setq org-agenda-files
+      (append '("~/Dropbox/org")
+              (f-glob "**/*.org" "~/src/soostone")
+              (f-glob "**/*.org" "~/src/mine")))
