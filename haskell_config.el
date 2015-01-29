@@ -6,6 +6,7 @@
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 ;; haskell uses camelcase
 (add-hook 'haskell-mode-hook 'subword-mode)
+(add-hook 'haskell-cabal-mode-hook 'subword-mode)
 ;;(require 'shm)
 ;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
 ;;(set-face-background 'shm-current-face "#eee8d5")
