@@ -63,8 +63,10 @@
 (add-hook 'after-init-hook 'org-mobile-pull)
 (add-hook 'kill-emacs-hook 'org-mobile-push)
 
-
 (setq org-agenda-files
       (append '("~/Dropbox/org")
               (f-glob "**/*.org" "~/src/soostone")
               (f-glob "**/*.org" "~/src/mine")))
+
+;; take back C-c SPC
+(define-key org-mode-map (kbd "C-c SPC") 'ace-jump-mode)
