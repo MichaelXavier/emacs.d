@@ -1,5 +1,5 @@
 ;;; dockerfile-mode.el --- Major mode for editing Docker's Dockerfiles
-;; Version: 20140623.1007
+;; Version: 20141208.1939
 
 ;; Copyright (c) 2013 Spotify AB
 ;;
@@ -79,7 +79,7 @@
   "Build an image based upon the buffer"
   (interactive
    (if (null docker-image-name)
-      (list (read-string "image-name:" nil nil))
+      (list (read-string "image-name: " nil nil))
      (list docker-image-name)))
   (save-buffer)
   (if (stringp image-name)
