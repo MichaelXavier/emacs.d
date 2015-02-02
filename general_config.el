@@ -263,3 +263,5 @@
 
 ;; Disasble the freeze-emacs-for-no-reason key
 (global-set-key (kbd "C-z") 'ignore)
+
+(require 'iedit)
