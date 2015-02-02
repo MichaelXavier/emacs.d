@@ -265,3 +265,5 @@
 (global-set-key (kbd "C-z") 'ignore)
 
 (require 'iedit)
+
+(set-frame-font (font-spec :family "Ubuntu Mono" :size 15))
