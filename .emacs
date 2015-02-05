@@ -23,6 +23,7 @@
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
  '(haskell-align-imports-pad-after-name nil)
+ '(haskell-interactive-mode-scroll-to-bottom t)
  '(haskell-mode-contextual-import-completion nil)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-check-cabal-config-on-load t)

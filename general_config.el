@@ -267,3 +267,7 @@
 (require 'iedit)
 
 (set-frame-font (font-spec :family "Ubuntu Mono" :size 15))
+
+;; Automatically follow changes to certain buffers
+(add-to-list 'auto-mode-alist '(".log$" . auto-revert-mode))
+(add-to-list 'auto-mode-alist '("haskell-process-log" . auto-revert-mode))
