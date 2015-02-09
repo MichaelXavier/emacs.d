@@ -3,7 +3,7 @@
 (require 'ghc)
 (require 'haskell-session)
 (require 'smartparens)
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
 ;; haskell uses camelcase
 (add-hook 'haskell-mode-hook 'subword-mode)
 (add-hook 'haskell-cabal-mode-hook 'subword-mode)
