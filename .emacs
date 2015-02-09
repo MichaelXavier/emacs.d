@@ -42,6 +42,7 @@
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(magit-use-overlays nil)
+ '(org-export-backends (quote (ascii html icalendar latex md)))
  '(org-mobile-directory "~/Dropbox/org/MobileOrg")
  '(org-src-fontify-natively t)
  '(package-archives (quote (("marmalade" . "http://marmalade-repo.org/packages/") ("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
