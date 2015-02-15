@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (ghc-core-mode ghc-core-create-core) "ghc-core"
-;;;;;;  "ghc-core.el" (21697 39589 688015 298000))
+;;;;;;  "ghc-core.el" (21726 25853 974869 341000))
 ;;; Generated autoloads from ghc-core.el
 
 (autoload 'ghc-core-create-core "ghc-core" "\
@@ -29,7 +29,7 @@ Major mode for GHC Core files.
 ;;;;;;  haskell-kill-session-process haskell-session-change haskell-interactive-switch
 ;;;;;;  haskell-session haskell-interactive-kill haskell-session-kill
 ;;;;;;  haskell-interactive-mode-return interactive-haskell-mode)
-;;;;;;  "haskell" "haskell.el" (21697 39589 712015 298000))
+;;;;;;  "haskell" "haskell.el" (21726 25853 998869 343000))
 ;;; Generated autoloads from haskell.el
 
 (autoload 'interactive-haskell-mode "haskell" "\
@@ -140,7 +140,7 @@ Dump minimal imports.
 ;;;***
 
 ;;;### (autoloads (haskell-align-imports) "haskell-align-imports"
-;;;;;;  "haskell-align-imports.el" (21697 39590 68015 304000))
+;;;;;;  "haskell-align-imports.el" (21726 25854 338869 358000))
 ;;; Generated autoloads from haskell-align-imports.el
 
 (autoload 'haskell-align-imports "haskell-align-imports" "\
@@ -150,8 +150,8 @@ Align all the imports in the buffer.
 
 ;;;***
 
-;;;### (autoloads (haskell-c-mode) "haskell-c" "haskell-c.el" (21697
-;;;;;;  39590 112015 305000))
+;;;### (autoloads (haskell-c-mode) "haskell-c" "haskell-c.el" (21726
+;;;;;;  25854 378869 360000))
 ;;; Generated autoloads from haskell-c.el
 
 (add-to-list 'auto-mode-alist '("\\.hsc\\'" . haskell-c-mode))
@@ -164,8 +164,8 @@ Major mode for Haskell FFI files.
 ;;;***
 
 ;;;### (autoloads (haskell-cabal-visit-file haskell-cabal-get-dir
-;;;;;;  haskell-cabal-mode) "haskell-cabal" "haskell-cabal.el" (21697
-;;;;;;  39589 996015 303000))
+;;;;;;  haskell-cabal-mode) "haskell-cabal" "haskell-cabal.el" (21726
+;;;;;;  25854 254869 354000))
 ;;; Generated autoloads from haskell-cabal.el
 
 (add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))
@@ -201,7 +201,7 @@ OTHER-WINDOW use `find-file-other-window'.
 ;;;;;;  haskell-process-do-type haskell-process-do-info haskell-rgrep
 ;;;;;;  haskell-describe haskell-process-touch-buffer haskell-process-interrupt
 ;;;;;;  haskell-process-clear haskell-process-restart) "haskell-commands"
-;;;;;;  "haskell-commands.el" (21697 39590 48015 304000))
+;;;;;;  "haskell-commands.el" (21726 25854 326869 358000))
 ;;; Generated autoloads from haskell-commands.el
 
 (autoload 'haskell-process-restart "haskell-commands" "\
@@ -317,7 +317,7 @@ Find uses of the identifier at point, highlight them all.
 ;;;***
 
 ;;;### (autoloads (haskell-compile) "haskell-compile" "haskell-compile.el"
-;;;;;;  (21697 39590 12015 303000))
+;;;;;;  (21726 25854 282869 356000))
 ;;; Generated autoloads from haskell-compile.el
 
 (autoload 'haskell-compile "haskell-compile" "\
@@ -346,7 +346,7 @@ node `(haskell-mode)compilation' for more details.
 ;;;***
 
 ;;;### (autoloads (haskell-customize) "haskell-customize" "haskell-customize.el"
-;;;;;;  (21697 39590 8015 303000))
+;;;;;;  (21726 25854 274869 355000))
 ;;; Generated autoloads from haskell-customize.el
 
 (autoload 'haskell-customize "haskell-customize" "\
@@ -360,7 +360,7 @@ sure all haskell customize definitions have been loaded.
 
 ;;;### (autoloads (haskell-decl-scan-mode turn-on-haskell-decl-scan
 ;;;;;;  haskell-ds-create-imenu-index) "haskell-decl-scan" "haskell-decl-scan.el"
-;;;;;;  (21697 39590 148015 306000))
+;;;;;;  (21726 25854 422869 362000))
 ;;; Generated autoloads from haskell-decl-scan.el
 
 (autoload 'haskell-ds-create-imenu-index "haskell-decl-scan" "\
@@ -416,8 +416,8 @@ Invokes `haskell-decl-scan-mode-hook' on activation.
 ;;;***
 
 ;;;### (autoloads (haskell-doc-show-type haskell-doc-current-info
-;;;;;;  haskell-doc-mode) "haskell-doc" "haskell-doc.el" (21697 39589
-;;;;;;  696015 298000))
+;;;;;;  haskell-doc-mode) "haskell-doc" "haskell-doc.el" (21726 25853
+;;;;;;  978869 342000))
 ;;; Generated autoloads from haskell-doc.el
 
 (autoload 'haskell-doc-mode "haskell-doc" "\
@@ -448,7 +448,7 @@ current buffer.
 ;;;***
 
 ;;;### (autoloads (haskell-font-lock-choose-keywords) "haskell-font-lock"
-;;;;;;  "haskell-font-lock.el" (21697 39589 932015 302000))
+;;;;;;  "haskell-font-lock.el" (21726 25854 214869 352000))
 ;;; Generated autoloads from haskell-font-lock.el
 
 (autoload 'haskell-font-lock-choose-keywords "haskell-font-lock" "\
@@ -459,7 +459,7 @@ current buffer.
 ;;;***
 
 ;;;### (autoloads (haskell-indent-mode turn-on-haskell-indent) "haskell-indent"
-;;;;;;  "haskell-indent.el" (21697 39590 108015 305000))
+;;;;;;  "haskell-indent.el" (21726 25854 374869 360000))
 ;;; Generated autoloads from haskell-indent.el
 
 (autoload 'turn-on-haskell-indent "haskell-indent" "\
@@ -496,8 +496,8 @@ Invokes `haskell-indent-hook' if not nil.
 ;;;***
 
 ;;;### (autoloads (turn-on-haskell-indentation haskell-indentation-mode)
-;;;;;;  "haskell-indentation" "haskell-indentation.el" (21697 39589
-;;;;;;  904015 302000))
+;;;;;;  "haskell-indentation" "haskell-indentation.el" (21726 25854
+;;;;;;  182869 351000))
 ;;; Generated autoloads from haskell-indentation.el
 
 (autoload 'haskell-indentation-mode "haskell-indentation" "\
@@ -517,7 +517,7 @@ Turn on the haskell-indentation minor mode.
 
 ;;;### (autoloads (haskell-process-do-simple-echo haskell-interactive-mode-echo
 ;;;;;;  haskell-interactive-mode-reset-error) "haskell-interactive-mode"
-;;;;;;  "haskell-interactive-mode.el" (21697 39589 624015 296000))
+;;;;;;  "haskell-interactive-mode.el" (21726 25853 890869 338000))
 ;;; Generated autoloads from haskell-interactive-mode.el
 
 (autoload 'haskell-interactive-mode-reset-error "haskell-interactive-mode" "\
@@ -540,7 +540,7 @@ haskell-present, depending on configuration.
 ;;;***
 
 ;;;### (autoloads (haskell-process-reload-devel-main) "haskell-load"
-;;;;;;  "haskell-load.el" (21697 39589 568015 295000))
+;;;;;;  "haskell-load.el" (21726 25853 854869 336000))
 ;;; Generated autoloads from haskell-load.el
 
 (autoload 'haskell-process-reload-devel-main "haskell-load" "\
@@ -556,7 +556,7 @@ access the running context across :load/:reloads in GHCi.
 ;;;***
 
 ;;;### (autoloads (haskell-menu) "haskell-menu" "haskell-menu.el"
-;;;;;;  (21697 39589 956015 302000))
+;;;;;;  (21726 25854 230869 353000))
 ;;; Generated autoloads from haskell-menu.el
 
 (autoload 'haskell-menu "haskell-menu" "\
@@ -568,8 +568,8 @@ Launch the Haskell sessions menu.
 
 ;;;### (autoloads (haskell-hayoo hoogle-lookup-from-local haskell-hoogle
 ;;;;;;  literate-haskell-mode haskell-mode haskell-mode-view-news
-;;;;;;  haskell-version) "haskell-mode" "haskell-mode.el" (21697
-;;;;;;  39590 80015 305000))
+;;;;;;  haskell-version) "haskell-mode" "haskell-mode.el" (21726
+;;;;;;  25854 342869 358000))
 ;;; Generated autoloads from haskell-mode.el
 
 (autoload 'haskell-version "haskell-mode" "\
@@ -650,7 +650,7 @@ Do a Hayoo search for QUERY.
 
 ;;;### (autoloads (haskell-session-project-modules haskell-session-all-modules
 ;;;;;;  haskell-session-installed-modules) "haskell-modules" "haskell-modules.el"
-;;;;;;  (21697 39590 120015 305000))
+;;;;;;  (21726 25854 394869 361000))
 ;;; Generated autoloads from haskell-modules.el
 
 (autoload 'haskell-session-installed-modules "haskell-modules" "\
@@ -675,7 +675,7 @@ If DONTCREATE is non-nil don't create a new session.
 
 ;;;### (autoloads (haskell-move-nested-left haskell-move-nested-right
 ;;;;;;  haskell-move-nested) "haskell-move-nested" "haskell-move-nested.el"
-;;;;;;  (21697 39590 92015 305000))
+;;;;;;  (21726 25854 354869 359000))
 ;;; Generated autoloads from haskell-move-nested.el
 
 (autoload 'haskell-move-nested "haskell-move-nested" "\
@@ -710,7 +710,7 @@ of the region instead.
 
 ;;;### (autoloads (haskell-navigate-imports-return haskell-navigate-imports-go
 ;;;;;;  haskell-navigate-imports) "haskell-navigate-imports" "haskell-navigate-imports.el"
-;;;;;;  (21697 39590 132015 306000))
+;;;;;;  (21726 25854 406869 361000))
 ;;; Generated autoloads from haskell-navigate-imports.el
 
 (autoload 'haskell-navigate-imports "haskell-navigate-imports" "\
@@ -732,8 +732,8 @@ Return to the non-import point we were at before going to the module list.
 ;;;***
 
 ;;;### (autoloads (haskell-session-process haskell-session-maybe)
-;;;;;;  "haskell-session" "haskell-session.el" (21697 39589 912015
-;;;;;;  302000))
+;;;;;;  "haskell-session" "haskell-session.el" (21726 25854 190869
+;;;;;;  351000))
 ;;; Generated autoloads from haskell-session.el
 
 (autoload 'haskell-session-maybe "haskell-session" "\
@@ -749,8 +749,8 @@ Get the session process.
 ;;;***
 
 ;;;### (autoloads (haskell-show-parse haskell-show-parse-and-insert
-;;;;;;  haskell-show-replace) "haskell-show" "haskell-show.el" (21697
-;;;;;;  39590 20015 304000))
+;;;;;;  haskell-show-replace) "haskell-show" "haskell-show.el" (21726
+;;;;;;  25854 294869 356000))
 ;;; Generated autoloads from haskell-show.el
 
 (autoload 'haskell-show-replace "haskell-show" "\
@@ -773,8 +773,8 @@ Parse the given input into a tree.
 ;;;***
 
 ;;;### (autoloads (turn-on-haskell-simple-indent haskell-simple-indent-mode)
-;;;;;;  "haskell-simple-indent" "haskell-simple-indent.el" (21697
-;;;;;;  39589 664015 297000))
+;;;;;;  "haskell-simple-indent" "haskell-simple-indent.el" (21726
+;;;;;;  25853 966869 341000))
 ;;; Generated autoloads from haskell-simple-indent.el
 
 (autoload 'haskell-simple-indent-mode "haskell-simple-indent" "\
@@ -798,7 +798,7 @@ Turn on function `haskell-simple-indent-mode'.
 ;;;***
 
 ;;;### (autoloads (haskell-sort-imports) "haskell-sort-imports" "haskell-sort-imports.el"
-;;;;;;  (21697 39589 980015 303000))
+;;;;;;  (21726 25854 250869 354000))
 ;;; Generated autoloads from haskell-sort-imports.el
 
 (autoload 'haskell-sort-imports "haskell-sort-imports" "\
@@ -813,8 +813,8 @@ within that region.
 ;;;***
 
 ;;;### (autoloads (haskell-is-prefix-of haskell-string-take haskell-trim)
-;;;;;;  "haskell-string" "haskell-string.el" (21697 39590 116015
-;;;;;;  305000))
+;;;;;;  "haskell-string" "haskell-string.el" (21726 25854 382869
+;;;;;;  360000))
 ;;; Generated autoloads from haskell-string.el
 
 (autoload 'haskell-trim "haskell-string" "\
@@ -835,7 +835,7 @@ Is x string a prefix of y string?
 ;;;***
 
 ;;;### (autoloads (turn-on-haskell-unicode-input-method) "haskell-unicode-input-method"
-;;;;;;  "haskell-unicode-input-method.el" (21697 39589 656015 297000))
+;;;;;;  "haskell-unicode-input-method.el" (21726 25853 938869 340000))
 ;;; Generated autoloads from haskell-unicode-input-method.el
 
 (autoload 'turn-on-haskell-unicode-input-method "haskell-unicode-input-method" "\
@@ -847,7 +847,7 @@ See Info node `Unicode(haskell-mode)' for more details.
 ;;;***
 
 ;;;### (autoloads (haskell-snippets-initialize haskell-yas-complete)
-;;;;;;  "haskell-yas" "haskell-yas.el" (21697 39590 96015 305000))
+;;;;;;  "haskell-yas" "haskell-yas.el" (21726 25854 370869 360000))
 ;;; Generated autoloads from haskell-yas.el
 
 (autoload 'haskell-yas-complete "haskell-yas" "\
@@ -865,7 +865,7 @@ Register haskell snippets with yasnippet.
 ;;;***
 
 ;;;### (autoloads (highlight-uses-mode) "highlight-uses-mode" "highlight-uses-mode.el"
-;;;;;;  (21697 39590 32015 304000))
+;;;;;;  (21726 25854 298869 356000))
 ;;; Generated autoloads from highlight-uses-mode.el
 
 (autoload 'highlight-uses-mode "highlight-uses-mode" "\
@@ -879,7 +879,7 @@ Minor mode for highlighting and jumping between uses.
 ;;;;;;  inferior-haskell-find-definition inferior-haskell-info inferior-haskell-kind
 ;;;;;;  inferior-haskell-type inferior-haskell-send-decl inferior-haskell-load-and-run
 ;;;;;;  inferior-haskell-load-file switch-to-haskell) "inf-haskell"
-;;;;;;  "inf-haskell.el" (21697 39589 580015 296000))
+;;;;;;  "inf-haskell.el" (21726 25853 858869 336000))
 ;;; Generated autoloads from inf-haskell.el
 
 (defalias 'run-haskell 'switch-to-haskell)
@@ -957,7 +957,7 @@ Minor mode for enabling inf-haskell process interaction.
 ;;;;;;  "haskell-complete-module.el" "haskell-debug.el" "haskell-mode-pkg.el"
 ;;;;;;  "haskell-package.el" "haskell-presentation-mode.el" "haskell-process.el"
 ;;;;;;  "haskell-repl.el" "haskell-sandbox.el" "haskell-str.el" "haskell-utils.el"
-;;;;;;  "w3m-haddock.el") (21697 39590 167692 947000))
+;;;;;;  "w3m-haddock.el") (21726 25854 444895 22000))
 
 ;;;***
 

@@ -26,6 +26,7 @@
 (require 'cl-lib)
 (require 'json)
 (require 'url-util)
+(require 'haskell-compat)
 (require 'haskell-session)
 (require 'haskell-customize)
 (require 'haskell-str)
@@ -216,6 +217,7 @@ the response."
     :go (lambda (state)
           (haskell-process-send-string (car state)
                                        (cdr state))))))
+
 
 (defun haskell-process-queue-command (process command)
   "Add a command to the process command queue."

@@ -2,6 +2,7 @@
 (require 'f)
 (require 'ghc)
 (require 'haskell-session)
+(require 'haskell-mode)
 (require 'smartparens)
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
 ;; haskell uses camelcase
@@ -101,3 +102,7 @@
 
 ;; So smartparens doesn't get confused at language pragmas
 (sp-local-pair 'haskell-mode "{-#" "#-}")
+
+
+(setq haskell-auto-insert-module-format-string
+      "module %s\n    ( \n    ) where")
