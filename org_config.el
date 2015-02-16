@@ -49,7 +49,10 @@
         ("se" "Eventually" entry (file+headline "shortlist.org" "Eventually")
               "* TODO %?\n")
         ("p" "Project Task" entry (file+headline (find-project-notes) "Tasks")
-         "* TODO %?\n")))
+         "* TODO %?\n")
+        ("m" "Movies" entry (file+headline "life.org" "Movies")
+         "* TODO %?\n")
+        ))
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
