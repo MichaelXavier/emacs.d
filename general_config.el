@@ -142,7 +142,6 @@
 (global-set-key (kbd "C-x m") 'execute-extended-command)
 
 (defalias 'qrr 'query-replace-regexp)
-(defalias 'arx 'align-regexp)
 (defalias 'dtw 'delete-trailing-whitespace)
 (defalias 'cr 'comment-region)
 (defalias 'ucr 'uncomment-region)
@@ -258,6 +257,15 @@
 (defun align-c-comment (beg end)
   (interactive "r")
   (align-regexp beg end "\\(-*\\)//" 1 0 t))
+
+(defun align-equals (beg end)
+  (interactive "r")
+  (align-regexp beg end "\\(\\s-*\\)=" 1 1 t))
+
+(defalias 'arx 'align-regexp)
+(defalias 'arxe 'align-equals)
+
+
 
 (rxt-global-mode 1)
 
