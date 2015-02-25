@@ -55,6 +55,7 @@
  '(sql-product (quote postgres))
  '(sql-server "localhost")
  '(suggest-key-bindings t)
+ '(tags-case-fold-search nil)
  '(tags-revert-without-query t)
  '(typescript-indent-level 2)
  '(web-mode-code-indent-offset 2)
