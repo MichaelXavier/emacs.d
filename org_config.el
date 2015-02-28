@@ -63,9 +63,6 @@
 
 (global-set-key (kbd "C-c o") 'open-org-file)
 
-(add-hook 'after-init-hook 'org-mobile-pull)
-(add-hook 'kill-emacs-hook 'org-mobile-push)
-
 (setq org-agenda-files
       (append '("~/Dropbox/org")
               (f-glob "**/*.org" "~/src/soostone")
