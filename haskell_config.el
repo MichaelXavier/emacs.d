@@ -3,6 +3,7 @@
 (require 'ghc)
 (require 'haskell-session)
 (require 'haskell-mode)
+(require 'haskell)
 (require 'smartparens)
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
 ;; haskell uses camelcase
@@ -30,7 +31,16 @@
      (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
      (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
      (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)
-     (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)))
+     (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)
+     ;; normally bound to haskell-mode-jump-to-def-or-tag but that
+     ;; seems like a buggier find-tag that requires an active session
+     (define-key haskell-mode-map (kbd "M-.") 'find-tag)
+     (subword-mode)
+     ))
+
+(eval-after-load "interactive-haskell-mode"
+  (define-key interactive-haskell-mode-map (kbd "M-.") 'find-tag)
+  )
 
 ;; use a template when starting a new module
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
