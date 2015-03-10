@@ -5,7 +5,6 @@
 (require 'haskell-mode)
 (require 'haskell)
 (require 'smartparens)
-(add-hook 'haskell-mode-hook 'turn-on-hi2)
 ;; haskell uses camelcase
 (add-hook 'haskell-mode-hook 'subword-mode)
 (add-hook 'haskell-cabal-mode-hook 'subword-mode)
@@ -36,6 +35,7 @@
      ;; seems like a buggier find-tag that requires an active session
      (define-key haskell-mode-map (kbd "M-.") 'find-tag)
      (subword-mode)
+     (turn-on-hi2)
      ))
 
 (eval-after-load "interactive-haskell-mode"
