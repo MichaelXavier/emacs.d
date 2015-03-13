@@ -5,18 +5,6 @@
 (require 'haskell-mode)
 (require 'haskell)
 (require 'smartparens)
-;; haskell uses camelcase
-(add-hook 'haskell-mode-hook 'subword-mode)
-(add-hook 'haskell-cabal-mode-hook 'subword-mode)
-;;(require 'shm)
-;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
-;;(set-face-background 'shm-current-face "#eee8d5")
-;;(set-face-background 'shm-quarantine-face "lemonchiffon")
-
-(define-key haskell-mode-map [f8] 'haskell-navigate-imports)
-;; reminder: C-c C-. reformats imports
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-
 
 (eval-after-load "haskell-mode"
   '(progn
@@ -34,13 +22,17 @@
      ;; normally bound to haskell-mode-jump-to-def-or-tag but that
      ;; seems like a buggier find-tag that requires an active session
      (define-key haskell-mode-map (kbd "M-.") 'find-tag)
-     (subword-mode)
-     (turn-on-hi2)
      ))
 
-(eval-after-load "interactive-haskell-mode"
-  (define-key interactive-haskell-mode-map (kbd "M-.") 'find-tag)
-  )
+(add-hook 'haskell-mode-hook 'subword-mode)
+(add-hook 'haskell-cabal-mode-hook 'subword-mode)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
+;;(require 'shm)
+;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+;;(set-face-background 'shm-current-face "#eee8d5")
+;;(set-face-background 'shm-quarantine-face "lemonchiffon")
+
+(define-key haskell-mode-map [f8] 'haskell-navigate-imports)
 
 ;; use a template when starting a new module
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
