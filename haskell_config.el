@@ -59,10 +59,10 @@
 
 (defun hackage-doc (&optional pkg)
   "Open browser pointing to hackage for the given pkg. Opens hackage if pkg not specified."
-  (interactive "sPackage (none for hackage homepage): ")
-  (if (> (length pkg) 0)
-      (browse-url (concat "http://hackage.haskell.org/package/" pkg))
-      (browse-url "http://hackage.haskell.org")))
+  (interactive (list
+                (read-string (format "Package (%s): " (thing-at-point 'word))
+                             nil nil (thing-at-point 'word))))
+  (browse-url (concat "http://hackage.haskell.org/package/" pkg)))
 
 (defalias 'hd 'hackage-doc)
 
