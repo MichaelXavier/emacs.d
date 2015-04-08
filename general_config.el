@@ -279,3 +279,10 @@
 ;; Automatically follow changes to certain buffers
 (add-to-list 'auto-mode-alist '(".log$" . auto-revert-mode))
 (add-to-list 'auto-mode-alist '("haskell-process-log" . auto-revert-mode))
+
+(defun increment-number-at-point ()
+  (interactive)
+  (skip-chars-backward "0123456789")
+  (or (looking-at "[0123456789]+")
+      (error "No number at point"))
+  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
