@@ -1,6 +1,5 @@
 ;; haskell mode configuration
 (require 'f)
-(require 'ghc)
 (require 'haskell-session)
 (require 'haskell-mode)
 (require 'haskell)
@@ -36,26 +35,6 @@
 
 ;; use a template when starting a new module
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-
-(setq ghc-debug t)
-
-(add-to-list 'load-path
-               "~/.cabal/share/x86_64-linux-ghc-7.6.3/ghc-mod-5.0.1.2/")
-
-(require 'ghc)
-
-(defvar my-ghc-initialized)
-(setq my-ghc-initialized nil) ;;christallfuckingmighty
-
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (ghc-abbrev-init)
-            (ghc-type-init)
-            (unless my-ghc-initialized
-              (ghc-comp-init)
-              ;; (snip) misc keybinding here..
-              (setq my-ghc-initialized t))
-            (ghc-import-module)))
 
 (defun hackage-doc (&optional pkg)
   "Open browser pointing to hackage for the given pkg. Opens hackage if pkg not specified."
