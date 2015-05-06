@@ -292,3 +292,5 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(add-to-list 'auto-mode-alist '(".envrc$" . sh-mode))
