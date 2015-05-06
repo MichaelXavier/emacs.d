@@ -287,3 +287,6 @@
   (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
 
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
+
+;; Stop getting this blasted magit warning on boot
+(setq magit-last-seen-setup-instructions "1.4.0")
