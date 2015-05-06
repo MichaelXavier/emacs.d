@@ -71,8 +71,7 @@
                   prog-mode-hook)))
   (dolist (hook allhooks)
     (add-hook hook
-              '(lambda () (column-marker-1 80)))
-    (add-hook hook 'flycheck-mode)))
+              '(lambda () (column-marker-1 80)))))
 
 (smartparens-global-mode t)
 
