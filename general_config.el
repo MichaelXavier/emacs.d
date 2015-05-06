@@ -294,3 +294,6 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (add-to-list 'auto-mode-alist '(".envrc$" . sh-mode))
+
+;; I never in my life want to see a multi-line message in the echo area
+(setq message-truncate-lines t)

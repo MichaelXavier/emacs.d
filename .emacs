@@ -20,7 +20,7 @@
  '(erc-server-reconnect-attempts 5)
  '(flycheck-disabled-checkers (quote (make emacs-lisp-checkdoc)))
  '(flycheck-display-errors-function (quote ignore))
- '(flycheck-global-modes (quote (not haskell-mode)))
+ '(flycheck-global-modes t)
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-rubocop-lint-only t)
  '(haskell-align-imports-pad-after-name nil)
