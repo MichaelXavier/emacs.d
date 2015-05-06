@@ -290,3 +290,5 @@
 
 ;; Stop getting this blasted magit warning on boot
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
