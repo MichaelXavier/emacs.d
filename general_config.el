@@ -297,3 +297,7 @@
 
 ;; I never in my life want to see a multi-line message in the echo area
 (setq message-truncate-lines t)
+
+
+;(setq-default indent-tabs-mode nil)
+;(setq-default tab-width 2)
