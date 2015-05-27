@@ -64,6 +64,8 @@
  '(tags-case-fold-search nil)
  '(tags-revert-without-query t)
  '(typescript-indent-level 2)
+ '(warning-minimum-level :warning)
+ '(warning-minimum-log-level :debug)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-disable-auto-opening t)
