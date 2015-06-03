@@ -71,7 +71,8 @@
                   prog-mode-hook)))
   (dolist (hook allhooks)
     (add-hook hook
-              '(lambda () (column-marker-1 80)))))
+              '(lambda () (column-marker-1 80)))
+    (add-hook hook #'yas-minor-mode)))
 
 (smartparens-global-mode t)
 
@@ -225,7 +226,8 @@
 (global-set-key (kbd "M-S-<down>") 'shrink-window)
 (global-set-key (kbd "M-S-<up>") 'enlarge-window)
 
-(yas-global-mode 1)
+(require 'yasnippet)
+(yas-reload-all)
 
 (global-set-key (kbd "C-c C-s") 'yas/insert-snippet)
 
