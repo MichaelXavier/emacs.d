@@ -5,6 +5,21 @@
 (require 'popwin)
 (require 'winner)
 (require 'browse-url)
+(require 'yasnippet)
+(require 'iedit)
+(require 'pomodoro)
+
+
+;;
+;; Themes
+;;
+(load-theme 'ample t t)
+(load-theme 'ample-flat t t)
+(load-theme 'ample-light t t)
+(load-theme 'solarized-dark t t)
+(load-theme 'solarized-light t t)
+(enable-theme 'ample-flat)
+
 ;;
 ;; ace jump mode major function
 ;;
@@ -226,7 +241,6 @@
 (global-set-key (kbd "M-S-<down>") 'shrink-window)
 (global-set-key (kbd "M-S-<up>") 'enlarge-window)
 
-(require 'yasnippet)
 (yas-reload-all)
 
 (global-set-key (kbd "C-c C-s") 'yas/insert-snippet)
@@ -273,7 +287,6 @@
 ;; Disasble the freeze-emacs-for-no-reason key
 (global-set-key (kbd "C-z") 'ignore)
 
-(require 'iedit)
 
 (set-frame-font (font-spec :family "Ubuntu Mono" :size 15))
 
@@ -304,7 +317,6 @@
 ;(setq-default indent-tabs-mode nil)
 ;(setq-default tab-width 2)
 
-(require 'pomodoro)
 (pomodoro-add-to-mode-line)
 
 (global-set-key (kbd "C-x p s") 'pomodoro-start)
