@@ -8,7 +8,7 @@
 (require 'yasnippet)
 (require 'iedit)
 (require 'pomodoro)
-
+(require 'el-get)
 
 ;;
 ;; Themes
@@ -18,9 +18,10 @@
 (load-theme 'ample-light t t)
 (load-theme 'solarized-dark t t)
 (load-theme 'solarized-light t t)
-(enable-theme 'ample-flat)
+(enable-theme 'ample)
+
 (global-set-key (kbd "C-x t l") (lambda () (interactive) (enable-theme 'solarized-light)))
-(global-set-key (kbd "C-x t d") (lambda () (interactive) (enable-theme 'ample-flat)))
+(global-set-key (kbd "C-x t d") (lambda () (interactive) (enable-theme 'ample)))
 
 
 ;;
@@ -326,4 +327,3 @@
 (global-set-key (kbd "C-x p p") 'pomodoro-pause)
 (global-set-key (kbd "C-x p r") 'pomodoro-resume)
 (global-set-key (kbd "C-x p k") 'pomodoro-stop)
-
