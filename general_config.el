@@ -18,8 +18,8 @@
 (load-theme 'ample-light t t)
 (load-theme 'solarized-dark t t)
 (load-theme 'solarized-light t t)
-(enable-theme 'ample-flat)
-(global-set-key (kbd "C-x t l") (lambda () (interactive) (enable-theme 'ample-light)))
+(enable-theme 'ample-light)
+(global-set-key (kbd "C-x t l") (lambda () (interactive) (enable-theme 'solarized-light)))
 (global-set-key (kbd "C-x t d") (lambda () (interactive) (enable-theme 'ample-flat)))
 
 
