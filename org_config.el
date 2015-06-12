@@ -70,3 +70,5 @@
 
 ;; take back C-c SPC
 (define-key org-mode-map (kbd "C-c SPC") 'ace-jump-mode)
+
+(add-hook 'org-mode-hook #'yas-minor-mode)
