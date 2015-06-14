@@ -52,7 +52,6 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(global-linum-mode 1)
 (column-number-mode 1)
 ;;(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
 
@@ -91,6 +90,7 @@
   (dolist (hook allhooks)
     (add-hook hook
               '(lambda () (column-marker-1 80)))
+    (add-hook hook 'linum-mode)
     (add-hook hook #'yas-minor-mode)))
 
 (smartparens-global-mode t)
