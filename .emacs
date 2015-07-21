@@ -62,6 +62,10 @@
     (("marmalade" . "http://marmalade-repo.org/packages/")
      ("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
+ '(pomodoro-long-break-time 10)
+ '(pomodoro-play-sounds nil)
+ '(pomodoro-show-number t)
+ '(pomodoro-work-start-message "Back to work, chum.")
  '(popwin:special-display-config
    (quote
     ((ag-mode :stick t)

@@ -52,6 +52,10 @@
          "* TODO %?\n")
         ("m" "Movies" entry (file+headline "life.org" "Movies")
          "* TODO %?\n")
+        ("t" "TV" entry (file+headline "life.org" "TV")
+         "* TODO %?\n")
+        ("g" "Games" entry (file+headline "life.org" "Games")
+         "* TODO %?\n")
         ))
 
 (global-set-key (kbd "C-c c") 'org-capture)
