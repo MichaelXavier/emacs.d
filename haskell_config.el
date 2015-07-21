@@ -24,6 +24,10 @@
      (define-key haskell-mode-map (kbd "M-.") 'find-tag)
      ))
 
+;; structured-haskell-mode keybindings
+(define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
+
+
 (add-hook 'haskell-mode-hook 'subword-mode)
 (add-hook 'haskell-cabal-mode-hook 'subword-mode)
 ;; (add-hook 'haskell-mode-hook 'turn-on-hi2)
