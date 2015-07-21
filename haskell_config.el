@@ -4,6 +4,7 @@
 (require 'haskell-mode)
 (require 'haskell)
 (require 'smartparens)
+(require 'shm)
 
 (eval-after-load "haskell-mode"
   '(progn
@@ -25,11 +26,8 @@
 
 (add-hook 'haskell-mode-hook 'subword-mode)
 (add-hook 'haskell-cabal-mode-hook 'subword-mode)
-(add-hook 'haskell-mode-hook 'turn-on-hi2)
-;;(require 'shm)
-;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
-;;(set-face-background 'shm-current-face "#eee8d5")
-;;(set-face-background 'shm-quarantine-face "lemonchiffon")
+;; (add-hook 'haskell-mode-hook 'turn-on-hi2)
+(add-hook 'haskell-mode-hook 'structured-haskell-mode)
 
 (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
 

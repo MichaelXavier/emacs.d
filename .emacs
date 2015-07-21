@@ -7,12 +7,19 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
- '(custom-safe-themes (quote ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" default)))
+ '(custom-safe-themes
+   (quote
+    ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" default)))
  '(dabbrev-case-fold-search nil)
+ '(electric-indent-mode nil)
  '(enh-ruby-bounce-deep-indent nil)
  '(enh-ruby-deep-indent-paren-style nil)
- '(erc-autojoin-channels-alist (quote (("freenode.net" "#haskell-lens" "#purescript" "#emacs" "#haskell" "#nothaskell" "#atunit" "##guitar"))))
- '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp track)))
+ '(erc-autojoin-channels-alist
+   (quote
+    (("freenode.net" "#haskell-lens" "#purescript" "#emacs" "#haskell" "#nothaskell" "#atunit" "##guitar"))))
+ '(erc-modules
+   (quote
+    (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp track)))
  '(erc-nick "NemesisD")
  '(erc-prompt-for-nickserv-password t)
  '(erc-server-auto-reconnect t)
@@ -44,15 +51,62 @@
  '(json-reformat:indent-width 2)
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
- '(org-agenda-files (quote ("/home/michael/Dropbox/org/soostone.org" "/home/michael/Dropbox/org/cars.org" "/home/michael/Dropbox/org/code.org" "/home/michael/Dropbox/org/code_reviews.org" "/home/michael/Dropbox/org/community.org" "/home/michael/Dropbox/org/emacs.org" "/home/michael/Dropbox/org/finances.org" "/home/michael/Dropbox/org/flagged.org" "/home/michael/Dropbox/org/jobs.org" "/home/michael/Dropbox/org/laptops.org" "/home/michael/Dropbox/org/life (Apollo-Sat's conflicted copy 2015-03-18).org" "/home/michael/Dropbox/org/life.org" "/home/michael/Dropbox/org/meetings.org" "/home/michael/Dropbox/org/shortlist (Apollo-Sat's conflicted copy 2015-04-09).org" "/home/michael/Dropbox/org/shortlist (Apollo-Sat's conflicted copy 2015-05-29).org" "/home/michael/Dropbox/org/shortlist.org" "/home/michael/Dropbox/org/unified_data.org" "/home/michael/src/soostone/wunderground/README.org" "/home/michael/src/soostone/uri-bytestring/TODO.org" "/home/michael/src/soostone/tracker-packer/README.org" "/home/michael/src/soostone/skinner/README.org" "/home/michael/src/soostone/sage/README.org" "/home/michael/src/soostone/sage/design.org" "/home/michael/src/soostone/referer-parser/TODO.org" "/home/michael/src/soostone/orbital/TODO.org" "/home/michael/src/soostone/leash/README.org" "/home/michael/src/soostone/katip/TODO.org" "/home/michael/src/soostone/jsproc/README.org" "/home/michael/src/soostone/hs-phantomjs/README.org" "/home/michael/src/soostone/aws-cloudfront/README.org" "/home/michael/src/soostone/aws/README.org")))
+ '(org-agenda-files
+   (quote
+    ("/home/michael/Dropbox/org/soostone.org" "/home/michael/Dropbox/org/cars.org" "/home/michael/Dropbox/org/code.org" "/home/michael/Dropbox/org/code_reviews.org" "/home/michael/Dropbox/org/community.org" "/home/michael/Dropbox/org/emacs.org" "/home/michael/Dropbox/org/finances.org" "/home/michael/Dropbox/org/flagged.org" "/home/michael/Dropbox/org/jobs.org" "/home/michael/Dropbox/org/laptops.org" "/home/michael/Dropbox/org/life (Apollo-Sat's conflicted copy 2015-03-18).org" "/home/michael/Dropbox/org/life.org" "/home/michael/Dropbox/org/meetings.org" "/home/michael/Dropbox/org/shortlist (Apollo-Sat's conflicted copy 2015-04-09).org" "/home/michael/Dropbox/org/shortlist (Apollo-Sat's conflicted copy 2015-05-29).org" "/home/michael/Dropbox/org/shortlist.org" "/home/michael/Dropbox/org/unified_data.org" "/home/michael/src/soostone/wunderground/README.org" "/home/michael/src/soostone/uri-bytestring/TODO.org" "/home/michael/src/soostone/tracker-packer/README.org" "/home/michael/src/soostone/skinner/README.org" "/home/michael/src/soostone/sage/README.org" "/home/michael/src/soostone/sage/design.org" "/home/michael/src/soostone/referer-parser/TODO.org" "/home/michael/src/soostone/orbital/TODO.org" "/home/michael/src/soostone/leash/README.org" "/home/michael/src/soostone/katip/TODO.org" "/home/michael/src/soostone/jsproc/README.org" "/home/michael/src/soostone/hs-phantomjs/README.org" "/home/michael/src/soostone/aws-cloudfront/README.org" "/home/michael/src/soostone/aws/README.org")))
  '(org-export-backends (quote (ascii html icalendar latex md)))
  '(org-mobile-directory "~/Dropbox/org/MobileOrg")
  '(org-src-fontify-natively t)
- '(package-archives (quote (("marmalade" . "http://marmalade-repo.org/packages/") ("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
- '(popwin:special-display-config (quote ((ag-mode :stick t) ("*All*" :height 15 :noselect t) ("*Flycheck error messages*" :regexp nil :height 15 :noselect t) ("*haskell-process-log*" :regexp nil :height 15 :noselect nil) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t) ("*ag search" :height 15 :noselect t :stick t) ("*All*" :height 15 :noselect t) ("*undo-tree*" :height 15 :noselect t) ("*Compile-Log*" :height 15 :noselect t) ("*Backtrace*" :height 15 :noselect t) ("*Messages*" :height 15 :noselect t) ("*Process List*" :height 15 :noselect t :stick nil) ("*Warnings*" :height 15 :noselect nil :stick t) ("*Miniedit Help*" :noselect t) (help-mode :stick t) (completion-list-mode :noselect t) (compilation-mode :noselect t) (grep-mode :noselect t) (occur-mode :noselect t) ("*Pp Macroexpand Output*" :noselect t) ("*Shell Command Output*") ("*vc-diff*") ("*vc-change-log*") (" *undo-tree*" :width 60 :position right) ("^\\*anything.*\\*$" :regexp t) ("*slime-apropos*") ("*slime-macroexpansion*") ("*slime-description*") ("*slime-compilation*" :noselect t) ("*slime-xref*") (sldb-mode :stick t) (slime-repl-mode) (slime-connection-list-mode) ("*HS-Error*" :height 15 :noselect t))))
+ '(package-archives
+   (quote
+    (("marmalade" . "http://marmalade-repo.org/packages/")
+     ("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.milkbox.net/packages/"))))
+ '(popwin:special-display-config
+   (quote
+    ((ag-mode :stick t)
+     ("*All*" :height 15 :noselect t)
+     ("*Flycheck error messages*" :regexp nil :height 15 :noselect t)
+     ("*haskell-process-log*" :regexp nil :height 15 :noselect nil)
+     ("*undo-tree*" :height 15 :noselect t)
+     ("*Compile-Log*" :height 15 :noselect t)
+     ("*Process List*" :height 15 :noselect t)
+     ("*ag search" :height 15 :noselect t :stick t)
+     ("*All*" :height 15 :noselect t)
+     ("*undo-tree*" :height 15 :noselect t)
+     ("*Compile-Log*" :height 15 :noselect t)
+     ("*Backtrace*" :height 15 :noselect t)
+     ("*Messages*" :height 15 :noselect t)
+     ("*Process List*" :height 15 :noselect t :stick nil)
+     ("*Warnings*" :height 15 :noselect nil :stick t)
+     ("*Miniedit Help*" :noselect t)
+     (help-mode :stick t)
+     (completion-list-mode :noselect t)
+     (compilation-mode :noselect t)
+     (grep-mode :noselect t)
+     (occur-mode :noselect t)
+     ("*Pp Macroexpand Output*" :noselect t)
+     ("*Shell Command Output*")
+     ("*vc-diff*")
+     ("*vc-change-log*")
+     (" *undo-tree*" :width 60 :position right)
+     ("^\\*anything.*\\*$" :regexp t)
+     ("*slime-apropos*")
+     ("*slime-macroexpansion*")
+     ("*slime-description*")
+     ("*slime-compilation*" :noselect t)
+     ("*slime-xref*")
+     (sldb-mode :stick t)
+     (slime-repl-mode)
+     (slime-connection-list-mode)
+     ("*HS-Error*" :height 15 :noselect t))))
  '(projectile-switch-project-action (quote dired-cwd))
  '(restclient-log-request t)
- '(safe-local-variable-values (quote ((flycheck-disabled-checkers (quote haskell-ghc)) (require-final-newline))))
+ '(safe-local-variable-values
+   (quote
+    ((flycheck-disabled-checkers
+      (quote haskell-ghc))
+     (require-final-newline))))
  '(show-trailing-whitespace t)
  '(sp-autoescape-string-quote nil)
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
@@ -73,7 +127,9 @@
  '(web-mode-markup-indent-offset 2)
  '(web-mode-sql-indent-offset 2)
  '(yas-indent-line (quote fixed))
- '(yas-prompt-functions (quote (yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt))))
+ '(yas-prompt-functions
+   (quote
+    (yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt))))
 
 (load "~/.emacs.d/general_config.el")
 (load "~/.emacs.d/blog_config.el")
