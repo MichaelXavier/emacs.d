@@ -5,6 +5,7 @@
 (require 'haskell)
 (require 'smartparens)
 (require 'shm)
+(require 'hindent)
 
 (eval-after-load "haskell-mode"
   '(progn
