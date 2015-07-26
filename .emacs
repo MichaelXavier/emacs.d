@@ -108,7 +108,8 @@
  '(restclient-log-request t)
  '(safe-local-variable-values
    (quote
-    ((flycheck-disabled-checkers
+    ((hindent-style . "chris-done")
+     (flycheck-disabled-checkers
       (quote haskell-ghc))
      (require-final-newline))))
  '(show-trailing-whitespace t)
