@@ -39,6 +39,10 @@
 ;; use a template when starting a new module
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 
+;; Don't recenter the REPL on every command
+(add-hook 'haskell-interactive-mode-hook (lambda ()
+                                           (set (make-local-variable 'scroll-conservatively) 100)))
+
 (defun hackage-doc (&optional pkg)
   "Open browser pointing to hackage for the given pkg. Opens hackage if pkg not specified."
   (interactive (list
