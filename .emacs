@@ -120,6 +120,7 @@
  '(suggest-key-bindings t)
  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32)))
  '(tab-width 2)
+ '(tags-add-tables t)
  '(tags-case-fold-search nil)
  '(tags-revert-without-query t)
  '(typescript-indent-level 2)
