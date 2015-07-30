@@ -76,7 +76,7 @@
 (define-key org-mode-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; deadline and scheduling bindings as per the manual
-(define-key org-mode-map (kbd "C-c") nil)
+(define-key org-mode-map (kbd "C-c /") nil)
 (define-key org-mode-map (kbd "C-c / d") 'org-check-deadlines)
 (define-key org-mode-map (kbd "C-c a a") 'org-agenda-list)
 
