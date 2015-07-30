@@ -146,6 +146,7 @@
 (load "~/.emacs.d/web_config.el")
 (load "~/.emacs.d/org_config.el")
 (load "~/.emacs.d/terminal_config.el")
+(load "~/.emacs.d/elisp_config.el")
 
 (provide 'emacs)
 ;;; .emacs ends here
