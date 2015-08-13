@@ -29,6 +29,19 @@
 (define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
 
 
+(custom-theme-set-faces
+ 'ample-zen
+ '(shm-current-face ((t (:background "#446F79"))))
+ '(shm-quarantine-face ((t (:background "#794544"))))
+ )
+
+(custom-theme-set-faces
+ 'ample-light
+ '(shm-current-face ((t (:background "#8CE5FA"))))
+ '(shm-quarantine-face ((t (:background "#FF918F"))))
+ )
+
+
 (add-hook 'haskell-mode-hook 'subword-mode)
 (add-hook 'haskell-cabal-mode-hook 'subword-mode)
 ;; (add-hook 'haskell-mode-hook 'turn-on-hi2)
