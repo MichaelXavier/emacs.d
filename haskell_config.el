@@ -5,6 +5,7 @@
 (require 'haskell)
 (require 'smartparens)
 (require 'shm)
+(require 'shm-case-split)
 (require 'hindent)
 
 (eval-after-load "haskell-mode"
@@ -31,7 +32,7 @@
 
 (custom-theme-set-faces
  'ample-zen
- '(shm-current-face ((t (:background "#446F79"))))
+ '(shm-current-face ((t (:background "#315057"))))
  '(shm-quarantine-face ((t (:background "#794544"))))
  )
 
