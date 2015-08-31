@@ -105,6 +105,7 @@
      (slime-connection-list-mode)
      ("*HS-Error*" :height 15 :noselect t))))
  '(projectile-switch-project-action (quote dired-cwd))
+ '(restclient-inhibit-cookies t)
  '(restclient-log-request t)
  '(safe-local-variable-values
    (quote
