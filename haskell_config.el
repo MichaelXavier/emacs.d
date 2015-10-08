@@ -65,6 +65,7 @@
   (browse-url (concat "http://hackage.haskell.org/package/" pkg)))
 
 (defalias 'hd 'hackage-doc)
+(defalias 'hpr 'haskell-process-restart)
 
 (defun browse-local-hackage-doc (pkg)
   "Find the given package name in your local cabal sandbox"
