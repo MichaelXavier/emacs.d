@@ -39,7 +39,7 @@
  '(haskell-process-suggest-language-pragmas nil)
  '(haskell-process-suggest-overloaded-strings nil)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl))
+ '(haskell-process-type (quote auto))
  '(haskell-stylish-on-save nil)
  '(haskell-tags-on-save t)
  '(ido-auto-merge-work-directories-length -1)
