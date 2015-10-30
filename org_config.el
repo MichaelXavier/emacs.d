@@ -78,6 +78,16 @@
 ;; deadline and scheduling bindings as per the manual
 (define-key org-mode-map (kbd "C-c /") nil)
 (define-key org-mode-map (kbd "C-c / d") 'org-check-deadlines)
-(define-key org-mode-map (kbd "C-c a a") 'org-agenda-list)
+;; agenda commands dispatch from C-c a
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+
+(setq org-agenda-custom-commands
+      '(("u" "Unscheduled TODO"
+         ((todo ""
+                ((org-agenda-overriding-header "\nUnscheduled TODO")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
+         nil
+         nil)))
 
 (add-hook 'org-mode-hook #'yas-minor-mode)
