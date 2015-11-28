@@ -91,3 +91,19 @@
          nil)))
 
 (add-hook 'org-mode-hook #'yas-minor-mode)
+
+
+(defun random-between (lowest highest)
+  "Choose a positive random number between lowest and highest, inclusive"
+  (- (random (+ highest lowest 1)) lowest))
+
+;; function to select a random row from an org table. I think this may sometimes select the header row but whatever.
+(defun org-choose-random-row ()
+  "When within a org-mode tempalate, puts the cursor on a random line in the table's body. Good for choosing restaurants."
+  (interactive)
+  (when (org-at-table-p)
+    (let* ((start (count-lines 1 (org-table-begin)))
+           (finish (count-lines 1 (org-table-end)))
+           (dest (random-between start finish)))
+      (with-no-warnings (goto-line dest))))
+  )
