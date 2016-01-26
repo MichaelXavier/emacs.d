@@ -51,6 +51,7 @@
  '(json-reformat:indent-width 2)
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
+ '(markdown-command "marked")
  '(org-agenda-files
    (quote
     ("/home/michael/Dropbox/org/soostone.org" "/home/michael/Dropbox/org/cars.org" "/home/michael/Dropbox/org/code.org" "/home/michael/Dropbox/org/code_reviews.org" "/home/michael/Dropbox/org/community.org" "/home/michael/Dropbox/org/emacs.org" "/home/michael/Dropbox/org/finances.org" "/home/michael/Dropbox/org/flagged.org" "/home/michael/Dropbox/org/laptops.org" "/home/michael/Dropbox/org/life.org" "/home/michael/Dropbox/org/meetings.org" "/home/michael/Dropbox/org/shortlist.org" "/home/michael/Dropbox/org/unified_data.org" "/home/michael/src/soostone/wunderground/README.org" "/home/michael/src/soostone/uri-bytestring/TODO.org" "/home/michael/src/soostone/tracker-packer/README.org" "/home/michael/src/soostone/skinner/README.org" "/home/michael/src/soostone/sage/README.org" "/home/michael/src/soostone/sage/design.org" "/home/michael/src/soostone/referer-parser/TODO.org" "/home/michael/src/soostone/orbital/TODO.org" "/home/michael/src/soostone/leash/README.org" "/home/michael/src/soostone/katip/TODO.org" "/home/michael/src/soostone/hs-phantomjs/README.org" "/home/michael/src/soostone/aws-cloudfront/README.org" "/home/michael/src/soostone/aws/README.org")))
