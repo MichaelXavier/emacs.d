@@ -111,6 +111,8 @@
      (slime-repl-mode)
      (slime-connection-list-mode)
      ("*HS-Error*" :height 15 :noselect t))))
+ '(projectile-completion-system (quote helm))
+ '(projectile-enable-caching t)
  '(projectile-switch-project-action (quote dired-cwd))
  '(restclient-inhibit-cookies t)
  '(restclient-log-request t)
