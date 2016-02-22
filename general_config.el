@@ -8,7 +8,6 @@
 (require 'yasnippet)
 (require 'iedit)
 (require 'pomodoro)
-(require 'rnc-mode)
 
 ;;
 ;; Themes
@@ -332,6 +331,3 @@
 (global-set-key (kbd "C-x p p") 'pomodoro-pause)
 (global-set-key (kbd "C-x p r") 'pomodoro-resume)
 (global-set-key (kbd "C-x p k") 'pomodoro-stop)
-
-;; auto load rnc-mode
-(add-to-list 'auto-mode-alist '(".rnc$" . rnc-mode))
