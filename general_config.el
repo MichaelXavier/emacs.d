@@ -331,3 +331,6 @@
 (global-set-key (kbd "C-x p p") 'pomodoro-pause)
 (global-set-key (kbd "C-x p r") 'pomodoro-resume)
 (global-set-key (kbd "C-x p k") 'pomodoro-stop)
+
+
+(add-to-list 'auto-mode-alist '(".restclient$"  . restclient-mode))
