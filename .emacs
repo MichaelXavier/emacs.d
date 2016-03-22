@@ -41,7 +41,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote auto))
  '(haskell-stylish-on-save nil)
- '(haskell-tags-on-save t)
+ '(haskell-tags-on-save nil)
  '(ido-auto-merge-work-directories-length -1)
  '(indent-tabs-mode nil)
  '(inferior-haskell-wait-and-jump t)
