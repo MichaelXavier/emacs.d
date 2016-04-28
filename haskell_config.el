@@ -28,6 +28,7 @@
 
 ;; structured-haskell-mode keybindings
 (define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
+(define-key shm-map (kbd "C-M-w") 'shm/copy-node)
 
 
 (custom-theme-set-faces
@@ -109,3 +110,11 @@
 
 (setq haskell-auto-insert-module-format-string
       "module %s\n    ( \n    ) where")
+
+;; i still think this is what shm/copy-region is supposed to do. copy
+;; the node but don't remove it
+
+(defun shm/copy-node ()
+  "Copy the current node."
+  (interactive)
+  (shm-kill-node nil nil nil t))
