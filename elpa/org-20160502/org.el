@@ -7226,23 +7226,24 @@ specifying which drawers should not be hidden."
 Otherwise make it visible.  When optional argument ELEMENT is
 a parsed drawer, as returned by `org-element-at-point', hide or
 show that drawer instead."
-  (when (save-excursion
-	  (beginning-of-line)
-	  (org-looking-at-p org-drawer-regexp))
-    (let ((drawer (or element (org-element-at-point))))
-      (when (memq (org-element-type drawer) '(drawer property-drawer))
-	(let ((post (org-element-property :post-affiliated drawer)))
-	  (save-excursion
-	    (outline-flag-region
-	     (progn (goto-char post) (line-end-position))
-	     (progn (goto-char (org-element-property :end drawer))
-		    (skip-chars-backward " \r\t\n")
-		    (line-end-position))
-	     flag))
-	  ;; When the drawer is hidden away, make sure point lies in
-	  ;; a visible part of the buffer.
-	  (when (and flag (> (line-beginning-position) post))
-	    (goto-char post)))))))
+  (let ((drawer (or element
+		    (and (save-excursion
+			   (beginning-of-line)
+			   (org-looking-at-p org-drawer-regexp))
+			 (org-element-at-point)))))
+    (when (memq (org-element-type drawer) '(drawer property-drawer))
+      (let ((post (org-element-property :post-affiliated drawer)))
+	(save-excursion
+	  (outline-flag-region
+	   (progn (goto-char post) (line-end-position))
+	   (progn (goto-char (org-element-property :end drawer))
+		  (skip-chars-backward " \r\t\n")
+		  (line-end-position))
+	   flag))
+	;; When the drawer is hidden away, make sure point lies in
+	;; a visible part of the buffer.
+	(when (and flag (> (line-beginning-position) post))
+	  (goto-char post))))))
 
 (defun org-subtree-end-visible-p ()
   "Is the end of the current subtree visible?"
@@ -9884,14 +9885,12 @@ active region."
 				 (buffer-file-name (buffer-base-buffer)))))
 	   ;; Add a context search string
 	   (when (org-xor org-context-in-file-links arg)
-	     (let* ((ee (org-element-at-point))
-		    (et (org-element-type ee))
-		    (ev (plist-get (cadr ee) :value))
-		    (ek (plist-get (cadr ee) :key))
-		    (eok (and (stringp ek) (string-match "name" ek))))
+	     (let* ((element (org-element-at-point))
+		    (type (org-element-type element))
+		    (name (org-element-property :name element)))
 	       (setq txt (cond
 			  ((org-at-heading-p) nil)
-			  ((and (eq et 'keyword) eok) ev)
+			  (name)
 			  ((org-region-active-p)
 			   (buffer-substring (region-beginning) (region-end)))))
 	       (when (or (null txt) (string-match "\\S-" txt))
@@ -9900,7 +9899,7 @@ active region."
 			       (condition-case nil
 				   (org-make-org-heading-search-string txt)
 				 (error "")))
-		       desc (or (and (eq et 'keyword) eok ev)
+		       desc (or name
 				(nth 4 (ignore-errors (org-heading-components)))
 				"NONE")))))
 	   (if (string-match "::\\'" cpltxt)
@@ -9933,17 +9932,13 @@ active region."
        (if (consp link) (setq cpltxt (car link) link (cdr link)))
        (setq link (or link cpltxt)
 	     desc (or desc cpltxt))
-       (cond ((equal desc "NONE") (setq desc nil))
-	     ((and desc (string-match org-bracket-link-analytic-regexp desc))
-	      (let ((d0 (match-string 3 desc))
-		    (p0 (match-string 5 desc)))
-		(setq desc
+       (cond ((not desc))
+	     ((equal desc "NONE") (setq desc nil))
+	     (t (setq desc
 		      (replace-regexp-in-string
-		       org-bracket-link-regexp
-		       (concat (or p0 d0)
-			       (if (equal (length (match-string 0 desc))
-					  (length desc)) "*" "")) desc)))))
-
+		       org-bracket-link-analytic-regexp
+		       (lambda (m) (or (match-string 5 m) (match-string 3 m)))
+		       desc))))
        ;; Return the link
        (if (not (and (or (org-called-interactively-p 'any)
 			 executing-kbd-macro)
@@ -15022,16 +15017,27 @@ When JUST-ALIGN is non-nil, only align tags."
 		(if just-align current
 		  ;; Get a new set of tags from the user.
 		  (save-excursion
-		    (let* ((table
+		    (let* ((seen)
+			   (table
 			    (setq
 			     org-last-tags-completion-table
-			     (append
-			      org-tag-persistent-alist
-			      (or org-tag-alist (org-get-buffer-tags))
-			      (and
-			       org-complete-tags-always-offer-all-agenda-tags
-			       (org-global-tags-completion-table
-				(org-agenda-files))))))
+			     ;; Uniquify tags in alists, yet preserve
+			     ;; structure (i.e., keywords).
+			     (delq nil
+				   (mapcar
+				    (lambda (pair)
+				      (let ((head (car pair)))
+					(cond ((symbolp head) pair)
+					      ((member head seen) nil)
+					      (t (push head seen)
+						 pair))))
+				    (append
+				     org-tag-persistent-alist
+				     (or org-tag-alist (org-get-buffer-tags))
+				     (and
+				      org-complete-tags-always-offer-all-agenda-tags
+				      (org-global-tags-completion-table
+				       (org-agenda-files))))))))
 			   (current-tags (org-split-string current ":"))
 			   (inherited-tags
 			    (nreverse (nthcdr (length current-tags)
@@ -15907,7 +15913,7 @@ strings."
 
 (defun org-property--local-values (property literal-nil)
   "Return value for PROPERTY in current entry.
-Value is a list whose care is the base value for PROPERTY and cdr
+Value is a list whose car is the base value for PROPERTY and cdr
 a list of accumulated values.  Return nil if neither is found in
 the entry.  Also return nil when PROPERTY is set to \"nil\",
 unless LITERAL-NIL is non-nil."
@@ -18034,13 +18040,14 @@ When SUPPRESS-TMP-DELAY is non-nil, suppress delays like \"--2d\"."
 	  (setcar (cdr time0) (+ (nth 1 time0)
 				 (if (> n 0) (- rem) (- dm rem))))))
       (setq time
-	    (encode-time (or (car time0) 0)
-			 (+ (if (eq org-ts-what 'minute) n 0) (nth 1 time0))
-			 (+ (if (eq org-ts-what 'hour) n 0)   (nth 2 time0))
-			 (+ (if (eq org-ts-what 'day) n 0)    (nth 3 time0))
-			 (+ (if (eq org-ts-what 'month) n 0)  (nth 4 time0))
-			 (+ (if (eq org-ts-what 'year) n 0)   (nth 5 time0))
-			 (nthcdr 6 time0)))
+	    (apply #'encode-time
+		   (or (car time0) 0)
+		   (+ (if (eq org-ts-what 'minute) n 0) (nth 1 time0))
+		   (+ (if (eq org-ts-what 'hour) n 0)   (nth 2 time0))
+		   (+ (if (eq org-ts-what 'day) n 0)    (nth 3 time0))
+		   (+ (if (eq org-ts-what 'month) n 0)  (nth 4 time0))
+		   (+ (if (eq org-ts-what 'year) n 0)   (nth 5 time0))
+		   (nthcdr 6 time0)))
       (when (and (member org-ts-what '(hour minute))
 		 extra
 		 (string-match "-\\([012][0-9]\\):\\([0-5][0-9]\\)" extra))
@@ -24096,17 +24103,18 @@ This command will look at the current kill and check if is a single
 subtree, or a series of subtrees[1].  If it passes the test, and if the
 cursor is at the beginning of a line or after the stars of a currently
 empty headline, then the yank is handled specially.  How exactly depends
-on the value of the following variables, both set by default.
+on the value of the following variables.
 
 `org-yank-folded-subtrees'
-    When set, the subtree(s) will be folded after insertion, but only
-    if doing so would now swallow text after the yanked text.
+    By default, this variable is non-nil, which results in subtree(s)
+    being folded after insertion, but only if doing so would now
+    swallow text after the yanked text.
 
 `org-yank-adjusted-subtrees'
-    When set, the subtree will be promoted or demoted in order to
-    fit into the local outline tree structure, which means that the
-    level will be adjusted so that it becomes the smaller one of the
-    two *visible* surrounding headings.
+    When non-nil (the default value is nil), the subtree will be
+    promoted or demoted in order to fit into the local outline tree
+    structure, which means that the level will be adjusted so that it
+    becomes the smaller one of the two *visible* surrounding headings.
 
 Any prefix to this command will cause `yank' to be called directly with
 no special treatment.  In particular, a simple \\[universal-argument] prefix \
