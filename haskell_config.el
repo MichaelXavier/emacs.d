@@ -59,11 +59,14 @@
                                            (set (make-local-variable 'scroll-conservatively) 100)))
 
 (defun hackage-doc (&optional pkg)
-  "Open browser pointing to hackage for the given pkg. Opens hackage if pkg not specified."
+  "Open browser pointing to stackage for the given pkg. Precede with C-u to open in hackage."
   (interactive (list
                 (read-string (format "Package (%s): " (thing-at-point 'word))
                              nil nil (thing-at-point 'word))))
-  (browse-url (concat "http://hackage.haskell.org/package/" pkg)))
+  (let ((url (if current-prefix-arg
+                 "http://hackage.haskell.org/package/"
+                 "https://www.stackage.org/nightly/package/")))
+       (browse-url (concat url pkg))))
 
 (defalias 'hd 'hackage-doc)
 (defalias 'hpr 'haskell-process-restart)
