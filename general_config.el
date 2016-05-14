@@ -12,6 +12,8 @@
 ;;
 ;; Themes
 ;;
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'fairyfloss t t)
 (load-theme 'ample t t)
 (load-theme 'ample-zen t t)
 (load-theme 'ample-flat t t)
@@ -22,6 +24,7 @@
 
 (global-set-key (kbd "C-x t l") (lambda () (interactive) (enable-theme 'ample-light)))
 (global-set-key (kbd "C-x t d") (lambda () (interactive) (enable-theme 'ample-zen)))
+(global-set-key (kbd "C-x t f") (lambda () (interactive) (enable-theme 'fairyfloss)))
 
 
 ;;
