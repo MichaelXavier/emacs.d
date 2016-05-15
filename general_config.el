@@ -8,6 +8,7 @@
 (require 'yasnippet)
 (require 'iedit)
 (require 'pomodoro)
+(require 'org-wunderlist)
 
 ;;
 ;; Themes
@@ -337,3 +338,10 @@
 
 
 (add-to-list 'auto-mode-alist '(".restclient$"  . restclient-mode))
+
+
+;; org-wunderlist config
+(setq org-wunderlist-client-id (getenv "WUNDERLIST_CLIENT_ID")
+      org-wunderlist-token (getenv "WUNDERLIST_TOKEN")
+      org-wunderlist-file  "~/Dropbox/org/Wunderlist.org"
+      org-wunderlist-dir "~/Dropbox/org/org-wunderlist/")
