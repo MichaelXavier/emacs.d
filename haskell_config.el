@@ -7,6 +7,7 @@
 (require 'shm)
 (require 'shm-case-split)
 (require 'hindent)
+(require 'ob-haskell)
 
 (eval-after-load "haskell-mode"
   '(progn
