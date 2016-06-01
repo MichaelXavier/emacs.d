@@ -32,6 +32,7 @@
  '(fringe                              ((t (                       :background "#6a6482" ))))
 
  '(minibuffer-prompt                   ((t (:foreground "#1695D0"  :background nil       :weight bold                                  ))))
+ '(error                               ((t (:foreground "#FB491C"  :background nil       :weight bold                                  ))))
  '(escape-glyph                        ((t (:foreground "orange"   :background nil                                                     ))))
  '(highlight                           ((t (:foreground "orange"   :background nil                                                     ))))
  '(shadow                              ((t (:foreground "#777777"  :background nil                                                     ))))
