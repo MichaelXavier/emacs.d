@@ -128,3 +128,7 @@
   "Copy the current node."
   (interactive)
   (shm-kill-node nil nil nil t))
+
+
+;; give intero a spin
+(add-hook 'haskell-mode-hook 'intero-mode)
