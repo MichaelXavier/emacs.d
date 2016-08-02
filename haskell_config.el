@@ -18,7 +18,6 @@
      (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
      (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
      (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-     (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
      (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
      (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)
      (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)
