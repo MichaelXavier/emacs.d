@@ -129,5 +129,8 @@
   (shm-kill-node nil nil nil t))
 
 
-;; give intero a spin
+;; hook in intero
 (add-hook 'haskell-mode-hook 'intero-mode)
+
+;; hook in hindent
+(add-hook 'haskell-mode-hook #'hindent-mode)

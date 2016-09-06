@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "hindent" "hindent.el" (22453 6641 466069 704000))
+;;;### (autoloads nil "hindent" "hindent.el" (22471 4296 339078 304000))
 ;;; Generated autoloads from hindent.el
 
 (autoload 'hindent-mode "hindent" "\
@@ -38,7 +38,7 @@ declaration.
 (autoload 'hindent-reformat-region "hindent" "\
 Reformat the given region, accounting for indentation.
 
-\(fn BEG END)" t nil)
+\(fn BEG END &optional DROP-NEWLINE)" t nil)
 
 (autoload 'hindent/reformat-decl "hindent" "\
 See `hindent-reformat-decl'.

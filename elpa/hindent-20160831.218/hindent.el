@@ -4,7 +4,7 @@
 
 ;; Author: Chris Done <chrisdone@gmail.com>
 ;; URL: https://github.com/chrisdone/hindent
-;; Package-Version: 20160809.618
+;; Package-Version: 20160831.218
 ;; Package-Requires: ((cl-lib "0.5"))
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -20,9 +20,60 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Commentary:
+
+;; Provides a minor mode and commands for easily using the "hindent"
+;; program to reformat Haskell code.
+
+;; Add `hindent-mode' to your `haskell-mode-hook' and use the provided
+;; keybindings as needed.  Set `hindent-reformat-buffer-on-save' to
+;; `t' globally or in local variables to have your code automatically
+;; reformatted.
+
 ;;; Code:
 
 (require 'cl-lib)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Customization properties
+
+(defcustom hindent-style
+  nil
+  "The style to use for formatting.
+
+This customization is deprecated and ignored."
+  :group 'haskell
+  :type 'string
+  :safe #'stringp)
+
+(defcustom hindent-process-path
+  "hindent"
+  "Location where the hindent executable is located."
+  :group 'haskell
+  :type 'string
+  :safe #'stringp)
+
+(defcustom hindent-line-length
+  80
+  "Optionally override the line length."
+  :group 'haskell
+  :type '(choice (const :tag "Default: 80" 80)
+                 (integer :tag "Override" 120))
+  :safe (lambda (val) (or (integerp val) (not val))))
+
+(defcustom hindent-indent-size
+  2
+  "Optionally override the indent size."
+  :group 'haskell
+  :type '(choice (const :tag "Default: 2" 2)
+                 (integer :tag "Override" 4))
+  :safe (lambda (val) (or (integerp val) (not val))))
+
+(defcustom hindent-reformat-buffer-on-save nil
+  "Set to t to run `hindent-reformat-buffer' when a buffer in
+`hindent-mode' is saved."
+  :group 'haskell
+  :safe #'booleanp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode
@@ -45,32 +96,15 @@ Provide the following keybindings:
   :keymap hindent-mode-map
   :lighter " HI"
   :group 'haskell
-  :require 'hindent)
+  :require 'hindent
+  (if hindent-mode
+      (add-hook 'before-save-hook 'hindent--before-save nil t)
+    (remove-hook 'before-save-hook 'hindent--before-save t)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Customization properties
-
-(defcustom hindent-style
-  "fundamental"
-  "The style to use for formatting."
-  :group 'haskell
-  :type 'string
-  :safe #'stringp)
-
-(defcustom hindent-process-path
-  "hindent"
-  "Location where the hindent executable is located."
-  :group 'haskell
-  :type 'string
-  :safe #'stringp)
-
-(defcustom hindent-line-length
-  nil
-  "Optionally override the line length of the formatting style."
-  :group 'haskell
-  :type '(choice (const :tag "From style" nil)
-                 (integer :tag "Override" 80))
-  :safe (lambda (val) (or (integerp val) (not val))))
+(defun hindent--before-save ()
+  "Optionally reformat the buffer on save."
+  (when hindent-reformat-buffer-on-save
+    (hindent-reformat-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Interactive functions
@@ -85,7 +119,7 @@ Provide the following keybindings:
     (when start-end
       (let ((beg (car start-end))
             (end (cdr start-end)))
-        (hindent-reformat-region beg end)))))
+        (hindent-reformat-region beg end t)))))
 
 ;;;###autoload
 (defun hindent-reformat-buffer ()
@@ -109,19 +143,20 @@ declaration."
     (hindent/reformat-decl)))
 
 ;;;###autoload
-(defun hindent-reformat-region (beg end)
+(defun hindent-reformat-region (beg end &optional drop-newline)
   "Reformat the given region, accounting for indentation."
   (interactive "r")
   (if (= (save-excursion (goto-char beg)
                          (line-beginning-position))
          beg)
-      (hindent-reformat-region-as-is beg end)
+      (hindent-reformat-region-as-is beg end drop-newline)
     (let* ((column (- beg (line-beginning-position)))
            (string (buffer-substring-no-properties beg end))
            (new-string (with-temp-buffer
                          (insert (make-string column ? ) string)
                          (hindent-reformat-region-as-is (point-min)
-                                                        (point-max))
+                                                        (point-max)
+                                                        drop-newline)
                          (delete-region (point-min) (1+ column))
                          (buffer-substring (point-min)
                                            (point-max)))))
@@ -138,7 +173,7 @@ declaration."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Internal library
 
-(defun hindent-reformat-region-as-is (beg end)
+(defun hindent-reformat-region-as-is (beg end &optional drop-newline)
   "Reformat the given region as-is.
 
 This is the place where hindent is actually called."
@@ -153,13 +188,7 @@ This is the place where hindent is actually called."
                                           hindent-process-path
                                           nil ; delete
                                           temp ; output
-                                          nil
-                                          "--style"
-                                          hindent-style)
-                                    (when hindent-line-length
-                                      (list "--line-length"
-                                            (number-to-string
-                                             hindent-line-length)))
+                                          nil)
                                     (hindent-extra-arguments)))))
             (cond
              ((= ret 1)
@@ -173,8 +202,13 @@ This is the place where hindent is actually called."
                     (message "language pragma")
                   (error error-string))))
              ((= ret 0)
-              (let ((new-str (with-current-buffer temp
-                               (buffer-string))))
+              (let* ((last-decl (= end (point-max)))
+                     (new-str (with-current-buffer temp
+                                (when (and drop-newline (not last-decl))
+                                  (goto-char (point-max))
+                                  (when (looking-back "\n")
+                                    (delete-backward-char 1)))
+                                (buffer-string))))
                 (if (not (string= new-str orig-str))
                     (let ((line (line-number-at-pos))
                           (col (current-column)))
