@@ -114,6 +114,8 @@
  '(projectile-completion-system (quote helm))
  '(projectile-enable-caching t)
  '(projectile-switch-project-action (quote dired-cwd))
+ '(psc-ide-debug t)
+ '(psc-ide-rebuild-on-save t)
  '(restclient-inhibit-cookies t)
  '(restclient-log-request t)
  '(safe-local-variable-values

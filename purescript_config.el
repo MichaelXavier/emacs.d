@@ -1,4 +1,9 @@
-(add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
-(add-hook 'purescript-mode-hook 'subword-mode)
-(define-key haskell-mode-map [f8] 'haskell-navigate-imports)
+(require 'psc-ide)
 
+(add-hook 'purescript-mode-hook
+  (lambda ()
+    (psc-ide-mode)
+    (company-mode)
+    (flycheck-mode)
+    (turn-on-purescript-indentation)
+    (subword-mode)))
