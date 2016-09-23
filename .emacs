@@ -11,6 +11,7 @@
    (quote
     ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" default)))
  '(dabbrev-case-fold-search nil)
+ '(dired-listing-switches "-alh")
  '(electric-indent-mode nil)
  '(enh-ruby-bounce-deep-indent nil)
  '(enh-ruby-deep-indent-paren-style nil)
