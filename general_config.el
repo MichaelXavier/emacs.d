@@ -14,17 +14,17 @@
 ;;
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'fairyfloss t t)
-(load-theme 'ample t t)
-(load-theme 'ample-zen t t)
-(load-theme 'ample-flat t t)
-(load-theme 'ample-light t t)
+;; (load-theme 'ample t t)
+;; (load-theme 'ample-zen t t)
+;; (load-theme 'ample-flat t t)
+;; (load-theme 'ample-light t t)
 ;; (load-theme 'solarized-dark t t)
 ;; (load-theme 'solarized-light t t)
 (enable-theme 'fairyfloss)
 
-(global-set-key (kbd "C-x t l") (lambda () (interactive) (enable-theme 'ample-light)))
-(global-set-key (kbd "C-x t d") (lambda () (interactive) (enable-theme 'ample-zen)))
-(global-set-key (kbd "C-x t f") (lambda () (interactive) (enable-theme 'fairyfloss)))
+;; (global-set-key (kbd "C-x t l") (lambda () (interactive) (enable-theme 'ample-light)))
+;; (global-set-key (kbd "C-x t d") (lambda () (interactive) (enable-theme 'ample-zen)))
+;; (global-set-key (kbd "C-x t f") (lambda () (interactive) (enable-theme 'fairyfloss)))
 
 
 ;;
