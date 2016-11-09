@@ -71,7 +71,7 @@
                              nil nil (thing-at-point 'word))))
   (let ((url (if current-prefix-arg
                  "http://hackage.haskell.org/package/"
-                 "https://www.stackage.org/nightly/package/")))
+                 "https://www.stackage.org/lts/package/")))
        (browse-url (concat url pkg))))
 
 (defalias 'hd 'hackage-doc)
