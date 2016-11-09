@@ -32,21 +32,9 @@
 
 
 (custom-theme-set-faces
- 'ample-zen
- '(shm-current-face ((t (:background "#315057"))))
- '(shm-quarantine-face ((t (:background "#794544"))))
- )
-
-(custom-theme-set-faces
  'fairyfloss
  '(shm-current-face ((t (:background "#315057"))))
  '(shm-quarantine-face ((t (:background "#794544"))))
- )
-
-(custom-theme-set-faces
- 'ample-light
- '(shm-current-face ((t (:background "#8CE5FA"))))
- '(shm-quarantine-face ((t (:background "#FF918F"))))
  )
 
 
