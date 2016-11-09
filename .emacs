@@ -50,6 +50,7 @@
  '(initial-buffer-choice t)
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
+ '(large-file-warning-threshold 20000000)
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(markdown-command "marked")
