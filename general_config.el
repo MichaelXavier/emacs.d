@@ -8,6 +8,7 @@
 (require 'yasnippet)
 (require 'iedit)
 (require 'pomodoro)
+(require 'helm)
 
 ;;
 ;; Themes
