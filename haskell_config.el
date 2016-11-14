@@ -26,7 +26,7 @@
      (define-key haskell-mode-map (kbd "M-.") 'find-tag)
      ))
 
-(define-key hindent-mode (kbd "C-c C-h") 'hindent-reformat-buffer)
+(define-key hindent-mode-map (kbd "C-c C-h") 'hindent-reformat-buffer)
 
 ;; structured-haskell-mode keybindings
 (define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
