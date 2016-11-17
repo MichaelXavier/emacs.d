@@ -6,7 +6,6 @@
 (require 'smartparens)
 (require 'shm)
 (require 'shm-case-split)
-(require 'hindent)
 (require 'ob-haskell)
 
 (eval-after-load "haskell-mode"
@@ -25,8 +24,6 @@
      ;; seems like a buggier find-tag that requires an active session
      (define-key haskell-mode-map (kbd "M-.") 'find-tag)
      ))
-
-(define-key hindent-mode (kbd "C-c C-h") 'hindent-reformat-buffer)
 
 ;; structured-haskell-mode keybindings
 (define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
@@ -121,6 +118,3 @@
 
 ;; hook in intero
 (add-hook 'haskell-mode-hook 'intero-mode)
-
-;; hook in hindent
-(add-hook 'haskell-mode-hook #'hindent-mode)
