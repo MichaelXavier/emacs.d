@@ -6,7 +6,6 @@
 (require 'smartparens)
 (require 'shm)
 (require 'shm-case-split)
-(require 'hindent)
 (require 'ob-haskell)
 (require 'projectile)
 
@@ -26,8 +25,6 @@
      ;; seems like a buggier find-tag that requires an active session
      (define-key haskell-mode-map (kbd "M-.") 'find-tag)
      ))
-
-(define-key hindent-mode-map (kbd "C-c C-h") 'hindent-reformat-buffer)
 
 ;; structured-haskell-mode keybindings
 (define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
@@ -127,8 +124,5 @@
   (unless (member (projectile-project-name) intero-exempt-projects)
     (intero-mode)))
 
-;; hook in interohv
+;; hook in intero
 (add-hook 'haskell-mode-hook 'intero-mode-unless-exempt)
-
-;; hook in hindent
-(add-hook 'haskell-mode-hook #'hindent-mode)
