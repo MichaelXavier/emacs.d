@@ -8,6 +8,7 @@
 (require 'shm-case-split)
 (require 'hindent)
 (require 'ob-haskell)
+(require 'projectile)
 
 (eval-after-load "haskell-mode"
   '(progn
@@ -118,9 +119,16 @@
   (interactive)
   (shm-kill-node nil nil nil t))
 
+(defvar intero-exempt-projects '("widengle") "List of projectile project names that cannot run intero.")
 
-;; hook in intero
-(add-hook 'haskell-mode-hook 'intero-mode)
+(defun intero-mode-unless-exempt ()
+  "Run intero-mode unless the current project is in intero-exempt-projects"
+  (interactive)
+  (unless (member (projectile-project-name) intero-exempt-projects)
+    (intero-mode)))
+
+;; hook in interohv
+(add-hook 'haskell-mode-hook 'intero-mode-unless-exempt)
 
 ;; hook in hindent
 (add-hook 'haskell-mode-hook #'hindent-mode)
