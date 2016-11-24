@@ -116,13 +116,5 @@
   (interactive)
   (shm-kill-node nil nil nil t))
 
-(defvar intero-exempt-projects '("widengle") "List of projectile project names that cannot run intero.")
-
-(defun intero-mode-unless-exempt ()
-  "Run intero-mode unless the current project is in intero-exempt-projects"
-  (interactive)
-  (unless (member (projectile-project-name) intero-exempt-projects)
-    (intero-mode)))
-
 ;; hook in intero
-(add-hook 'haskell-mode-hook 'intero-mode-unless-exempt)
+(add-hook 'haskell-mode-hook 'intero-mode-blacklist)

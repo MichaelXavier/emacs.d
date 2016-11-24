@@ -48,6 +48,7 @@
  '(inferior-haskell-wait-and-jump t)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice t)
+ '(intero-blacklist (quote ("/home/michael/src/soostone/widengle")))
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(large-file-warning-threshold 20000000)
