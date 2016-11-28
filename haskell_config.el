@@ -8,6 +8,7 @@
 (require 'shm-case-split)
 (require 'ob-haskell)
 (require 'projectile)
+(require 'intero)
 
 (eval-after-load "haskell-mode"
   '(progn
