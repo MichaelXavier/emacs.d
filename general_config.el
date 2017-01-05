@@ -7,7 +7,6 @@
 (require 'browse-url)
 (require 'yasnippet)
 (require 'iedit)
-(require 'pomodoro)
 (require 'helm)
 
 ;;
@@ -326,13 +325,5 @@
 
 ;(setq-default indent-tabs-mode nil)
 ;(setq-default tab-width 2)
-
-(pomodoro-add-to-mode-line)
-
-(global-set-key (kbd "C-x p s") 'pomodoro-start)
-(global-set-key (kbd "C-x p p") 'pomodoro-pause)
-(global-set-key (kbd "C-x p r") 'pomodoro-resume)
-(global-set-key (kbd "C-x p k") 'pomodoro-stop)
-
 
 (add-to-list 'auto-mode-alist '(".restclient$"  . restclient-mode))
