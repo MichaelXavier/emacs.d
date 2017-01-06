@@ -9,6 +9,7 @@
 (require 'ob-haskell)
 (require 'projectile)
 (require 'intero)
+(require 'hindent)
 
 (eval-after-load "haskell-mode"
   '(progn
@@ -119,3 +120,5 @@
 
 ;; hook in intero
 (add-hook 'haskell-mode-hook 'intero-mode-blacklist)
+(add-hook 'haskell-mode-hook #'hindent-mode)
+(define-key hindent-mode-map (kbd "C-c C-h") 'hindent-reformat-buffer)
