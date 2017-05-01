@@ -122,3 +122,6 @@
 (add-hook 'haskell-mode-hook 'intero-mode-blacklist)
 (add-hook 'haskell-mode-hook #'hindent-mode)
 (define-key hindent-mode-map (kbd "C-c C-h") 'hindent-reformat-buffer)
+
+;; Make it easier to toggle shm when it shits the bed
+(defalias 'shm 'structured-haskell-mode)
