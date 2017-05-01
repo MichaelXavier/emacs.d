@@ -125,7 +125,13 @@
  '(restclient-log-request t)
  '(safe-local-variable-values
    (quote
-    ((hindent-style . "chris-done")
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4)
+     (eval progn
+           (add-to-list
+            (quote exec-path)
+            "/opt/purescript/0.10.7/bin"))
+     (hindent-style . "chris-done")
      (flycheck-disabled-checkers
       (quote haskell-ghc))
      (require-final-newline))))
