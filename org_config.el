@@ -41,10 +41,7 @@
 
 ;; Capture templates for quick notetaking
 (setq org-capture-templates
-      '(("s" "Shortlist")
-        ("st" "Today" entry (file+headline "shortlist.org" "Today")
-              "* TODO %?\n")
-        ("sw" "This Week" entry (file+headline "shortlist.org" "This Week")
+      '(("st" "Today" entry (file+headline "shortlist.org" "Today")
               "* TODO %?\n")
         ("se" "Eventually" entry (file+headline "shortlist.org" "Eventually")
               "* TODO %?\n")
@@ -106,3 +103,11 @@
            (dest (random-between start finish)))
       (with-no-warnings (goto-line dest))))
   )
+
+(defun org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/DONE" 'tree))
