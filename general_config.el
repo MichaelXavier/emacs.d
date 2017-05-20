@@ -329,3 +329,6 @@
 (add-to-list 'auto-mode-alist '(".restclient$"  . restclient-mode))
 
 (defalias 'ft 'find-tag)
+
+; .sosrc files are yaml
+(add-to-list 'auto-mode-alist '(".sosrc" . yaml-mode))
