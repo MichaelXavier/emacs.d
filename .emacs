@@ -125,7 +125,11 @@
  '(restclient-log-request t)
  '(safe-local-variable-values
    (quote
-    ((haskell-process-use-ghci . t)
+    ((eval progn
+           (add-to-list
+            (quote exec-path)
+            "/opt/purescript/0.11.4/bin"))
+     (haskell-process-use-ghci . t)
      (haskell-indent-spaces . 4)
      (eval progn
            (add-to-list
