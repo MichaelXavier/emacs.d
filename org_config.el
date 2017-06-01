@@ -41,7 +41,8 @@
 
 ;; Capture templates for quick notetaking
 (setq org-capture-templates
-      '(("st" "Today" entry (file+headline "shortlist.org" "Today")
+      '(("s" "Shortlist")
+        ("st" "Today" entry (file+headline "shortlist.org" "Today")
               "* TODO %?\n")
         ("se" "Eventually" entry (file+headline "shortlist.org" "Eventually")
               "* TODO %?\n")
