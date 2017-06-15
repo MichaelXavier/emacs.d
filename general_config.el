@@ -332,3 +332,7 @@
 
 ; .sosrc files are yaml
 (add-to-list 'auto-mode-alist '(".sosrc" . yaml-mode))
+
+
+; Binds the normal C-/ to undo-tree-undo and C-S-/ aka C-? to undo-tree-redo
+(global-undo-tree-mode)
