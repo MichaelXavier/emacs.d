@@ -112,3 +112,10 @@
      (org-archive-subtree)
      (setq org-map-continue-from (outline-previous-heading)))
    "/DONE" 'tree))
+
+(defun kill-org-buffers ()
+  (interactive)
+  (mapc (lambda (buffer)
+          (when (eq 'org-mode (buffer-local-value 'major-mode buffer))
+            (kill-buffer buffer)))
+        (buffer-list)))
