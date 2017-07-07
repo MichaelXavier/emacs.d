@@ -128,6 +128,10 @@
     ((eval progn
            (add-to-list
             (quote exec-path)
+            "/opt/purescript/0.11.5/bin"))
+     (eval progn
+           (add-to-list
+            (quote exec-path)
             "/opt/purescript/0.11.4/bin"))
      (haskell-process-use-ghci . t)
      (haskell-indent-spaces . 4)
