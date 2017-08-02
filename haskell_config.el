@@ -23,10 +23,11 @@
      (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
      (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)
      (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)
-     ;; normally bound to haskell-mode-jump-to-def-or-tag but that
-     ;; seems like a buggier find-tag that requires an active session
-     (define-key haskell-mode-map (kbd "M-.") 'find-tag)
      ))
+
+;; I don't want to use intero's goto defintion. It is unreliable and
+;; requires buildable code.
+(defalias 'intero-goto-definition 'find-tag)
 
 ;; structured-haskell-mode keybindings
 (define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
