@@ -13,3 +13,4 @@ session.*
 elpa/archives
 bookmarks
 ido.last
+per_machine_config.el

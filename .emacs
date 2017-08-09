@@ -1,5 +1,6 @@
 (require 'package)
 (package-initialize)
+(require 'f)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -184,6 +185,8 @@
 (load "~/.emacs.d/org_config.el")
 (load "~/.emacs.d/terminal_config.el")
 (load "~/.emacs.d/elisp_config.el")
+(if (f-file? "~/.emacs.d/per_machine_config.el")
+    (load "~/.emacs.d/per_machine_config.el"))
 
 (provide 'emacs)
 ;;; .emacs ends here
