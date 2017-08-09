@@ -126,3 +126,12 @@
 
 ;; Make it easier to toggle shm when it shits the bed
 (defalias 'shm 'structured-haskell-mode)
+
+
+;; a version of intero-targets that doesn't prompt you every time for
+(defun intero-targets-quiet (targets)
+  "intero-targets that never saves a dir-local of your decision"
+  (interactive (list (intero-read-targets)))
+  (intero-targets targets nil))
+
+(defalias 'itq 'intero-targets-quiet)
