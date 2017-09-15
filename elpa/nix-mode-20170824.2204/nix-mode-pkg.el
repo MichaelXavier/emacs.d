@@ -1,1 +1,0 @@
-(define-package "nix-mode" "20170824.2204" "Major mode for editing .nix files" '((emacs "24.3")) :commit "b0db22ebd50a62ccb225e8404593757cba19588f" :url "https://github.com/matthewbauer/nix-mode" :keywords '("nix" "languages" "tools" "unix"))
