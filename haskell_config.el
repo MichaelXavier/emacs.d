@@ -35,7 +35,7 @@
 
 
 (custom-theme-set-faces
- 'fairyfloss
+ 'birds-of-paradise-plus
  '(shm-current-face ((t (:background "#315057"))))
  '(shm-quarantine-face ((t (:background "#794544"))))
  )

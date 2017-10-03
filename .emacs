@@ -8,9 +8,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
- '(custom-safe-themes
-   (quote
-    ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" default)))
  '(dabbrev-case-fold-search nil)
  '(dired-listing-switches "-alh")
  '(electric-indent-mode nil)
@@ -191,10 +188,4 @@
 (provide 'emacs)
 ;;; .emacs ends here
 (put 'narrow-to-region 'disabled nil)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#5A5475" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 103 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 (put 'upcase-region 'disabled nil)
