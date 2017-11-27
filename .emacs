@@ -69,8 +69,7 @@
  '(org-src-fontify-natively t)
  '(package-archives
    (quote
-    (("marmalade" . "http://marmalade-repo.org/packages/")
-     ("gnu" . "http://elpa.gnu.org/packages/")
+    (("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(pomodoro-long-break-time 10)
  '(pomodoro-play-sounds nil)
