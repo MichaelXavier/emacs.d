@@ -114,6 +114,10 @@
      ("*HS-Error*" :height 15 :noselect t))))
  '(projectile-completion-system (quote helm))
  '(projectile-enable-caching t)
+ '(projectile-globally-ignored-directories
+   (quote
+    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".cabal-sandbox")))
+ '(projectile-globally-ignored-file-suffixes (quote (".hi" ".dyn_hi" ".o" ".dyn_o" ".a" ".so")))
  '(projectile-switch-project-action (quote dired-cwd))
  '(psc-ide-debug nil)
  '(psc-ide-rebuild-on-save nil)
