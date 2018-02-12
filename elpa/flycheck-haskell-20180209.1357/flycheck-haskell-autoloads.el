@@ -3,8 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "flycheck-haskell" "flycheck-haskell.el" (23151
-;;;;;;  22571 33092 479000))
+;;;### (autoloads nil "flycheck-haskell" "flycheck-haskell.el" (23166
+;;;;;;  8571 708615 571000))
 ;;; Generated autoloads from flycheck-haskell.el
 
 (autoload 'flycheck-haskell-setup "flycheck-haskell" "\
@@ -21,8 +21,8 @@ path as well.
 
 ;;;***
 
-;;;### (autoloads nil nil ("flycheck-haskell-pkg.el") (23151 22571
-;;;;;;  112972 142000))
+;;;### (autoloads nil nil ("flycheck-haskell-pkg.el") (23166 8571
+;;;;;;  801254 75000))
 
 ;;;***
 

@@ -1,4 +1,4 @@
-(define-package "flycheck-haskell" "20180125.1531" "Flycheck: Automatic Haskell configuration"
+(define-package "flycheck-haskell" "20180209.1357" "Flycheck: Automatic Haskell configuration"
   '((emacs "24.3")
     (flycheck "0.25")
     (haskell-mode "13.7")
