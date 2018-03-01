@@ -67,7 +67,8 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.milkbox.net/packages/"))))
+     ("melpa" . "http://melpa.milkbox.net/packages/")
+     ("org" . "https://orgmode.org/elpa/"))))
  '(pomodoro-long-break-time 10)
  '(pomodoro-play-sounds nil)
  '(pomodoro-show-number t)
