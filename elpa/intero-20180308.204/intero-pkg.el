@@ -1,0 +1,1 @@
+(define-package "intero" "20180308.204" "Complete development mode for Haskell" '((flycheck "0.25") (company "0.8") (emacs "24.4") (haskell-mode "13.0")) :commit "af21a0382bd578db5d90e6e49683cf3305bc7f3f" :url "https://github.com/commercialhaskell/intero" :keywords '("haskell" "tools"))
