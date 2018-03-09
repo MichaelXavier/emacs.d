@@ -224,7 +224,7 @@
 (global-set-key (kbd "C-x C-s") 'save-buffer-always)
 
 (setq browse-url-browser-function 'browse-url-generic
-          browse-url-generic-program "google-chrome")
+          browse-url-generic-program "firefox")
 
 (add-hook 'erc-mode-hook
           (lambda ()
