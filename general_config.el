@@ -8,6 +8,8 @@
 (require 'yasnippet)
 (require 'iedit)
 (require 'helm)
+;; when its bright out
+;; (require 'solarized-theme)
 
 ;;
 ;; Themes
@@ -20,7 +22,7 @@
 ;; (load-theme 'ample-flat t t)
 ;; (load-theme 'ample-light t t)
 ;; (load-theme 'solarized-dark t t)
-;; (load-theme 'solarized-light t t)
+;;(load-theme 'solarized-light t t)
 (enable-theme 'birds-of-paradise-plus)
 
 ;; (global-set-key (kbd "C-x t l") (lambda () (interactive) (enable-theme 'ample-light)))
