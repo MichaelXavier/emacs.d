@@ -339,3 +339,6 @@
 
 ; Binds the normal C-/ to undo-tree-undo and C-S-/ aka C-? to undo-tree-redo
 (global-undo-tree-mode)
+
+; Bind simple kill-whole-line since sexp seems to take over C-S-backspace
+(define-key global-map (kbd "C-S-k") 'kill-whole-line)
