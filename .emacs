@@ -8,6 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
+ '(company-echo-truncate-lines nil)
  '(dabbrev-case-fold-search nil)
  '(dired-listing-switches "-alh")
  '(electric-indent-mode nil)
