@@ -122,7 +122,7 @@
   (shm-kill-node nil nil nil t))
 
 ;; hook in intero
-(add-hook 'haskell-mode-hook 'intero-mode-blacklist)
+;(add-hook 'haskell-mode-hook 'intero-mode-blacklist)
 (add-hook 'haskell-mode-hook #'hindent-mode)
 (define-key hindent-mode-map (kbd "C-c C-h") 'hindent-reformat-buffer)
 
