@@ -146,6 +146,12 @@
  '(show-trailing-whitespace t)
  '(sp-autoescape-string-quote nil)
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
+ '(sql-postgres-login-params
+   (quote
+    ((user :default "michael")
+     server
+     (database :default "michael")
+     port)))
  '(sql-product (quote postgres))
  '(sql-server "localhost")
  '(suggest-key-bindings t)
