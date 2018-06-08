@@ -8,6 +8,8 @@
 (require 'yasnippet)
 (require 'iedit)
 (require 'helm)
+(require 'projectile)
+(require 'projectile-ripgrep)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
@@ -338,3 +340,6 @@
 
 ; Bind simple kill-whole-line since sexp seems to take over C-S-backspace
 (define-key global-map (kbd "C-S-k") 'kill-whole-line)
+
+; use ripgrep instead of ag
+(define-key projectile-mode-map (kbd "C-c p s s") 'projectile-ripgrep)
