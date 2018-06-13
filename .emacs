@@ -77,6 +77,7 @@
  '(popwin:special-display-config
    (quote
     ((ag-mode :stick t)
+     (ripgrep-search-mode :stick t)
      ("*All*" :height 15 :noselect t)
      ("*Flycheck error messages*" :regexp nil :height 15 :noselect t)
      ("*haskell-process-log*" :regexp nil :height 15 :noselect nil)
