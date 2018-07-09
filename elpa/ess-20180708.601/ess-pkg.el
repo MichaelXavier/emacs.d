@@ -1,4 +1,4 @@
-(define-package "ess" "20180706.137" "Emacs Speaks Statistics: statistical programming within Emacs"
+(define-package "ess" "20180708.601" "Emacs Speaks Statistics: statistical programming within Emacs"
   '((julia-mode "0.3"))
   :keywords
   '("statistics" "languages")

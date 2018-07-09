@@ -185,7 +185,7 @@ This may be useful for debugging.
 (ess-defgeneric ess-load-file (&optional filename) "\
 Load a source file into an inferior ESS process.
 
-This handles Tramp when working on a remote." (interactive (list (or (and (memq major-mode (quote (ess-mode ess-julia-mode))) (buffer-file-name)) (expand-file-name (read-file-name "Load source file: " nil nil t))))) (ess-load-file--normalise-buffer (abbreviate-file-name filename)) (save-selected-window (ess-switch-to-ESS t)) (:override (let ((file (ess-load-file--normalise-file filename))) (let ((command (ess-build-load-command file nil t))) (ess-send-string (ess-get-process) command t)))))
+This handles Tramp when working on a remote." (interactive (list (or (and (memq major-mode (quote (ess-mode ess-julia-mode))) (buffer-file-name)) (expand-file-name (read-file-name "Load source file: " nil nil t))))) (ess-load-file--normalise-buffer filename) (save-selected-window (ess-switch-to-ESS t)) (:override (let ((file (ess-load-file--normalise-file filename))) (let ((command (ess-build-load-command file nil t))) (ess-send-string (ess-get-process) command t)))))
 
 (autoload 'inferior-ess-mode "ess-inf" "\
 Major mode for interacting with an inferior ESS process.
