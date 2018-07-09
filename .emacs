@@ -31,6 +31,7 @@
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-idle-change-delay 1)
  '(flycheck-rubocop-lint-only t)
+ '(global-eldoc-mode nil)
  '(haskell-align-imports-pad-after-name nil)
  '(haskell-interactive-mode-scroll-to-bottom t)
  '(haskell-mode-contextual-import-completion nil)
