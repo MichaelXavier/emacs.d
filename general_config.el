@@ -342,4 +342,4 @@
 (define-key global-map (kbd "C-S-k") 'kill-whole-line)
 
 ; use ripgrep instead of ag
-(define-key projectile-mode-map (kbd "C-c p s s") 'projectile-ripgrep)
+(define-key projectile-mode-map (kbd "C-c C-p s s") 'projectile-ripgrep)
