@@ -116,7 +116,8 @@
      (sldb-mode :stick t)
      (slime-repl-mode)
      (slime-connection-list-mode)
-     ("*HS-Error*" :height 15 :noselect t))))
+     ("*HS-Error*" :height 15 :noselect t)
+     ("*xref*" :height 15 :noselect t))))
  '(projectile-completion-system (quote helm))
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
