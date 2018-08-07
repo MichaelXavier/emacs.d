@@ -11,7 +11,7 @@
 ;; Author: Chris Done <chrisdone@fpcomplete.com>
 ;; Maintainer: Chris Done <chrisdone@fpcomplete.com>
 ;; URL: https://github.com/commercialhaskell/intero
-;; Package-Version: 20180801.157
+;; Package-Version: 20180806.2145
 ;; Created: 3rd June 2016
 ;; Version: 0.1.13
 ;; Keywords: haskell, tools
@@ -1343,8 +1343,8 @@ STORE-PREVIOUS is non-nil, note the caller's buffer in
          (backend-buffer (intero-buffer 'backend)))
     (with-current-buffer
         (or (let ((buf (get-buffer name)))
-              (and buf
-                   (get-buffer-process buf)))
+              (and (get-buffer-process buf)
+                   buf))
             (with-current-buffer
                 (get-buffer-create name)
               ;; The new buffer doesn't know if the initial buffer was hosted
