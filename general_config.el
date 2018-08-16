@@ -341,5 +341,9 @@
 ; Bind simple kill-whole-line since sexp seems to take over C-S-backspace
 (define-key global-map (kbd "C-S-k") 'kill-whole-line)
 
+; set up the global command prefix for projectile to C-c C-p
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+
 ; use ripgrep instead of ag
 (define-key projectile-mode-map (kbd "C-c C-p s s") 'projectile-ripgrep)
