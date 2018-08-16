@@ -149,6 +149,7 @@
      (flycheck-disabled-checkers
       (quote haskell-ghc))
      (require-final-newline))))
+ '(shm-auto-insert-skeletons nil)
  '(show-trailing-whitespace t)
  '(sp-autoescape-string-quote nil)
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
