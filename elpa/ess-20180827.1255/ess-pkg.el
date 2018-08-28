@@ -1,4 +1,4 @@
-(define-package "ess" "20180824.2023" "Emacs Speaks Statistics" 'nil :authors
+(define-package "ess" "20180827.1255" "Emacs Speaks Statistics" 'nil :authors
   '(("David Smith" . "dsmith@stats.adelaide.edu.au"))
   :maintainer
   '("ESS-core" . "ESS-core@r-project.org"))
