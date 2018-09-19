@@ -1,4 +1,4 @@
-(define-package "ess" "20180911.2135" "Emacs Speaks Statistics"
+(define-package "ess" "20180916.2053" "Emacs Speaks Statistics"
   '((julia-mode "0.3"))
   :authors
   '(("David Smith" . "dsmith@stats.adelaide.edu.au")

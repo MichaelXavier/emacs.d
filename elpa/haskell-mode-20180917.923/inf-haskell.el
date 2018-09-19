@@ -121,12 +121,12 @@ The format should be the same as for `compilation-error-regexp-alist'.")
 ;;; -> Make font lock work for strings, directories, hyperlinks
 ;;; -> Make font lock work for key words???
 
+(defvaralias 'inferior-haskell-mode-map 'inf-haskell-map)
+
 (defvar inf-haskell-map
   (let ((map (make-sparse-keymap)))
     (define-key map "\C-c\C-d" 'comint-kill-subjob)
     map))
-
-(defvaralias 'inferior-haskell-mode-map 'inf-haskell-map)
 
 (define-derived-mode inferior-haskell-mode comint-mode "Inf-Haskell"
   "Major mode for interacting with an inferior Haskell process."
@@ -177,7 +177,8 @@ otherwise uses `haskell-program-name-with-args'.
 It runs the hook `inferior-haskell-hook' after starting the process and
 setting up the inferior-haskell buffer."
   (let ((command (haskell-program-name-with-args)))
-    (setq default-directory inferior-haskell-root-dir)
+    (when inferior-haskell-root-dir
+      (setq default-directory inferior-haskell-root-dir))
     (setq inferior-haskell-buffer
           (apply 'make-comint "haskell" (car command) nil (cdr command)))
     (with-current-buffer inferior-haskell-buffer
