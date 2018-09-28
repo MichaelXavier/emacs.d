@@ -10,6 +10,8 @@
  '(coffee-tab-width 2)
  '(company-echo-truncate-lines nil)
  '(dabbrev-case-fold-search nil)
+ '(dhall-format-command nil)
+ '(dhall-format-options (quote ("--inplace")))
  '(dired-listing-switches "-alh")
  '(electric-indent-mode nil)
  '(enh-ruby-bounce-deep-indent nil)
