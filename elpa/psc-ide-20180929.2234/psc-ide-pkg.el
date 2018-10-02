@@ -1,4 +1,4 @@
-(define-package "psc-ide" "20180605.1002" "Minor mode for PureScript's psc-ide tool."
+(define-package "psc-ide" "20180929.2234" "Minor mode for PureScript's psc-ide tool."
   '((dash "2.13.0")
     (dash-functional "1.2.0")
     (company "0.8.7")

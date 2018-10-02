@@ -499,6 +499,14 @@ See `def-projectile-commander-method' for defining new methods.
 
 \(fn)" t nil)
 
+(autoload 'projectile-browse-dirty-projects "projectile" "\
+Browse dirty version controlled projects.
+
+With a prefix argument, or if CACHED is non-nil, try to use the cached
+dirty project list.
+
+\(fn &optional CACHED)" t nil)
+
 (autoload 'projectile-edit-dir-locals "projectile" "\
 Edit or create a .dir-locals.el file of the project.
 
