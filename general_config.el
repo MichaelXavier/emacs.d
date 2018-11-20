@@ -347,3 +347,18 @@
 
 ; use ripgrep instead of ag
 (define-key projectile-mode-map (kbd "C-c C-p s s") 'projectile-ripgrep)
+
+
+; https://stackoverflow.com/a/65992
+(defun toggle-window-dedicated ()
+  "Toggle whether the current active window is dedicated. This is prevents buffers from usurping the window"
+  (interactive)
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window
+                                 (not (window-dedicated-p window))))
+       "Window '%s' is dedicated"
+       "Window '%s' is not dedicated")
+   (current-buffer)))
+
+(define-key global-map (kbd "C-c d") 'toggle-window-dedicated)
