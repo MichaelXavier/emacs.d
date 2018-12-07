@@ -11,7 +11,6 @@
 (require 'intero)
 (require 'hindent)
 (require 'mode-local)
-(require 'flycheck)
 
 (eval-after-load "haskell-mode"
   '(progn
@@ -103,9 +102,6 @@
           '(lambda () (column-marker-1 78)))
 
 
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-
 ;; So smartparens doesn't get confused at language pragmas
 (sp-local-pair 'haskell-mode "{-#" "#-}")
 
@@ -138,6 +134,3 @@
 
 (defalias 'itq 'intero-targets-quiet)
 
-
-;; in haskell projects, only recheck on save and when flycheck is enabled
-(setq-mode-local haskell-mode flycheck-check-syntax-automatically '(save mode-enabled))
