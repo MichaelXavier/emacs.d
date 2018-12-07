@@ -3443,7 +3443,7 @@ polymode <https://github.com/polymode/poly-R/>,
 <https://jblevins.org/projects/markdown-mode>.
 
    ESS provides support for writing and processing Sweave
-(<https://www.statistik.lmu.de/~leisch/Sweave>), building up on Emacs'
+(<https://leisch.userweb.mwn.de/Sweave/>), building up on Emacs'
 ess-noweb-mode for literate programming.  When working on an Sweave
 document, the following key bindings are available:
 
@@ -5001,33 +5001,33 @@ Node: Rdired139864
 Node: Rutils140918
 Node: Org143312
 Node: Sweave and AUCTeX144257
-Node: ESS for R146815
-Node: ESS(R)--Editing files147115
-Node: iESS(R)--Inferior ESS processes147634
-Node: Philosophies for using ESS(R)152383
-Node: Example ESS usage153310
-Node: ESS for SAS155531
-Node: ESS(SAS)--Design philosophy156254
-Node: ESS(SAS)--Editing files157207
-Node: ESS(SAS)--TAB key159061
-Node: ESS(SAS)--Batch SAS processes160427
-Node: ESS(SAS)--Function keys for batch processing165453
-Node: iESS(SAS)--Interactive SAS processes174939
-Node: iESS(SAS)--Common problems178693
-Node: ESS(SAS)--Graphics180216
-Node: ESS(SAS)--Windows180999
-Node: ESS for BUGS181577
-Node: ESS for JAGS183333
-Node: Mailing lists/bug reports186685
-Node: Bugs186949
-Node: Reporting Bugs188574
-Node: Mailing Lists189467
-Node: Help with Emacs190214
-Node: Customization190746
-Node: Indices191520
-Node: Key index191695
-Node: Function and program index196973
-Node: Variable index206612
-Node: Concept index210465
+Node: ESS for R146809
+Node: ESS(R)--Editing files147109
+Node: iESS(R)--Inferior ESS processes147628
+Node: Philosophies for using ESS(R)152377
+Node: Example ESS usage153304
+Node: ESS for SAS155525
+Node: ESS(SAS)--Design philosophy156248
+Node: ESS(SAS)--Editing files157201
+Node: ESS(SAS)--TAB key159055
+Node: ESS(SAS)--Batch SAS processes160421
+Node: ESS(SAS)--Function keys for batch processing165447
+Node: iESS(SAS)--Interactive SAS processes174933
+Node: iESS(SAS)--Common problems178687
+Node: ESS(SAS)--Graphics180210
+Node: ESS(SAS)--Windows180993
+Node: ESS for BUGS181571
+Node: ESS for JAGS183327
+Node: Mailing lists/bug reports186679
+Node: Bugs186943
+Node: Reporting Bugs188568
+Node: Mailing Lists189461
+Node: Help with Emacs190208
+Node: Customization190740
+Node: Indices191514
+Node: Key index191689
+Node: Function and program index196967
+Node: Variable index206606
+Node: Concept index210459
 
 End Tag Table

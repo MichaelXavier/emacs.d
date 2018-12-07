@@ -56,11 +56,9 @@ See also `ess-r-set-evaluation-env' and `ess-r-evaluation-env'."
   :group 'ess-r-package
   :type 'boolean)
 
-(defvar-local ess-r-package--project-cache nil
+(defvar-local ess-r-package--info-cache nil
   "Current package info cache.
-
-Cons cell of two strings. CAR is the package name active in the
-current buffer. CDR is the path to its source directory.")
+See `ess-r-package-info' for its structure.")
 
 (define-obsolete-variable-alias 'ess-r-package-library-path 'ess-r-package-library-paths "v18.04")
 (defcustom ess-r-package-library-paths nil
@@ -102,15 +100,9 @@ all source dirs recursively within the current package.")
 A project instance is a cons cell of the project type as symbol
 and the project path as string. If DIR is provided, the package
 is searched from that directory instead of `default-directory'."
-  (if (car ess-r-package--project-cache)
-      ess-r-package--project-cache
-    (let* ((pkg-path (ess-r-package--find-package-path (or dir default-directory)))
-           (project (when pkg-path
-                      (cons 'ess-r-package pkg-path))))
-      ;; Cache info for better performance on remotes
-      (setq-local ess-r-package--project-cache (or project (list nil)))
-      (when (car project)
-        project))))
+  (let ((pkg-info (ess-r-package-info dir)))
+    (when (car pkg-info)
+      (cons 'ess-r-package (alist-get :root pkg-info)))))
 
 (cl-defmethod project-roots ((project (head ess-r-package)))
   "Return the project root for ESS R packages"
@@ -118,17 +110,25 @@ is searched from that directory instead of `default-directory'."
 
 (defun ess-r-package-name (&optional dir)
   "Return the name of the current package as a string."
-  (when-let ((project (ess-r-package-project dir)))
-    (symbol-name (ess-r-package--find-package-name (cdr project)))))
+  (alist-get :name (ess-r-package-info dir)))
 
-(defun ess-r-package-get-info ()
-  "Deprecated function to get package info.
-Please use `ess-r-package-project' instead."
-  (let ((project (ess-r-package-project)))
-    (if project
-        (cons (ess-r-package-name) (cdr project))
-      (list nil))))
-(make-obsolete 'ess-r-package-get-info 'ess-r-package-project "17.11")
+(defun ess-r-package-info (&optional dir)
+  "Get the description of the R project in directory DIR.
+Return an alist with the keys :name and :root. When not in a
+package return '(nil). This value is cached buffer-locally for
+efficiency reasons."
+  (if (and (null dir) (car ess-r-package--info-cache))
+      ess-r-package--info-cache
+    (let* ((path (ess-r-package--find-package-path (or dir default-directory)))
+           (name (when path
+                   (ess-r-package--find-package-name path)))
+           (info (if name
+                     `((:name . ,name) (:root . ,path))
+                   '(nil))))
+      ;; If DIR was supplied we cannot cache in the current buffer.
+      (if dir
+          info
+        (setq-local ess-r-package--info-cache info)))))
 
 (defun ess-r-package--all-source-dirs (dir)
   (when (file-directory-p dir)
@@ -141,7 +141,7 @@ Please use `ess-r-package-project' instead."
 Return nil if not in a package. Search sub-directories listed in
 `ess-r-package-source-roots' are searched recursively and
 return all physically present directories."
-  (let ((pkg-root (cdr (ess-r-package-project))))
+  (let ((pkg-root (alist-get :root (ess-r-package-info))))
     (when pkg-root
       (let ((files (directory-files-and-attributes pkg-root t "^[^.]")))
         (cl-loop for f in files
@@ -193,20 +193,15 @@ Root is determined by locating `ess-r-package-root-file'."
     (when pkg-path
       (directory-file-name pkg-path))))
 
-(defvar-local ess-r-package-name--cache nil)
 (defun ess-r-package--find-package-name (path)
-  (if ess-r-package-name--cache
-      ess-r-package-name--cache
-    (let ((file (expand-file-name ess-r-package-root-file path))
-          (case-fold-search t))
-      (when (file-exists-p file)
-        (with-temp-buffer
-          (insert-file-contents file)
-          (goto-char (point-min))
-          (when (re-search-forward "package: \\(.*\\)" nil t)
-            (setq-local ess-r-package-name--cache
-                        (intern (match-string 1)))
-            ess-r-package-name--cache))))))
+  (let ((file (expand-file-name ess-r-package-root-file path))
+        (case-fold-search t))
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (goto-char (point-min))
+        (when (re-search-forward "package: \\(.*\\)" nil t)
+          (match-string 1))))))
 
 
 ;;;*;;; UI
@@ -214,27 +209,10 @@ Root is determined by locating `ess-r-package-root-file'."
 (defun ess-r-package-use-dir ()
   "Set process directory to current package directory."
   (interactive)
-  (let ((dir (cdr (ess-r-package-project))))
-    (ess-set-working-directory (abbreviate-file-name dir))))
-
-(defun ess-r-package-set-package ()
-  "Set a package for ESS r-package commands."
-  (interactive)
-  (let* ((pkg-path (read-directory-name
-                    "Path: " (or (ess-r-package--find-package-path)
-                                 (if (stringp ess-r-package-library-paths)
-                                     ess-r-package-library-paths
-                                   (car ess-r-package-library-paths)))
-                    nil t))
-         (pkg-name (ess-r-package--find-package-name pkg-path))
-         (pkg-info (cons pkg-name pkg-path)))
-    (unless (and pkg-name pkg-path
-                 (file-exists-p (expand-file-name ess-r-package-root-file pkg-path)))
-      (error "Not a valid package. No '%s' found in `%s'" ess-r-package-root-file pkg-path))
-    (message (format "%s selected and added to file-local variables" pkg-name))
-    (save-excursion
-      (add-file-local-variable 'ess-r-package--project-cache pkg-info))
-    (setq ess-r-package--project-cache pkg-info)))
+  (let ((pkg-root (alist-get :root (ess-r-package-info))))
+    (if pkg-root
+        (ess-set-working-directory (abbreviate-file-name pkg-root))
+      (user-error "Not in a project"))))
 
 
 ;;;*;;; Evaluation
@@ -244,20 +222,20 @@ Root is determined by locating `ess-r-package-root-file'."
 Namespaced evaluation is enabled if
 `ess-r-package-auto-enable-namespaced-evaluation' is non-nil."
   (when ess-r-package-auto-enable-namespaced-evaluation
-    (let ((path (cdr (ess-r-package-project))))
+    (let ((root (alist-get :root (ess-r-package-info))))
       ;; Check that we are in a file within R/
-      (when (and path
+      (when (and root
                  default-directory
-                 (> (length default-directory) (1+ (length path)))
+                 (> (length default-directory) (1+ (length root)))
                  (let ((subpath (substring default-directory
-                                           (1+ (length path))
+                                           (1+ (length root))
                                            (length default-directory))))
                    (string= (directory-file-name subpath) "R")))
         (ess-r-set-evaluation-env (ess-r-package-name))))))
 
 (add-hook 'ess-r-mode-hook 'ess-r-package-enable-namespaced-evaluation)
 
-(defun ess-r-package-eval-linewise (command &optional msg p actions pkg-path)
+(defun ess-r-package-eval-linewise (command &optional msg p actions)
   "Send COMMAND to R process.
 COMMAND is a command string with %s placeholder for the
 arguments. MSG is the message displayed in minibuffer with %s
@@ -268,16 +246,14 @@ action, if 1 or (4) second if 2 or (16) third etc. ACTIONS is a
 list of strings (R arguments), or functions which return R
 arguments, or expressions which return R arguments."
   (inferior-ess-r-force)
-  (let* ((pkg-info (or (ess-r-package-project)
-                       (ess-r-package-set-package)))
-         (pkg-name (ess-r-package-name))
-         (pkg-path (or pkg-path (concat "'" (abbreviate-file-name (cdr pkg-info)) "'")))
-         (args (ess-r-command--build-args p actions)))
-    (message msg pkg-name)
-    (with-ess-process-buffer nil
-      (setq ess-r-package--project-cache ess-r-package--project-cache))
+  (let ((pkg-info (ess-r-package-info))
+        (args (ess-r-command--build-args p actions)))
+    (unless (car pkg-info)
+      (user-error "Not in a package"))
+    (message msg (alist-get :name pkg-info))
     (display-buffer (ess-get-process-buffer))
-    (ess-eval-linewise (format command (concat pkg-path args)))))
+    (let ((pkg-path (concat "'" (abbreviate-file-name (alist-get :root pkg-info)) "'")))
+      (ess-eval-linewise (format command (concat pkg-path args))))))
 
 (defun ess-r-command--build-args (ix &optional actions)
   (let* ((n (cond ((null ix) 0)
@@ -510,8 +486,9 @@ Set this variable to nil to disable the mode line entirely."
                       ess-getwd-command
                       ess-quit-function
                       inferior-ess-reload-function)))
-          (mapc (lambda (var) (set (make-local-variable var)
-                              (eval (cdr (assq var ess-r-customize-alist)))))
+          (mapc (lambda (var)
+                  (set (make-local-variable var)
+                       (eval (cdr (assq var ess-r-customize-alist)))))
                 vars))
         (add-hook 'project-find-functions #'ess-r-package-project)
         (run-hooks 'ess-r-package-enter-hook))
@@ -534,9 +511,8 @@ Set this variable to nil to disable the mode line entirely."
               (if ess-r-package-exclude-modes
                   (not (apply #'derived-mode-p ess-r-package-exclude-modes))
                 t)))
-    (let ((pkg-info (ess-r-package-project)))
-      (when pkg-info
-        (ess-r-package-mode 1)))))
+    (when (car (ess-r-package-info))
+      (ess-r-package-mode 1))))
 
 (defun ess-r-package-re-activate ()
   "Restart `ess-r-package-mode'.
@@ -545,7 +521,7 @@ package mode. Use this function if state of the buffer such as
 `default-directory' has changed."
   (when ess-r-package-mode
     (ess-r-package-mode -1))
-  (setq ess-r-package--project-cache nil)
+  (setq ess-r-package--info-cache nil)
   (ess-r-package-auto-activate))
 
 (defvar-local ess-r--old-default-dir nil)

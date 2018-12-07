@@ -476,17 +476,20 @@ flash or you'll hear a beep.  Taken from octave-mod.el."
 (defun ess-process-sentinel (proc message)
   "Sentinel for use with ESS processes.
 This marks the process with a message, at a particular time point."
-  (save-excursion
-    (let ((abuf (process-get proc :accum-buffer)))
-      (when (buffer-live-p abuf)
-        (kill-buffer abuf)))
-    (setq message (substring message 0 -1)) ; strip newline
-    (set-buffer (process-buffer proc))
-    (comint-write-input-ring)
-    (goto-char (point-max))
-    (insert-before-markers
-     (format "\nProcess %s %s at %s\n"
-             (process-name proc) message (current-time-string)))))
+  (let ((abuf (process-get proc :accum-buffer)))
+    (when (buffer-live-p abuf)
+      (kill-buffer abuf)))
+  (let ((pbuf (process-buffer proc)))
+    (when (buffer-live-p pbuf)
+      (with-current-buffer pbuf
+        (save-excursion
+          (setq message (substring message 0 -1)) ; strip newline
+          (set-buffer (process-buffer proc))
+          (comint-write-input-ring)
+          (goto-char (point-max))
+          (insert-before-markers
+           (format "\nProcess %s %s at %s\n"
+                   (process-name proc) message (current-time-string))))))))
 
 (defun inferior-ess-make-comint (bufname procname switches)
   "Make a comint process in buffer BUFNAME with process PROCNAME.
@@ -1543,6 +1546,10 @@ current function, otherwise (in case of an error) return nil."
 Prefix arg VIS toggles visibility of ess-code as for `ess-eval-region'."
   (interactive "P")
   (save-excursion
+    (ignore-errors
+      ;; Evaluation is forward oriented
+      (forward-line -1)
+      (ess-next-code-line 1))
     (let ((beg (progn (backward-paragraph) (point)))
           (end (progn (forward-paragraph) (point))))
       (ess-eval-region beg end vis))))
@@ -1565,7 +1572,8 @@ Otherwise send the current paragraph to the inferior ESS process.
 Prefix arg VIS toggles visibility of ess-code as for
 `ess-eval-region'."
   (interactive "P")
-  (ess-step-line (ess-eval-function-or-paragraph vis)))
+  (ess-skip-thing (ess-eval-function-or-paragraph vis))
+  (ess-next-code-line))
 
 (defun ess-eval-region-or-function-or-paragraph (&optional vis)
   "Send the region, function, or paragraph depending on context.
@@ -1587,7 +1595,8 @@ step to the next code line or to the end of region if region was
 active. Prefix arg VIS toggles visibility of ess-code as for
 `ess-eval-region'."
   (interactive "P")
-  (ess-step-line (ess-eval-region-or-function-or-paragraph vis)))
+  (ess-eval-region-or-function-or-paragraph vis)
+  (ess-next-code-line))
 
 (defun ess-eval-region-or-line-and-step (&optional vis)
   "Evaluate region if active, otherwise `ess-eval-line-and-step'.
@@ -1621,11 +1630,12 @@ VIS has same meaning as for `ess-eval-region'."
     (ess-eval-region beg end vis msg)))
 
 (defun ess-eval-line-and-step (&optional vis)
-  "Evaluate the current line and `ess-step-line' to the \"next\" line.
+  "Evaluate the current line and step to the \"next\" line.
 See `ess-eval-region' for VIS."
   (interactive "P")
   (ess-eval-line vis)
-  (ess-step-line 'line))
+  (ess-skip-thing 'line)
+  (ess-next-code-line))
 
 (defun ess-eval-line-visibly-and-step (&optional simple-next)
   "Evaluate the current line visibly and step to the \"next\" line.
@@ -1635,15 +1645,16 @@ is non-nil both SIMPLE-NEXT and EVEN-EMPTY are interpreted as
 true.
 
 Note that when inside a package and namespaced evaluation is in
-place (see `ess-r-set-evaluation-env') evaluation of multiline
-input will fail."
+place (see `ess-r-set-evaluation-env'), the evaluation of
+multiline input will fail."
   (interactive "P")
   (ess-force-buffer-current)
   (display-buffer (ess-get-process-buffer))
   (let ((ess-eval-visibly t)
         (ess-eval-empty (or ess-eval-empty simple-next)))
     (ess-eval-line)
-    (ess-step-line 'line)))
+    (ess-skip-thing 'line)
+    (ess-next-code-line)))
 
 (defun ess-eval-line-invisibly-and-step ()
   "Evaluate the current line invisibly and step to the next line.
@@ -1699,7 +1710,8 @@ If not inside a paragraph, evaluate the next one. VIS has same
 meaning as for `ess-eval-region'."
   (interactive "P")
   (ess-eval-paragraph vis)
-  (ess-step-line 'paragraph))
+  (ess-skip-thing 'paragraph)
+  (ess-next-code-line))
 
  ; Inferior ESS mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
