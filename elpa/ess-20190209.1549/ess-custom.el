@@ -488,7 +488,7 @@ buffer or end chunks etc.")
 
 (make-obsolete-variable 'ess-smart-S-assign-key nil "ESS 18.10")
 
-(defcustom ess-assign-list (cons (if (boundp 'ess-S-assign) ess-S-assign " <- ")
+(defcustom ess-assign-list (cons (or (bound-and-true-p ess-S-assign) " <- ")
                                  '(" <<- " " = " " -> " " ->> "))
   "List of assignment operators.
 `ess-cycle-assign' uses this list.  These strings must
@@ -2152,9 +2152,6 @@ If set, changes will take effect when next R session is started."
   :group 'ess-command
   :type 'string)
 
-(defvar-local ess-display-help-on-object-function nil
-  "Dialect specific function for displaying help on object.")
-
 (defvar-local ess-build-help-command-function nil
   "Dialect specific function for building an help command.")
 
@@ -2176,11 +2173,6 @@ Really set in <ess-lang>-customize-alist in ess[dl]-*.el")
 
 %s is replaced by an \"object name\" -- usually a list or data frame, but in R also
  e.g., 'package:stats'."
-  :group 'ess-command
-  :type 'string)
-
-(defcustom inferior-ess-get-prompt-command "options()$prompt\n"
-  "Command to find the value of the current S prompt."
   :group 'ess-command
   :type 'string)
 

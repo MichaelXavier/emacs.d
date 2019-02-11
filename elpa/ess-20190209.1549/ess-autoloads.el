@@ -81,7 +81,7 @@ to gretl, put them in the variable `inferior-gretl-args'.
 ;;; Generated autoloads from ess-help.el
 
 (autoload 'ess-display-help-on-object "ess-help" "\
-Display documentation for OBJECT in another window.
+Display documentation for OBJECT.
 If prefix arg is given, force an update of the cached help topics
 and query the ESS process for the help file instead of reusing an
 existing buffer if it exists. Uses the variable

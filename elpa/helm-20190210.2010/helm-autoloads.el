@@ -995,6 +995,23 @@ Fill in the symbol at point by default.
 
 ;;;***
 
+;;;### (autoloads nil "helm-shell" "helm-shell.el" (0 0 0 0))
+;;; Generated autoloads from helm-shell.el
+
+(autoload 'helm-shell-prompts "helm-shell" "\
+Pre-configured `helm' to browse the prompts of the current Shell.
+
+\(fn)" t nil)
+
+(autoload 'helm-shell-prompts-all "helm-shell" "\
+Pre-configured `helm' to browse the prompts of all Shell sessions.
+
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-shell" '("helm-shell-prompts-")))
+
+;;;***
+
 ;;;### (autoloads nil "helm-sys" "helm-sys.el" (0 0 0 0))
 ;;; Generated autoloads from helm-sys.el
 
