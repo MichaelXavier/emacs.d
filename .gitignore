@@ -15,3 +15,5 @@ bookmarks
 ido.last
 per_machine_config.el
 network-security.data
+transient/
+
