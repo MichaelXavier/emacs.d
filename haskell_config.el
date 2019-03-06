@@ -62,8 +62,8 @@
                 (read-string (format "Package (%s): " (thing-at-point 'word))
                              nil nil (thing-at-point 'word))))
   (let ((url (if current-prefix-arg
-                 "http://hackage.haskell.org/package/"
-                 "https://www.stackage.org/lts/package/")))
+                 "https://www.stackage.org/lts/package/"
+                 "http://hackage.haskell.org/package/")))
        (browse-url (concat url pkg))))
 
 (defalias 'hd 'hackage-doc)
