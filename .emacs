@@ -197,6 +197,7 @@
 (load "~/.emacs.d/terminal_config.el")
 (load "~/.emacs.d/elisp_config.el")
 (load "~/.emacs.d/python_config.el")
+(load "~/.emacs.d/nix_config.el")
 (if (f-file? "~/.emacs.d/per_machine_config.el")
     (load "~/.emacs.d/per_machine_config.el"))
 
