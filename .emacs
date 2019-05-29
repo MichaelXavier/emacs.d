@@ -156,6 +156,7 @@
  '(shm-auto-insert-skeletons nil)
  '(shm-idle-timeout 0.5)
  '(show-trailing-whitespace t)
+ '(smerge-command-prefix (kbd "C-c v"))
  '(sp-autoescape-string-quote nil)
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
  '(sql-postgres-login-params
