@@ -12,3 +12,7 @@
 
 ;; Run file or region through yapf on M-q
 (define-key python-mode-map (kbd "M-q") 'python-smart-format)
+
+
+;; pylintrc files are standard configs
+(add-to-list 'auto-mode-alist '(".pylintrc$" . conf-mode))
