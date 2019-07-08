@@ -1,6 +1,7 @@
 ;; python mode configuration
 (require 'yapfify)
 (require 'python)
+(require 'flycheck-mypy)
 
 
 (defun python-smart-format ()
