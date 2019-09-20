@@ -361,3 +361,7 @@
    (current-buffer)))
 
 (define-key global-map (kbd "C-c d") 'toggle-window-dedicated)
+
+
+; switch to ibuffer instead of list-buffers
+(define-key global-map (kbd "C-x C-b") 'ibuffer)
