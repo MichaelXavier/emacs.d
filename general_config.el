@@ -10,6 +10,7 @@
 (require 'helm)
 (require 'projectile)
 (require 'projectile-ripgrep)
+(require 'ibuffer)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
@@ -365,3 +366,10 @@
 
 ; switch to ibuffer instead of list-buffers
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
+
+; by default, filter group buffers by projectile root
+(add-hook 'ibuffer-hook
+    (lambda ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic))))
