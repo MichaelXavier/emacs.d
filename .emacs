@@ -95,7 +95,6 @@
      ("*All*" :height 15 :noselect t)
      ("*undo-tree*" :height 15 :noselect t)
      ("*Compile-Log*" :height 15 :noselect t)
-     ("*Backtrace*" :height 15 :noselect t)
      ("*Messages*" :height 15 :noselect t)
      ("*Process List*" :height 15 :noselect t :stick nil)
      ("*Warnings*" :height 15 :noselect nil :stick t)
