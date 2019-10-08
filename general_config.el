@@ -11,6 +11,7 @@
 (require 'projectile)
 (require 'projectile-ripgrep)
 (require 'ibuffer)
+(require 'dumb-jump)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
@@ -373,3 +374,5 @@
       (ibuffer-projectile-set-filter-groups)
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic))))
+
+(dumb-jump-mode)
