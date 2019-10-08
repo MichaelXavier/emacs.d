@@ -152,6 +152,7 @@
      (flycheck-disabled-checkers
       (quote haskell-ghc))
      (require-final-newline))))
+ '(shell-file-name "/bin/zsh")
  '(shm-auto-insert-skeletons nil)
  '(shm-idle-timeout 0.5)
  '(show-trailing-whitespace t)
