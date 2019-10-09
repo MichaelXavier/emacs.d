@@ -1,4 +1,3 @@
-(require 'flx-ido)
 (require 'smart-tab)
 (require 'smartparens-config)
 (require 'edit-server)
@@ -7,11 +6,14 @@
 (require 'browse-url)
 (require 'yasnippet)
 (require 'iedit)
-(require 'helm)
 (require 'projectile)
 (require 'projectile-ripgrep)
 (require 'ibuffer)
 (require 'dumb-jump)
+(require 'ivy)
+(require 'counsel)
+(require 'counsel-projectile)
+(require 'swiper)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
@@ -74,12 +76,6 @@
 
 (setq backup-inhibited t)
 (setq auto-save-default nil)
-
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-use-faces nil)
 
 (setq create-lockfiles nil)
 
@@ -176,7 +172,7 @@
 (defalias 'ucr 'uncomment-region)
 (defalias 'bu 'browse-url)
 
-(projectile-global-mode)
+(projectile-mode)
 (defun sudo-find-file (file-name)
   "Like find file, but opens the file as root."
   (interactive "FSudo Find File: ")
@@ -314,9 +310,6 @@
 
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
-;; Stop getting this blasted magit warning on boot
-(setq magit-last-seen-setup-instructions "1.4.0")
-
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (add-to-list 'auto-mode-alist '(".envrc$" . sh-mode))
@@ -376,3 +369,9 @@
         (ibuffer-do-sort-by-alphabetic))))
 
 (dumb-jump-mode)
+
+;; set up ivy/counsel/swiper
+(ivy-mode t)
+(counsel-mode t)
+(counsel-projectile-mode t)
+(global-set-key (kbd "C-s") 'swiper)

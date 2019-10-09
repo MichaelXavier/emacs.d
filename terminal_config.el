@@ -22,5 +22,4 @@
             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
 (global-set-key (kbd "C-c t") 'multi-term)
-
-(setq tramp-default-method "ssh")
+(define-key global-map (kbd "C-c s") 'counsel-tramp)

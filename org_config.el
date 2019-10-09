@@ -1,15 +1,11 @@
 (require 'org)
-(require 'org-mobile)
 (require 'org-capture)
 (require 'projectile)
 (setq org-log-done 'time)
 
 ;; org mode settings
 (setq org-directory "~/Dropbox/org")
-(setq org-mobile-directory "~/Dropbox/org/MobileOrg")
 (add-to-list 'auto-mode-alist '(".org$" . org-mode))
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/flagged.org")
-(setq org-mobile-files (file-expand-wildcards "~/Dropbox/org/*.org"))
 
 ;; Cucumber
 ;; Use the less busted jump-to-cucumber-step
