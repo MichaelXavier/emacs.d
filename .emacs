@@ -68,6 +68,7 @@
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
+ '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-src-fontify-natively t)
  '(package-archives
    (quote
