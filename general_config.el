@@ -370,6 +370,17 @@
 
 (dumb-jump-mode)
 
+;; if you run C-u C-M-g (universal argument), it will run the prompt version of dumb-jump-go
+(defun custom-dumb-jump-go (&optional arg)
+  "Delegates to dumb-jump-go. If given the universal argument, runs it with a prompt"
+  (interactive "P")
+  ;; If universal argument given, prompt
+  (if current-prefix-arg
+      (dumb-jump-go-prompt)
+      (dumb-jump-go)))
+
+(define-key dumb-jump-mode-map (kbd "C-M-g") 'custom-dumb-jump-go)
+
 ;; set up ivy/counsel/swiper
 (ivy-mode t)
 (counsel-mode t)
