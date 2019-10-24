@@ -14,6 +14,7 @@
 (require 'counsel)
 (require 'counsel-projectile)
 (require 'swiper)
+(require 'emojify)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
@@ -383,3 +384,5 @@
 (counsel-mode t)
 (counsel-projectile-mode t)
 (global-set-key (kbd "C-s") 'swiper)
+
+(add-hook 'after-init-hook #'global-emojify-mode)
