@@ -79,7 +79,7 @@
      ("org" . "https://orgmode.org/elpa/"))))
  '(package-selected-packages
    (quote
-    (emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift markdown-mode lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term magit lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode)))
+    (ivy-hydra emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift markdown-mode lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term magit lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode)))
  '(pomodoro-long-break-time 10)
  '(pomodoro-play-sounds nil)
  '(pomodoro-show-number t)
@@ -176,7 +176,7 @@
  '(tags-add-tables t)
  '(tags-case-fold-search nil)
  '(tags-revert-without-query t)
- '(tramp-default-method "ssh")
+ '(tramp-default-method "ssh" nil (tramp))
  '(typescript-indent-level 2)
  '(warning-minimum-level :warning)
  '(warning-minimum-log-level :debug)
