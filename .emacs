@@ -179,7 +179,7 @@
  '(tags-add-tables t)
  '(tags-case-fold-search nil)
  '(tags-revert-without-query t)
- '(tramp-default-method "ssh" nil (tramp))
+ '(tramp-default-method "ssh")
  '(typescript-indent-level 2)
  '(warning-minimum-level :warning)
  '(warning-minimum-log-level :debug)
