@@ -4,7 +4,7 @@
 
 ;; Author: Oleh Krehel <ohwoeowho@gmail.com>
 ;; URL: https://github.com/abo-abo/swiper
-;; Package-Version: 20200105.1947
+;; Package-Version: 20200108.1511
 ;; Version: 0.13.0
 ;; Package-Requires: ((emacs "24.5") (swiper "0.13.0"))
 ;; Keywords: convenience, matching, tools
@@ -2732,26 +2732,6 @@ INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
               :caller 'counsel-dired-jump)))
 
 ;;* Grep
-(defun counsel--grep-mode-occur (git-grep-dir-is-file)
-  "Generate a custom occur buffer for grep like commands.
-If GIT-GREP-DIR-IS-FILE is t, then `ivy-state-directory' is treated as a full
-path to a file rather than a directory (e.g. for `counsel-grep-occur').
-
-This function expects that the candidates have already been filtered.
-It applies no filtering to ivy--all-candidates."
-  (unless (eq major-mode 'ivy-occur-grep-mode)
-    (ivy-occur-grep-mode))
-  (let ((directory
-         (if git-grep-dir-is-file
-             (file-name-directory (ivy-state-directory ivy-last))
-           (ivy-state-directory ivy-last))))
-    (setq default-directory directory)
-    ;; Need precise number of header lines for `wgrep' to work.
-    (insert (format "-*- mode:grep; default-directory: %S -*-\n\n\n" default-directory))
-    (insert (format "%d candidates:\n" (length ivy--all-candidates)))
-    (ivy--occur-insert-lines
-     (mapcar #'counsel--normalize-grep-match ivy--all-candidates))))
-
 ;;** `counsel-ag'
 (defvar counsel-ag-map
   (let ((map (make-sparse-keymap)))
@@ -3047,9 +3027,7 @@ substituted by the search regexp and file, respectively.  Neither
   "Grep in the current directory for STRING."
   (or
    (ivy-more-chars)
-   (let* ((regex (counsel--elisp-to-pcre
-                  (setq ivy--old-re
-                        (ivy--regex string))))
+   (let* ((regex (counsel--grep-regex string))
           (cmd (format counsel-grep-command (shell-quote-argument regex))))
      (counsel--async-command
       (if (ivy--case-fold-p regex)
@@ -6292,6 +6270,58 @@ We update it in the callback with `ivy-update-candidates'."
             :require-match t
             :action #'counsel-compilation-errors-action
             :history 'counsel-compilation-errors-history))
+
+;;* `counsel-flycheck'
+(defvar flycheck-current-errors)
+(declare-function flycheck-error-filename "ext:flycheck")
+(declare-function flycheck-error-line "ext:flycheck")
+(declare-function flycheck-error-message "ext:flycheck")
+(declare-function flycheck-jump-to-error "ext:flycheck")
+
+(defun counsel-flycheck-errors-cands ()
+  (mapcar
+   (lambda (err)
+     (propertize
+      (format "%s:%d:%s"
+              (file-name-base (flycheck-error-filename err))
+              (flycheck-error-line err)
+              (flycheck-error-message err)) 'error err))
+   flycheck-current-errors))
+
+(defun counsel-flycheck-occur (cands)
+  "Generate a custom occur buffer for `counsel-flycheck'."
+  (unless (eq major-mode 'ivy-occur-grep-mode)
+    (ivy-occur-grep-mode)
+    (setq default-directory (ivy-state-directory ivy-last)))
+  (swiper--occur-insert-lines
+   (mapcar
+    (lambda (cand)
+      (let ((err (get-text-property 0 'error cand)))
+        (propertize
+         (format
+          "%s:%d:%s"
+          (flycheck-error-filename err)
+          (flycheck-error-line err)
+          cand)
+         'error err)))
+    cands)))
+
+(defun counsel-flycheck-errors-action (err)
+  (flycheck-jump-to-error (get-text-property 0 'error err)))
+
+(ivy-configure 'counsel-flycheck
+  :occur #'counsel-flycheck-occur)
+
+;;;###autoload
+(defun counsel-flycheck ()
+  "Flycheck errors."
+  (interactive)
+  (require 'flycheck)
+  (ivy-read "flycheck errors: " (counsel-flycheck-errors-cands)
+            :require-match t
+            :action #'counsel-flycheck-errors-action
+            :history 'counsel-flycheck-errors-history))
+
 
 ;;* `counsel-mode'
 (defvar counsel-mode-map

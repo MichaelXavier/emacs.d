@@ -592,6 +592,11 @@ Compilation errors.
 
 \(fn)" t nil)
 
+(autoload 'counsel-flycheck "counsel" "\
+Flycheck errors.
+
+\(fn)" t nil)
+
 (defvar counsel-mode nil "\
 Non-nil if Counsel mode is enabled.
 See the `counsel-mode' command

@@ -12,7 +12,10 @@
 
 (autoload 'dockerfile-build-buffer "dockerfile-mode" "\
 Build an image called IMAGE-NAME based upon the buffer.
+
 If prefix arg NO-CACHE is set, don't cache the image.
+The build string will be of the format:
+`sudo docker build --no-cache --tag IMAGE-NAME --build-args arg1.. -f filename directory`
 
 \(fn IMAGE-NAME &optional NO-CACHE)" t nil)
 

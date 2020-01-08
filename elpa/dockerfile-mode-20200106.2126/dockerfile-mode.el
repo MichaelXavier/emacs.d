@@ -2,7 +2,7 @@
 
 ;; Copyright (c) 2013 Spotify AB
 ;; Package-Requires: ((emacs "24") (s "1.12"))
-;; Package-Version: 20190505.1807
+;; Package-Version: 20200106.2126
 ;; Homepage: https://github.com/spotify/dockerfile-mode
 ;;
 ;; Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -90,10 +90,9 @@ Each element of the list will be passed as a separate
 (defvar dockerfile-mode-map
   (let ((map (make-sparse-keymap))
         (menu-map (make-sparse-keymap)))
-    (define-key map "\C-c\C-b" 'dockerfile-build-buffer)
-    (define-key map "\C-c\M-b" 'dockerfile-build-no-cache-buffer)
-    (define-key map "\C-c\C-z" 'dockerfile-test-function)
-    (define-key map "\C-c\C-c" 'comment-region)
+    (define-key map "\C-c\C-b" #'dockerfile-build-buffer)
+    (define-key map "\C-c\M-b" #'dockerfile-build-no-cache-buffer)
+    (define-key map "\C-c\C-c" #'comment-region)
     (define-key map [menu-bar dockerfile-mode] (cons "Dockerfile" menu-map))
     (define-key menu-map [dfc]
       '(menu-item "Comment Region" comment-region
@@ -149,6 +148,10 @@ file name.  Otherwise, uses Emacs' standard conversion function."
       (s-replace "\\" "\\\\" (cygwin-convert-file-name-to-windows file))
     (convert-standard-filename file)))
 
+(defun dockerfile-tag-string (image-name)
+  "Return a --tag shell-quoted IMAGE-NAME string or an empty string if image-name is blank."
+    (if (string= image-name "") "" (format "--tag %s " (shell-quote-argument image-name))))
+
 (defvar dockerfile-image-name nil
   "Name of the dockerfile currently being used.
 This can be set in file or directory-local variables.")
@@ -165,23 +168,25 @@ This can be set in file or directory-local variables.")
 ;;;###autoload
 (defun dockerfile-build-buffer (image-name &optional no-cache)
   "Build an image called IMAGE-NAME based upon the buffer.
-If prefix arg NO-CACHE is set, don't cache the image."
+
+If prefix arg NO-CACHE is set, don't cache the image.
+The build string will be of the format:
+`sudo docker build --no-cache --tag IMAGE-NAME --build-args arg1.. -f filename directory`"
+
   (interactive (list (dockerfile-read-image-name) prefix-arg))
   (save-buffer)
-  (if (stringp image-name)
-      (compilation-start
-       (format
-        "%s%s build %s -t %s %s -f %s %s"
-        (if dockerfile-use-sudo "sudo " "")
-	dockerfile-mode-command
-        (if no-cache "--no-cache" "")
-        (shell-quote-argument image-name)
-        (dockerfile-build-arg-string)
-        (shell-quote-argument (dockerfile-standard-filename (buffer-file-name)))
-        (shell-quote-argument (dockerfile-standard-filename default-directory)))
-       nil
-       (lambda (_) (format "*docker-build-output: %s *" image-name)))
-    (print "dockerfile-image-name must be a string, consider surrounding it with double quotes")))
+    (compilation-start
+        (format
+            "%s%s build %s %s %s -f %s %s"
+            (if dockerfile-use-sudo "sudo " "")
+            dockerfile-mode-command
+            (if no-cache "--no-cache" "")
+            (dockerfile-tag-string image-name)
+            (dockerfile-build-arg-string)
+            (shell-quote-argument (dockerfile-standard-filename (buffer-file-name)))
+            (shell-quote-argument (dockerfile-standard-filename default-directory)))
+    nil
+    (lambda (_) (format "*docker-build-output: %s *" image-name))))
 
 ;;;###autoload
 (defun dockerfile-build-no-cache-buffer (image-name)
