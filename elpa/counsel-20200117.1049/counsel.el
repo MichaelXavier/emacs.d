@@ -4,7 +4,7 @@
 
 ;; Author: Oleh Krehel <ohwoeowho@gmail.com>
 ;; URL: https://github.com/abo-abo/swiper
-;; Package-Version: 20200108.1559
+;; Package-Version: 20200117.1049
 ;; Version: 0.13.0
 ;; Package-Requires: ((emacs "24.5") (swiper "0.13.0"))
 ;; Keywords: convenience, matching, tools
@@ -216,16 +216,16 @@ respectively."
           (when counsel--async-start
             (setq counsel--async-duration
                   (time-to-seconds (time-since counsel--async-start))))
-          (let ((re (ivy-re-to-str (funcall ivy--regex-function ivy-text))))
+          (let ((re (ivy-re-to-str ivy-regex)))
             (if ivy--old-cands
                 (if (eq (ivy-alist-setting ivy-index-functions-alist) 'ivy-recompute-index-zero)
                     (ivy-set-index 0)
-                  (ivy--recompute-index ivy-text re ivy--all-candidates))
+                  (ivy--recompute-index re ivy--all-candidates))
               (unless (ivy-set-index
                        (ivy--preselect-index
                         (ivy-state-preselect ivy-last)
                         ivy--all-candidates))
-                (ivy--recompute-index ivy-text re ivy--all-candidates))))
+                (ivy--recompute-index re ivy--all-candidates))))
           (setq ivy--old-cands ivy--all-candidates)
           (if ivy--all-candidates
               (ivy--exhibit)
@@ -1254,8 +1254,8 @@ Like `locate-dominating-file', but DIR defaults to
   (or (counsel--git-root)
       (error "Not in a Git repository")))
 
-(defun counsel-git-cands ()
-  (let ((default-directory (counsel-locate-git-root)))
+(defun counsel-git-cands (dir)
+  (let ((default-directory dir))
     (split-string
      (shell-command-to-string counsel-git-cmd)
      "\0"
@@ -1268,7 +1268,7 @@ INITIAL-INPUT can be given as the initial minibuffer input."
   (interactive)
   (counsel-require-program counsel-git-cmd)
   (let ((default-directory (counsel-locate-git-root)))
-    (ivy-read "Find file: " (counsel-git-cands)
+    (ivy-read "Find file: " (counsel-git-cands default-directory)
               :initial-input initial-input
               :action #'counsel-git-action
               :caller 'counsel-git)))
@@ -1348,7 +1348,8 @@ Typical value: '(recenter)."
   :type 'hook)
 
 (defcustom counsel-git-grep-cmd-function #'counsel-git-grep-cmd-function-default
-  "How a git-grep shell call is built from the input."
+  "How a git-grep shell call is built from the input.
+This function should set `ivy--old-re'."
   :type '(radio
           (function-item counsel-git-grep-cmd-function-default)
           (function-item counsel-git-grep-cmd-function-ignore-order)
@@ -1558,10 +1559,7 @@ When CMD is non-nil, prompt for a specific \"git grep\" command."
   str)
 
 (defun counsel--git-grep-occur-cmd (input)
-  (let* ((regex (funcall ivy--regex-function input))
-         (regex (if (eq ivy--regex-function #'ivy--regex-fuzzy)
-                    (replace-regexp-in-string "\n" "" regex)
-                  regex))
+  (let* ((regex ivy--old-re)
          (positive-pattern (replace-regexp-in-string
                             ;; git-grep can't handle .*?
                             "\\.\\*\\?" ".*"
@@ -1632,13 +1630,13 @@ done") "\n" t)))
 (defvar counsel-git-log-cmd "GIT_PAGER=cat git log --grep '%s'"
   "Command used for \"git log\".")
 
-(defun counsel-git-log-function (str)
-  "Search for STR in git log."
+(defun counsel-git-log-function (_)
+  "Search for `ivy-regex' in git log."
   (or
    (ivy-more-chars)
    (progn
      ;; `counsel--yank-pop-format-function' uses this
-     (setq ivy--old-re (funcall ivy--regex-function str))
+     (setq ivy--old-re ivy-regex)
      (counsel--async-command
       ;; "git log --grep" likes to have groups quoted e.g. \(foo\).
       ;; But it doesn't like the non-greedy ".*?".
@@ -2107,7 +2105,7 @@ See variable `counsel-up-directory-level'."
           (ivy-set-index 0)
           (setq ivy--directory "")
           (setq ivy--all-candidates nil)
-          (setq ivy-text "")
+          (ivy-set-text "")
           (delete-minibuffer-contents)
           (insert up-dir))
       (if (and counsel-up-directory-level (not (string= ivy-text "")))
@@ -2838,7 +2836,7 @@ NEEDLE is the search string."
 (defun counsel--grep-regex (str)
   (counsel--elisp-to-pcre
    (setq ivy--old-re
-         (funcall ivy--regex-function str))
+         (funcall (ivy-state-re-builder ivy-last) str))
    counsel--regex-look-around))
 
 (defun counsel--ag-extra-switches (regex)
@@ -2940,16 +2938,19 @@ Works for `counsel-git-grep', `counsel-ag', etc."
   (unless (eq major-mode 'ivy-occur-grep-mode)
     (ivy-occur-grep-mode)
     (setq default-directory (ivy-state-directory ivy-last)))
-  (setq ivy-text
-        (and (string-match "\"\\(.*\\)\"" (buffer-name))
-             (match-string 1 (buffer-name))))
+  (ivy-set-text
+   (and (string-match "\"\\(.*\\)\"" (buffer-name))
+        (match-string 1 (buffer-name))))
   (let* ((cmd
           (if (functionp cmd-template)
               (funcall cmd-template ivy-text)
             (let* ((command-args (counsel--split-command-args ivy-text))
                    (regex (counsel--grep-regex (cdr command-args)))
                    (switches (concat (car command-args)
-                                     (counsel--ag-extra-switches regex))))
+                                     (counsel--ag-extra-switches regex)
+                                     (if (ivy--case-fold-p ivy-text)
+                                         " -i "
+                                       " -s "))))
               (format cmd-template
                       (concat
                        switches
@@ -3394,7 +3395,9 @@ otherwise continue prompting for tags."
                              (delete-dups
                               (append (counsel--org-get-tags) add-tags)))
                        (counsel-org--set-tags))))))
-           (counsel-org--set-tags)))
+           (counsel-org--set-tags)
+           (unless (member x counsel-org-tags)
+             (message "Tag %S has been removed." x))))
         ((eq this-command 'ivy-call)
          (with-selected-window (active-minibuffer-window)
            (delete-minibuffer-contents)))))
@@ -4332,7 +4335,9 @@ S will be of the form \"[register]: content\"."
                                      imenu-auto-rescan-maxout))
          (items (imenu--make-index-alist t))
          (items (delete (assoc "*Rescan*" items) items))
-         (items (counsel-imenu-categorize-functions items)))
+         (items (if (eq major-mode 'emacs-lisp-mode)
+                    (counsel-imenu-categorize-functions items)
+                  items)))
     (counsel-imenu-get-candidates-from items)))
 
 (defun counsel-imenu-get-candidates-from (alist &optional prefix)

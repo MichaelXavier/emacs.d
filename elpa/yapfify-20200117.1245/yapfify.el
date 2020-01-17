@@ -4,8 +4,8 @@
 
 ;; Author: Joris Engbers <info@jorisengbers.nl>
 ;; Homepage: https://github.com/JorisE/yapfify
-;; Version: 0.0.7
-;; Package-Version: 20191103.2100
+;; Version: 0.0.8
+;; Package-Version: 20200117.1245
 ;; Package-Requires: ()
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -85,7 +85,7 @@ If yapf exits with an error, the output will be shown in a help-window."
     (kill-buffer tmpbuf)
     ;; restore window to similar state
     (goto-char original-point)
-    (mapcar* 'set-window-start buffer-windows original-window-pos)))
+    (cl-mapcar 'set-window-start buffer-windows original-window-pos))) 
 
 ;;;###autoload
 (defun yapfify-buffer ()
