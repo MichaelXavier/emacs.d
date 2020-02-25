@@ -13,6 +13,7 @@
  '(dhall-format-command nil)
  '(dhall-format-options (quote ("--inplace")))
  '(dhall-use-header-line nil)
+ '(dired-dwim-target t)
  '(dired-listing-switches "-alh")
  '(electric-indent-mode nil)
  '(emojify-composed-text-p t)
