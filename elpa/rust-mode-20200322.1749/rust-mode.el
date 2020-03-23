@@ -1,7 +1,7 @@
 ;;; rust-mode.el --- A major emacs mode for editing Rust source code -*-lexical-binding: t-*-
 
 ;; Version: 0.5.0
-;; Package-Version: 20200303.932
+;; Package-Version: 20200322.1749
 ;; Author: Mozilla
 ;; Url: https://github.com/rust-lang/rust-mode
 ;; Keywords: languages
@@ -1484,7 +1484,7 @@ This is written mainly to be used as `end-of-defun-function' for Rust."
 (defun rust--format-fix-rustfmt-buffer (buffer-name)
   (with-current-buffer (get-buffer rust-rustfmt-buffername)
     (goto-char (point-min))
-    (while (re-search-forward "--> <stdin>:")
+    (while (re-search-forward "--> <stdin>:" nil t)
       (replace-match (format "--> %s:" buffer-name)))))
 
 ;; If rust-mode has been configured to navigate to source of the error
@@ -1515,7 +1515,7 @@ rustfmt complain in the echo area."
       (let ((target-buffer (with-current-buffer rustfmt
                              (save-excursion
                                (goto-char (point-min))
-                               (when (re-search-forward "--> \\([^:]+\\):")
+                               (when (re-search-forward "--> \\([^:]+\\):" nil t)
                                  (match-string 1)))))
             (target-point (with-current-buffer rustfmt
                             ;; No save-excursion, this is how we cycle through!

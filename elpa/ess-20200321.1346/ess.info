@@ -251,6 +251,8 @@ File: ess.info,  Node: New features,  Next: Credits,  Prev: Features,  Up: Intro
 
 Changes and New Features in 19.04 (unreleased):
 
+   * The default of ess-eval-visibly is now nil.
+
    * ESS[R]: There is a new menu entry for reloading the R process.  It
      is otherwise bound to 'C-c C-e C-r'.  Reloading now reuses the same
      process name and start arguments that were used to start the
@@ -1804,7 +1806,9 @@ The behavior is controlled by the variable:
 
  -- User Option: ess-eval-visibly
      Non-'nil' means 'ess-eval-*' commands display commands and output
-     in the process buffer.  Default is 't'.
+     in the process buffer.  A value of 't' blocks Emacs while R is
+     busy.  A value of 'nowait' does not block Emacs but printing may be
+     slightly off.
 
    Passing a prefix ('C-u') (in elisp terms, the argument VIS) to any of
 the following commands, however, reverses the meaning of
@@ -4482,14 +4486,14 @@ Key index
 * C-c C-. s:                             Package listing.      (line 27)
 * C-c C-. u:                             Package listing.      (line 17)
 * C-c C-. w:                             Package listing.      (line 24)
-* C-c C-b:                               Evaluating code.      (line 66)
+* C-c C-b:                               Evaluating code.      (line 68)
 * C-c C-c:                               Other.                (line  9)
-* C-c C-c <1>:                           Evaluating code.      (line 39)
+* C-c C-c <1>:                           Evaluating code.      (line 41)
 * C-c C-e C-d:                           Edit buffer.          (line  9)
 * C-c C-e C-s:                           Styles.               (line 15)
 * C-c C-e s:                             Styles.               (line 15)
-* C-c C-f:                               Evaluating code.      (line 52)
-* C-c C-j:                               Evaluating code.      (line 45)
+* C-c C-f:                               Evaluating code.      (line 54)
+* C-c C-j:                               Evaluating code.      (line 47)
 * C-c C-o C-c:                           Roxygen.              (line 45)
 * C-c C-o C-h:                           Roxygen.              (line 72)
 * C-c C-o C-o:                           Roxygen.              (line 37)
@@ -4498,7 +4502,7 @@ Key index
 * C-c C-o n:                             Roxygen.              (line 69)
 * C-c C-o p:                             Roxygen.              (line 66)
 * C-c C-q:                               Hot keys.             (line 71)
-* C-C C-r:                               Evaluating code.      (line 59)
+* C-C C-r:                               Evaluating code.      (line 61)
 * C-c C-s:                               Hot keys.             (line 34)
 * C-c C-t C-s:                           Namespaced Evaluation.
                                                                (line 36)
@@ -4506,11 +4510,11 @@ Key index
 * C-c C-w:                               Clean.                (line 11)
 * C-c C-x:                               Hot keys.             (line 24)
 * C-c C-z:                               Other.                (line 13)
-* C-c M-b:                               Evaluating code.      (line 69)
-* C-c M-f:                               Evaluating code.      (line 55)
-* C-c M-j:                               Evaluating code.      (line 48)
+* C-c M-b:                               Evaluating code.      (line 71)
+* C-c M-f:                               Evaluating code.      (line 57)
+* C-c M-j:                               Evaluating code.      (line 50)
 * C-c M-l:                               Hot keys.             (line 50)
-* C-c M-r:                               Evaluating code.      (line 62)
+* C-c M-r:                               Evaluating code.      (line 64)
 * C-c RET:                               Resubmit.             (line 14)
 * C-c `:                                 Error Checking.       (line  9)
 * C-j:                                   Indenting.            (line 60)
@@ -4521,8 +4525,8 @@ Key index
 * C-M-h:                                 Other edit buffer commands.
                                                                (line 18)
 * C-M-q:                                 Indenting.            (line 49)
-* C-M-x:                                 Evaluating code.      (line 36)
-* C-RET:                                 Evaluating code.      (line 32)
+* C-M-x:                                 Evaluating code.      (line 38)
+* C-RET:                                 Evaluating code.      (line 34)
 * ESC C-a:                               Other edit buffer commands.
                                                                (line 10)
 * ESC C-e:                               Other edit buffer commands.
@@ -4585,20 +4589,20 @@ Function and program index
 * ess-display-help-on-object <2>:        Help.                (line  25)
 * ess-dump-object-into-edit-buffer:      Edit buffer.         (line   8)
 * ess-electric-brace:                    Indenting.           (line  52)
-* ess-eval-buffer:                       Evaluating code.     (line  65)
-* ess-eval-buffer-and-go:                Evaluating code.     (line  68)
-* ess-eval-function:                     Evaluating code.     (line  51)
-* ess-eval-function-and-go:              Evaluating code.     (line  54)
-* ess-eval-line:                         Evaluating code.     (line  44)
-* ess-eval-line-and-go:                  Evaluating code.     (line  47)
+* ess-eval-buffer:                       Evaluating code.     (line  67)
+* ess-eval-buffer-and-go:                Evaluating code.     (line  70)
+* ess-eval-function:                     Evaluating code.     (line  53)
+* ess-eval-function-and-go:              Evaluating code.     (line  56)
+* ess-eval-line:                         Evaluating code.     (line  46)
+* ess-eval-line-and-go:                  Evaluating code.     (line  49)
 * ess-eval-line-and-step:                Help.                (line 106)
-* ess-eval-region:                       Evaluating code.     (line  58)
+* ess-eval-region:                       Evaluating code.     (line  60)
 * ess-eval-region <1>:                   Help.                (line 111)
-* ess-eval-region-and-go:                Evaluating code.     (line  61)
-* ess-eval-region-or-function-or-paragraph: Evaluating code.  (line  35)
+* ess-eval-region-and-go:                Evaluating code.     (line  63)
+* ess-eval-region-or-function-or-paragraph: Evaluating code.  (line  37)
 * ess-eval-region-or-function-or-paragraph-and-step: Evaluating code.
-                                                              (line  38)
-* ess-eval-region-or-line-and-step:      Evaluating code.     (line  31)
+                                                              (line  40)
+* ess-eval-region-or-line-and-step:      Evaluating code.     (line  33)
 * ess-execute-objects:                   Hot keys.            (line  23)
 * ess-execute-search:                    Hot keys.            (line  33)
 * ess-goto-beginning-of-function-or-para: Other edit buffer commands.
@@ -4674,7 +4678,7 @@ Function and program index
 * S:                                     Starting up.         (line  11)
 * search():                              Hot keys.            (line  34)
 * search() <1>:                          Object names.        (line  19)
-* source():                              Evaluating code.     (line  18)
+* source():                              Evaluating code.     (line  20)
 * source() <1>:                          Loading.             (line  11)
 * STERM:                                 Statistical Process running in ESS?.
                                                               (line   6)
@@ -4783,7 +4787,7 @@ Concept Index
 * dump file names:                       Source Directories.  (line   6)
 * dump files:                            Edit buffer.         (line  27)
 * dump files <1>:                        Source Files.        (line  10)
-* echoing commands when evaluating:      Evaluating code.     (line  18)
+* echoing commands when evaluating:      Evaluating code.     (line  20)
 * edit buffer:                           Edit buffer.         (line   6)
 * editing commands:                      Command History.     (line   6)
 * editing functions:                     Editing objects.     (line   6)
@@ -4792,7 +4796,7 @@ Concept Index
 * emacsclient:                           Emacsclient.         (line   6)
 * entering commands:                     Entering commands.   (line   6)
 * errors:                                Error Checking.      (line   6)
-* ESS commands blocking Emacs:           Evaluating code.     (line  18)
+* ESS commands blocking Emacs:           Evaluating code.     (line  20)
 * ess developer:                         Namespaced Evaluation.
                                                               (line   6)
 * ESS process buffer:                    Starting up.         (line  17)
@@ -4801,9 +4805,9 @@ Concept Index
 * ESS-elsewhere:                         ESS processes on Remote Computers.
                                                               (line   9)
 * ess-roxy:                              Roxygen.             (line   6)
-* evaluating code with echoed commands:  Evaluating code.     (line  18)
-* evaluating R expressions:              Evaluating code.     (line  29)
-* evaluating S expressions:              Evaluating code.     (line  29)
+* evaluating code with echoed commands:  Evaluating code.     (line  20)
+* evaluating R expressions:              Evaluating code.     (line  31)
+* evaluating S expressions:              Evaluating code.     (line  31)
 * finding function definitions:          Xref.                (line   6)
 * flymake:                               ESS Flymake.         (line   6)
 * font-lock mode:                        Highlighting.        (line   7)
@@ -4898,104 +4902,104 @@ Node: Introduction2914
 Node: Features5668
 Node: Current Features6494
 Node: New features9945
-Node: Credits29594
-Node: Manual33211
-Node: Installation35877
-Node: Installing from a third-party repository36814
-Node: Installing from source37761
-Node: Activating and Loading ESS39353
-Node: Check Installation40427
-Node: Interactive ESS40647
-Node: Starting up41492
-Node: Multiple ESS processes42236
-Node: ESS processes on Remote Computers43317
-Node: Customizing startup47420
-Node: Controlling buffer display50310
-Node: Entering commands52908
-Node: Command-line editing54066
-Node: Transcript55299
-Node: Last command57068
-Node: Process buffer motion58494
-Node: Transcript resubmit59997
-Node: Saving transcripts61962
-Node: Command History63752
-Node: Saving History67161
-Node: History expansion67922
-Node: Hot keys71133
-Node: Statistical Process running in ESS?75203
-Node: Emacsclient76482
-Node: Other77274
-Node: Evaluating code78293
-Node: Transcript Mode81974
-Node: Resubmit83127
-Node: Clean84190
-Node: Editing objects85186
-Node: Edit buffer86304
-Node: Loading88350
-Node: Error Checking89377
-Node: Indenting90426
-Node: Styles93468
-Node: Other edit buffer commands95842
-Node: Source Files97498
-Node: Source Directories102102
-Node: Help105255
-Node: Completion109699
-Node: Object names109914
-Node: Function arguments112548
-Node: Minibuffer completion113491
-Node: Company113965
-Node: Icicles114352
-Node: Developing with ESS115672
-Node: ESS tracebug116118
-Node: Getting started with tracebug119125
-Node: Editing documentation121283
-Node: R documentation files121833
-Node: Roxygen125535
-Node: Namespaced Evaluation129909
-Node: Extras131907
-Node: ESS ElDoc132931
-Node: ESS Flymake134427
-Node: Handy commands135521
-Node: Highlighting136718
-Node: Parens137753
-Node: Graphics138229
-Node: printer138900
-Node: X11139656
-Node: winjava139995
-Node: Imenu140407
-Node: Toolbar141254
-Node: Xref141662
-Node: Rdired141985
-Node: Package listing143048
-Node: Org144424
-Node: Sweave and AUCTeX145378
-Node: ESS for R147930
-Node: ESS(R)--Editing files148230
-Node: iESS(R)--Inferior ESS processes148731
-Node: Philosophies for using ESS(R)151381
-Node: Example ESS usage152308
-Node: ESS for SAS153713
-Node: ESS(SAS)--Design philosophy154436
-Node: ESS(SAS)--Editing files155369
-Node: ESS(SAS)--TAB key157223
-Node: ESS(SAS)--Batch SAS processes158589
-Node: ESS(SAS)--Function keys for batch processing163617
-Node: iESS(SAS)--Interactive SAS processes173104
-Node: iESS(SAS)--Common problems176858
-Node: ESS(SAS)--Graphics178381
-Node: ESS(SAS)--Windows179164
-Node: ESS for BUGS179742
-Node: ESS for JAGS181498
-Node: Mailing lists/bug reports184850
-Node: Bugs185114
-Node: Reporting Bugs186739
-Node: Mailing Lists187632
-Node: Help with Emacs188359
-Node: Customization188891
-Node: Indices189665
-Node: Key index189840
-Node: Function and program index194972
-Node: Variable index204392
-Node: Concept index207953
+Node: Credits29644
+Node: Manual33261
+Node: Installation35927
+Node: Installing from a third-party repository36864
+Node: Installing from source37811
+Node: Activating and Loading ESS39403
+Node: Check Installation40477
+Node: Interactive ESS40697
+Node: Starting up41542
+Node: Multiple ESS processes42286
+Node: ESS processes on Remote Computers43367
+Node: Customizing startup47470
+Node: Controlling buffer display50360
+Node: Entering commands52958
+Node: Command-line editing54116
+Node: Transcript55349
+Node: Last command57118
+Node: Process buffer motion58544
+Node: Transcript resubmit60047
+Node: Saving transcripts62012
+Node: Command History63802
+Node: Saving History67211
+Node: History expansion67972
+Node: Hot keys71183
+Node: Statistical Process running in ESS?75253
+Node: Emacsclient76532
+Node: Other77324
+Node: Evaluating code78343
+Node: Transcript Mode82139
+Node: Resubmit83292
+Node: Clean84355
+Node: Editing objects85351
+Node: Edit buffer86469
+Node: Loading88515
+Node: Error Checking89542
+Node: Indenting90591
+Node: Styles93633
+Node: Other edit buffer commands96007
+Node: Source Files97663
+Node: Source Directories102267
+Node: Help105420
+Node: Completion109864
+Node: Object names110079
+Node: Function arguments112713
+Node: Minibuffer completion113656
+Node: Company114130
+Node: Icicles114517
+Node: Developing with ESS115837
+Node: ESS tracebug116283
+Node: Getting started with tracebug119290
+Node: Editing documentation121448
+Node: R documentation files121998
+Node: Roxygen125700
+Node: Namespaced Evaluation130074
+Node: Extras132072
+Node: ESS ElDoc133096
+Node: ESS Flymake134592
+Node: Handy commands135686
+Node: Highlighting136883
+Node: Parens137918
+Node: Graphics138394
+Node: printer139065
+Node: X11139821
+Node: winjava140160
+Node: Imenu140572
+Node: Toolbar141419
+Node: Xref141827
+Node: Rdired142150
+Node: Package listing143213
+Node: Org144589
+Node: Sweave and AUCTeX145543
+Node: ESS for R148095
+Node: ESS(R)--Editing files148395
+Node: iESS(R)--Inferior ESS processes148896
+Node: Philosophies for using ESS(R)151546
+Node: Example ESS usage152473
+Node: ESS for SAS153878
+Node: ESS(SAS)--Design philosophy154601
+Node: ESS(SAS)--Editing files155534
+Node: ESS(SAS)--TAB key157388
+Node: ESS(SAS)--Batch SAS processes158754
+Node: ESS(SAS)--Function keys for batch processing163782
+Node: iESS(SAS)--Interactive SAS processes173269
+Node: iESS(SAS)--Common problems177023
+Node: ESS(SAS)--Graphics178546
+Node: ESS(SAS)--Windows179329
+Node: ESS for BUGS179907
+Node: ESS for JAGS181663
+Node: Mailing lists/bug reports185015
+Node: Bugs185279
+Node: Reporting Bugs186904
+Node: Mailing Lists187797
+Node: Help with Emacs188524
+Node: Customization189056
+Node: Indices189830
+Node: Key index190005
+Node: Function and program index195137
+Node: Variable index204557
+Node: Concept index208118
 
 End Tag Table

@@ -2,6 +2,8 @@ This is news.info, produced by makeinfo version 6.5 from news.texi.
 
 Changes and New Features in 19.04 (unreleased):
 
+   * The default of ess-eval-visibly is now nil.
+
    * ESS[R]: There is a new menu entry for reloading the R process.  It
      is otherwise bound to 'C-c C-e C-r'.  Reloading now reuses the same
      process name and start arguments that were used to start the
