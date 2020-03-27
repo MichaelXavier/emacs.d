@@ -26,7 +26,7 @@ Automatically run YAPF before saving.
 
 \(fn &optional ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "yapfify" '("get-buffer-string" "yapfify-call-bin")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "yapfify" '("get-buffer-string" "yapfify-")))
 
 ;;;***
 
