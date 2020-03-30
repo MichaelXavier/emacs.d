@@ -56,9 +56,9 @@ Directory containing ess-site.el(c) and other ESS Lisp files.")
 
 (custom-autoload 'ess-lisp-directory "ess-custom" t)
 
-(add-to-list 'load-path ess-lisp-directory)
+(add-to-list 'load-path (directory-file-name ess-lisp-directory))
 
-(add-to-list 'load-path (file-name-as-directory (expand-file-name "obsolete" ess-lisp-directory)))
+(add-to-list 'load-path (directory-file-name (expand-file-name "obsolete" ess-lisp-directory)))
 
 (put 'ess-indent-offset 'safe-local-variable #'numberp)
 
