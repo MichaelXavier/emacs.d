@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "dumb-jump" "20200402.2244" "Jump to definition for 40+ languages without configuration" '((emacs "24.3") (f "0.20.0") (s "1.11.0") (dash "2.9.0") (popup "0.5.3")) :commit "90369d93cacf6efc1bf9a619439abef5ea957e26" :keywords '("programming") :authors '(("jack angers and contributors")) :maintainer '("jack angers and contributors") :url "https://github.com/jacktasia/dumb-jump")
