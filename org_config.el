@@ -115,3 +115,8 @@
           (when (eq 'org-mode (buffer-local-value 'major-mode buffer))
             (kill-buffer buffer)))
         (buffer-list)))
+
+; hook into archiving items in org mode and save org
+; buffers. otherwise, archive files don't automatically get saved and
+; are easy to forget about
+(advice-add 'org-archive-subtree-default :after #'org-save-all-org-buffers)
