@@ -11,6 +11,7 @@
 (require 'intero)
 (require 'hindent)
 (require 'mode-local)
+(require 'ormolu)
 
 (eval-after-load "haskell-mode"
   '(progn
@@ -18,6 +19,7 @@
      (define-key haskell-mode-map (kbd "C-c C-;") 'haskell-process-reload-file)
      (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
      (define-key haskell-mode-map (kbd "C-c C-f") 'haskell-mode-stylish-buffer)
+     (define-key haskell-mode-map (kbd "C-c C-o") 'ormolu-format)
      (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
      (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
      (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
