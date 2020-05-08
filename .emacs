@@ -95,6 +95,7 @@
      ("*All*" :height 15 :noselect t)
      ("*Flycheck error messages*" :regexp nil :height 15 :noselect t)
      ("*haskell-process-log*" :regexp nil :height 15 :noselect nil)
+     ("*ormolu-format errors*" :height 15 :noselect t)
      ("*undo-tree*" :height 15 :noselect t)
      ("*Compile-Log*" :height 15 :noselect t)
      ("*Process List*" :height 15 :noselect t)
