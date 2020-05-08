@@ -76,6 +76,9 @@
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-src-fontify-natively t)
+ '(ormolu-extra-args
+   (quote
+    ("--ghc-opt" "-XTypeApplications" "--ghc-opt" "-XBangPatterns")))
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
