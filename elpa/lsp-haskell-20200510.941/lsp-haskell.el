@@ -1,7 +1,7 @@
 ;;; lsp-haskell.el --- Haskell support for lsp-mode
 
 ;; Version: 1.0
-;; Package-Version: 20200407.2216
+;; Package-Version: 20200510.941
 ;; Package-Requires: ((lsp-mode "3.0") (haskell-mode "1.0"))
 ;; Keywords: haskell
 ;; URL: https://github.com/emacs-lsp/lsp-haskell
@@ -76,6 +76,11 @@ For example, use the following the start the hie process in a nix-shell:
   :type '(choice
           (function-item :tag "None" :value identity)
           (function :tag "Custom function")))
+
+;; ---------------------------------------------------------------------
+;; Internal variables
+
+(defvar lsp-haskell--config-options (make-hash-table))
 
 ;; ---------------------------------------------------------------------
 ;; HaRe functions
@@ -202,10 +207,6 @@ These are assembled from the customizable variables
 (cl-defmethod lsp-initialization-options ((_server (eql hie)))
   "Initialization options for haskell."
   `(:languageServerHaskell ,lsp-haskell--config-options))
-
-;; ---------------------------------------------------------------------
-
-(defvar lsp-haskell--config-options (make-hash-table))
 
 ;; ---------------------------------------------------------------------
 

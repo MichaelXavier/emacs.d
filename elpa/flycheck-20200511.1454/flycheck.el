@@ -575,12 +575,26 @@ nil
   :safe #'symbolp)
 
 (defvar flycheck-current-errors)
+(defun flycheck-refresh-fringes-and-margins ()
+  "Refresh fringes and margins of all windows displaying the current buffer.
+
+If any errors are currently shown, launch a new check, to adjust
+to a potential new indication mode."
+  (dolist (win (get-buffer-window-list))
+    (set-window-margins win left-margin-width right-margin-width)
+    (set-window-fringes win left-fringe-width right-fringe-width))
+  (when flycheck-current-errors
+    (flycheck-buffer)))
+
 (defun flycheck-set-indication-mode (&optional mode)
   "Set `flycheck-indication-mode' to MODE and adjust margins and fringes.
 
 When MODE is nil, adjust window parameters without changing the
 mode.  This function can be useful as a `flycheck-mode-hook',
-especially if you use margins only in Flycheck buffers."
+especially if you use margins only in Flycheck buffers.
+
+When MODE is `left-margin', the left fringe is reduced to 1 pixel
+to save space."
   (interactive (list (intern (completing-read
                               "Mode: " '("left-fringe" "right-fringe"
                                          "left-margin" "right-margin")
@@ -598,12 +612,8 @@ especially if you use margins only in Flycheck buffers."
      (setq left-fringe-width 8 right-fringe-width 8
            left-margin-width 0 right-margin-width 1))
     (_ (user-error "Invalid indication mode")))
-  (dolist (win (get-buffer-window-list))
-    (set-window-margins win left-margin-width right-margin-width)
-    (set-window-fringes win left-fringe-width right-fringe-width))
   (setq-local flycheck-indication-mode mode)
-  (when flycheck-current-errors
-    (flycheck-buffer)))
+  (flycheck-refresh-fringes-and-margins))
 
 (define-widget 'flycheck-highlighting-style 'lazy
   "A value for `flycheck-highlighting-style'."
@@ -2819,22 +2829,46 @@ enabled and disabled respectively.")
 
 ;;;###autoload
 (define-minor-mode flycheck-mode
-  "Minor mode for on-the-fly syntax checking.
-
-When called interactively, toggle `flycheck-mode'.  With prefix
-ARG, enable `flycheck-mode' if ARG is positive, otherwise disable
-it.
-
-When called from Lisp, enable `flycheck-mode' if ARG is omitted,
-nil or positive.  If ARG is `toggle', toggle `flycheck-mode'.
-Otherwise behave as if called interactively.
+  "Flycheck is a minor mode for on-the-fly syntax checking.
 
 In `flycheck-mode' the buffer is automatically syntax-checked
 using the first suitable syntax checker from `flycheck-checkers'.
 Use `flycheck-select-checker' to select a checker for the current
 buffer manually.
 
-\\{flycheck-mode-map}"
+If you run into issues, use `\\[flycheck-verify-setup]' to get help.
+
+Flycheck supports many languages out of the box, and many
+additional ones are available on MELPA.  Adding new ones is very
+easy.  Complete documentation is available online at URL
+`https://www.flycheck.org/en/latest/'.  Please report issues and
+request features at URL `https://github.com/flycheck/flycheck'.
+
+Flycheck displays its status in the mode line.  In the default
+configuration, it looks like this:
+
+`FlyC'     This buffer has not been checked yet.
+`FlyC-'    Flycheck doesn't have a checker for this buffer.
+`FlyC*'    Flycheck is running.  Expect results soon!
+`FlyC:3|2' This buffer contains three warnings and two errors.
+           Use `\\[flycheck-list-errors]' to see the list.
+
+You may also see the following icons:
+`FlyC!'    The checker crashed.
+`FlyC.'    The last syntax check was manually interrupted.
+`FlyC?'    The checker did something unexpected, like exiting with 1
+           but returning no errors.
+
+The following keybindings are available in `flycheck-mode':
+
+\\{flycheck-mode-map}
+\(you can change the prefix by customizing
+`flycheck-keymap-prefix')
+
+If called interactively, enable Flycheck mode if ARG is positive,
+and disable it if ARG is zero or negative.  If called from Lisp,
+also enable the mode if ARG is omitted or nil, and toggle it if
+ARG is ‘toggle’; disable the mode otherwise."
   :init-value nil
   :keymap flycheck-mode-map
   :lighter flycheck-mode-line
@@ -3975,7 +4009,7 @@ nil."
                 (`finished
                  (let-alist (flycheck-count-errors flycheck-current-errors)
                    (if (or .error .warning)
-                       (format ":%s/%s" (or .error 0) (or .warning 0))
+                       (format ":%s|%s" (or .error 0) (or .warning 0))
                      "")))
                 (`interrupted ".")
                 (`suspicious "?"))))
@@ -10154,39 +10188,54 @@ See URL `http://puppet-lint.com/'."
   ;; the buffer is actually linked to a file, and if it is not modified.
   :predicate flycheck-buffer-saved-p)
 
-(defun flycheck-python-find-module (checker module)
-  "Check if a Python MODULE is available.
+(defun flycheck-python-run-snippet (checker snippet)
+  "Run a python SNIPPET and return the output.
+
 CHECKER's executable is assumed to be a Python REPL."
-  (-when-let* ((py (flycheck-find-checker-executable checker))
-               (script (concat "import sys; sys.path.pop(0);"
-                               (format "import %s; print(%s.__file__)"
-                                       module module))))
+  (-when-let* ((py (flycheck-find-checker-executable checker)))
     (with-temp-buffer
-      (and (eq (ignore-errors (call-process py nil t nil "-c" script)) 0)
+      (and (eq (ignore-errors (call-process py nil t nil "-c" snippet)) 0)
            (string-trim (buffer-string))))))
+
+(defun flycheck-python-get-path (checker)
+  "Compute the current Python path (CHECKER is a Python REPL) ."
+  (flycheck-python-run-snippet checker "import sys; print(sys.path[1:])"))
+
+(defun flycheck-python-find-module (checker module)
+  "Check if a Python MODULE is available (CHECKER is a Python REPL)."
+  (flycheck-python-run-snippet
+   checker (concat "import sys; sys.path.pop(0);"
+                   (format "import %s; print(%s.__file__)" module module))))
 
 (defun flycheck-python-needs-module-p (checker)
   "Determines whether CHECKER needs to be invoked through Python.
-Previous versions of Flycheck called pylint and flake8 directly;
-this check ensures that we don't break existing code."
-  (not (string-match-p (rx (or "pylint" "flake8")
+
+Previous versions of Flycheck called pylint and flake8 directly,
+while new version call them through `python -c'.  This check
+ensures that we don't break existing code; it also allows people
+who use virtualenvs to run globally-installed checkers."
+  (not (string-match-p (rx (or "pylint" "pylint3" "flake8")
                            (or "-script.pyw" ".exe" ".bat" "")
                            eos)
                        (flycheck-checker-executable checker))))
 
 (defun flycheck-python-verify-module (checker module)
   "Verify that a Python MODULE is available.
+
 Return nil if CHECKER's executable is not a Python REPL.  This
 function's is suitable for a checker's :verify."
   (when (flycheck-python-needs-module-p checker)
     (let ((mod-path (flycheck-python-find-module checker module)))
       (list (flycheck-verification-result-new
              :label (format "`%s' module" module)
-             :message (if mod-path (format "Found at %S" mod-path) "Missing")
+             :message (if mod-path (format "Found at %S" mod-path)
+                        (format "Missing; sys.path is %s"
+                                (flycheck-python-get-path checker)))
              :face (if mod-path 'success '(bold error)))))))
 
 (defun flycheck-python-module-args (checker module-name)
   "Compute arguments to pass to CHECKER's executable to run MODULE-NAME.
+
 Return nil if CHECKER's executable is not a Python REPL.
 Otherwise, return a list starting with -c (-m is not enough
 because it adds the current directory to Python's path)."

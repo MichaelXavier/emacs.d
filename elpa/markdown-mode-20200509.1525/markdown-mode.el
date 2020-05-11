@@ -7,7 +7,7 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.4-dev
-;; Package-Version: 20200507.2325
+;; Package-Version: 20200509.1525
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -96,7 +96,7 @@ Any changes to the output buffer made by this hook will be saved.")
                               (or command "markdown"))
   "Command to run markdown."
   :group 'markdown
-  :type '(choice (string :tag "Shell command") function))
+  :type '(choice (string :tag "Shell command") (repeat (string)) function))
 
 (defcustom markdown-command-needs-filename nil
   "Set to non-nil if `markdown-command' does not accept input from stdin.
@@ -4784,6 +4784,20 @@ See `markdown-indent-line' and `markdown-indent-line'."
   (interactive "*r")
   (markdown-indent-region beg end t))
 
+(defun markdown--indent-region (start end)
+  (let ((deactivate-mark nil))
+    (save-excursion
+      (goto-char end)
+      (setq end (point-marker))
+      (goto-char start)
+      (when (bolp)
+        (forward-line 1))
+      (while (< (point) end)
+        (unless (or (markdown-code-block-at-point-p) (and (bolp) (eolp)))
+          (indent-according-to-mode))
+        (forward-line 1))
+      (move-marker end nil))))
+
 
 ;;; Markup Completion =========================================================
 
@@ -7016,8 +7030,11 @@ The output buffer name defaults to `markdown-output-buffer-name'.
 Return the name of the output buffer used."
   (interactive)
   (save-window-excursion
-    (let ((begin-region)
-          (end-region))
+    (let* ((commands (cond ((stringp markdown-command) (split-string markdown-command))
+                           ((listp markdown-command) markdown-command)))
+           (command (car-safe commands))
+           (command-args (cdr-safe commands))
+           begin-region end-region)
       (if (use-region-p)
           (setq begin-region (region-beginning)
                 end-region (region-end))
@@ -7026,31 +7043,35 @@ Return the name of the output buffer used."
 
       (unless output-buffer-name
         (setq output-buffer-name markdown-output-buffer-name))
-      (when (and (stringp markdown-command) (not (executable-find markdown-command)))
-        (user-error "Markdown command %s is not found" markdown-command))
+      (when (and (stringp command) (not (executable-find command)))
+        (user-error "Markdown command %s is not found" command))
       (let ((exit-code
              (cond
               ;; Handle case when `markdown-command' does not read from stdin
-              ((and (stringp markdown-command) markdown-command-needs-filename)
+              ((and (stringp command) markdown-command-needs-filename)
                (if (not buffer-file-name)
                    (user-error "Must be visiting a file")
                  ;; Don’t use ‘shell-command’ because it’s not guaranteed to
                  ;; return the exit code of the process.
-                 (shell-command-on-region
-                  ;; Pass an empty region so that stdin is empty.
-                  (point) (point)
-                  (concat markdown-command " "
-                          (shell-quote-argument buffer-file-name))
-                  output-buffer-name)))
+                 (let ((command (if (listp markdown-command)
+                                    (string-join markdown-command " ")
+                                  markdown-command)))
+                   (shell-command-on-region
+                    ;; Pass an empty region so that stdin is empty.
+                    (point) (point)
+                    (concat command " "
+                            (shell-quote-argument buffer-file-name))
+                    output-buffer-name))))
               ;; Pass region to `markdown-command' via stdin
               (t
                (let ((buf (get-buffer-create output-buffer-name)))
                  (with-current-buffer buf
                    (setq buffer-read-only nil)
                    (erase-buffer))
-                 (if (stringp markdown-command)
-                     (call-process-region begin-region end-region
-                                          markdown-command nil buf)
+                 (if (stringp command)
+                     (if (not (null command-args))
+                         (apply #'call-process-region begin-region end-region command nil buf nil command-args)
+                       (call-process-region begin-region end-region command nil buf))
                    (funcall markdown-command begin-region end-region buf)
                    ;; If the ‘markdown-command’ function didn’t signal an
                    ;; error, assume it succeeded by binding ‘exit-code’ to 0.
@@ -9394,6 +9415,7 @@ rows and columns and the column alignment."
 
   ;; Indentation
   (setq-local indent-line-function markdown-indent-function)
+  (setq-local indent-region-function #'markdown--indent-region)
 
   ;; Flyspell
   (setq-local flyspell-generic-check-word-predicate

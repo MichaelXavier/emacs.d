@@ -183,6 +183,13 @@ This avoids overloading the server with many files when starting Emacs.
 
 ;;;***
 
+;;;### (autoloads nil "lsp-serenata" "lsp-serenata.el" (0 0 0 0))
+;;; Generated autoloads from lsp-serenata.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "lsp-serenata" '("lsp-serenata-server-")))
+
+;;;***
+
 ;;;### (autoloads nil "lsp-solargraph" "lsp-solargraph.el" (0 0 0
 ;;;;;;  0))
 ;;; Generated autoloads from lsp-solargraph.el
