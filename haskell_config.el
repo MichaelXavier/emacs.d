@@ -37,11 +37,11 @@
 (define-key shm-map (kbd "C-M-w") 'shm/copy-node)
 
 
-(custom-theme-set-faces
- 'birds-of-paradise-plus
- '(shm-current-face ((t (:background "#315057"))))
- '(shm-quarantine-face ((t (:background "#794544"))))
- )
+;; (custom-theme-set-faces
+;;  'birds-of-paradise-plus
+;;  '(shm-current-face ((t (:background "#315057"))))
+;;  '(shm-quarantine-face ((t (:background "#794544"))))
+;;  )
 
 
 (add-hook 'haskell-mode-hook 'subword-mode)
