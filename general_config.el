@@ -15,6 +15,7 @@
 (require 'counsel-projectile)
 (require 'swiper)
 (require 'emojify)
+(require 'openwith)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
