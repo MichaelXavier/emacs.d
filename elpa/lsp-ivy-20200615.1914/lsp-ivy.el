@@ -18,7 +18,8 @@
 ;; Authors: Sebastian Sturm
 ;;          Oliver Rausch
 ;; Keywords: languages, debug
-;; Package-Version: 20200517.1910
+;; Package-Version: 20200615.1914
+;; Package-Commit: f6e321187e773d7e5dfb215802fff5f308226cf9
 ;; URL: https://github.com/emacs-lsp/lsp-ivy
 ;; Package-Requires: ((emacs "25.1") (dash "2.14.1") (lsp-mode "6.2.1") (ivy "0.13.0"))
 ;; Version: 0.3
@@ -34,6 +35,8 @@
 
 (require 'ivy)
 (require 'dash)
+
+(require 'lsp-protocol)
 (require 'lsp-mode)
 
 (defgroup lsp-ivy nil
@@ -42,13 +45,13 @@
 
 (defcustom lsp-ivy-show-symbol-kind
   t
-  "Whether to show the symbol's kind when showing lsp symbols"
+  "Whether to show the symbol's kind when showing lsp symbols."
   :group 'lsp-ivy
   :type 'boolean)
 
 (defcustom lsp-ivy-filter-symbol-kind
   nil
-  "A list of LSP SymbolKind's to filter out"
+  "A list of LSP SymbolKind's to filter out."
   :group 'lsp-ivy
   :type '(repeat integer))
 
@@ -80,7 +83,7 @@
    ("Evnt" . font-lock-builtin-face)       ;; Event - 24
    ("Op  " . font-lock-function-name-face) ;; Operator - 25
    ("TPar" . font-lock-type-face)]         ;; TypeParameter - 26
-  "A vector of 26 cons cells, where the ith cons cell contains the string representation and face to use for the i+1th SymbolKind (defined in the LSP)"
+  "A vector of 26 cons cells, where the ith cons cell contains the string representation and face to use for the i+1th SymbolKind (defined in the LSP)."
   :group 'lsp-ivy
   :type '(vector
           (cons string face)
@@ -112,32 +115,34 @@
           (cons string face)))
 
 
-(defun lsp-ivy--format-symbol-match (match)
-  "Convert the MATCH returned by `lsp-mode` into a candidate string.
-MATCH is a cons cell whose cdr is the hash-table from `lsp-mode`."
-  (let* ((match (cdr match))
-         (container-name (gethash "containerName" match))
-         (name (gethash "name" match))
-         (type (elt lsp-ivy-symbol-kind-to-face (gethash "kind" match) ))
-         (typestr (if lsp-ivy-show-symbol-kind
-                      (propertize (format "[%s] " (car type)) 'face (cdr type))
-                    "")))
-    (concat typestr (if (or (null container-name) (string-empty-p container-name))
+(defun lsp-ivy--format-symbol-match (symbol-information-match)
+  "Convert the match returned by `lsp-mode` into a candidate string.
+SYMBOL-INFORMATION-MATCH is a cons cell whose cdr is the SymbolInformation interface from `lsp-mode`."
+  (-let* (((&SymbolInformation :name :kind :container-name?) (cdr symbol-information-match))
+          (type (elt lsp-ivy-symbol-kind-to-face kind))
+          (typestr (if lsp-ivy-show-symbol-kind
+                       (propertize (format "[%s] " (car type)) 'face (cdr type))
+                     "")))
+    (concat typestr (if (or (null container-name?) (string-empty-p container-name?))
                         (format "%s" name)
-                      (format "%s.%s" container-name name)))))
+                      (format "%s.%s" container-name? name)))))
 
-(defun lsp-ivy--workspace-symbol-action (candidate)
-  "Jump to selected CANDIDATE, a cons cell whose cdr is a hash table."
-  (-let* ((candidate (cdr candidate))
-          ((&hash "uri" "range" (&hash "start" (&hash "line" "character")))
-           (gethash "location" candidate)))
+(defun lsp-ivy--workspace-symbol-action (symbol-information-candidate)
+  "Jump to selected SYMBOL-INFORMATION-CANDIDATE, a cons cell whose cdr is a a SymbolInformation."
+  (-let (((&SymbolInformation :location
+                              (&Location :uri
+                                         :range
+                                         (&Range :start
+                                                 (&Position :line :character))))
+          (cdr symbol-information-candidate)))
     (find-file (lsp--uri-to-path uri))
     (goto-char (point-min))
     (forward-line line)
     (forward-char character)))
 
-(defun lsp-ivy--filter-func (candidate)
-  (member (gethash "kind" candidate) lsp-ivy-filter-symbol-kind))
+(lsp-defun lsp-ivy--filter-func ((&SymbolInformation :kind))
+  "Filter candidate kind from symbol kinds."
+  (member kind lsp-ivy-filter-symbol-kind))
 
 (defun lsp-ivy--workspace-symbol (workspaces prompt initial-input)
   "Search against WORKSPACES with PROMPT and INITIAL-INPUT."
@@ -147,13 +152,13 @@ MATCH is a cons cell whose cdr is the hash-table from `lsp-mode`."
      (with-lsp-workspaces workspaces
        (lsp-request-async
         "workspace/symbol"
-        (list :query user-input)
+        (lsp-make-workspace-symbol-params :query user-input)
         (lambda (result)
           (ivy-update-candidates
            (mapcar
-            (lambda (data)
-              (cons (gethash "name" data) data))
-            (-remove 'lsp-ivy--filter-func result))))
+            (-lambda ((symbol-information &as &SymbolInformation :name))
+              (cons name symbol-information))
+            (-remove #'lsp-ivy--filter-func result))))
         :mode 'detached
         :cancel-token :workspace-symbol))
      0)
