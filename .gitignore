@@ -18,3 +18,4 @@ network-security.data
 transient/
 nix-buffer/
 recentf
+forge-database.sqlite
