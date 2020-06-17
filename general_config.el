@@ -15,7 +15,6 @@
 (require 'counsel-projectile)
 (require 'swiper)
 (require 'emojify)
-(require 'openwith)
 (require 'magit)
 (require 'forge)
 ;; when its bright out

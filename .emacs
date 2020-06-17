@@ -92,15 +92,6 @@
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(markdown-command "marked")
- '(openwith-associations
-   (quote
-    (("\\.pdf\\'" "firefox"
-      (file))
-     ("\\.\\(?:mpe?g\\|avi\\|wmv\\)\\'" "vlc"
-      ("-idx" file))
-     ("\\.\\(?:jp?g\\|png\\)\\'" "display"
-      (file)))))
- '(openwith-mode t)
  '(org-agenda-files (quote ("~/Dropbox/org")))
  '(org-export-backends (quote (ascii html icalendar latex md)))
  '(org-habit-show-all-today nil)
@@ -122,7 +113,7 @@
      ("org" . "https://orgmode.org/elpa/"))))
  '(package-selected-packages
    (quote
-    (forge openwith tao-theme ormolu lsp-haskell lsp-ivy lsp-mode flycheck-rust ivy-hydra emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift markdown-mode lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term magit lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode)))
+    (forge tao-theme ormolu lsp-haskell lsp-ivy lsp-mode flycheck-rust ivy-hydra emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift markdown-mode lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term magit lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode)))
  '(pomodoro-long-break-time 10)
  '(pomodoro-play-sounds nil)
  '(pomodoro-show-number t)
