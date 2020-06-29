@@ -198,6 +198,13 @@ This avoids overloading the server with many files when starting Emacs.
 
 ;;;***
 
+;;;### (autoloads nil "lsp-sqls" "lsp-sqls.el" (0 0 0 0))
+;;; Generated autoloads from lsp-sqls.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "lsp-sqls" '("lsp-sqls-")))
+
+;;;***
+
 ;;;### (autoloads nil "lsp-terraform" "lsp-terraform.el" (0 0 0 0))
 ;;; Generated autoloads from lsp-terraform.el
 

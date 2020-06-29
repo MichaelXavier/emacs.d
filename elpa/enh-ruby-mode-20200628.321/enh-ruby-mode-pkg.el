@@ -1,6 +1,6 @@
-(define-package "enh-ruby-mode" "20200622.645" "Major mode for editing Ruby files"
+(define-package "enh-ruby-mode" "20200628.321" "Major mode for editing Ruby files"
   '((emacs "24.3"))
-  :commit "b15e372d0c4f739cda36b5f896a4dd0f5aa9b046" :keywords
+  :commit "4df45e1c24d3cb89c3bffbcd7ff1543cd51f12d5" :keywords
   '("languages" "elisp" "ruby")
   :authors
   '(("Geoff Jacobsen"))
