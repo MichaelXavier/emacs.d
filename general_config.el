@@ -16,7 +16,6 @@
 (require 'swiper)
 (require 'emojify)
 (require 'magit)
-(require 'forge)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
