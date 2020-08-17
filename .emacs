@@ -109,7 +109,7 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.milkbox.net/packages/")
+     ("melpa" . "https://melpa.org/packages/")
      ("org" . "https://orgmode.org/elpa/"))))
  '(package-selected-packages
    (quote
