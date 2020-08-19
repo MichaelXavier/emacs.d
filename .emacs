@@ -9,6 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
  '(company-echo-truncate-lines nil)
+ '(confirm-kill-emacs (quote y-or-n-p))
  '(counsel-projectile-rg-initial-input (quote (ivy-thing-at-point)))
  '(counsel-projectile-switch-project-action
    (quote
