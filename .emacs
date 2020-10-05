@@ -9,11 +9,10 @@
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
  '(company-echo-truncate-lines nil)
- '(confirm-kill-emacs (quote y-or-n-p))
- '(counsel-projectile-rg-initial-input (quote (ivy-thing-at-point)))
+ '(confirm-kill-emacs 'y-or-n-p)
+ '(counsel-projectile-rg-initial-input '(ivy-thing-at-point))
  '(counsel-projectile-switch-project-action
-   (quote
-    (4
+   '(4
      ("o" counsel-projectile-switch-project-action "jump to a project buffer or file")
      ("f" counsel-projectile-switch-project-action-find-file "jump to a project file")
      ("d" counsel-projectile-switch-project-action-find-dir "jump to a project directory")
@@ -36,34 +35,32 @@
      ("xt" counsel-projectile-switch-project-action-run-term "invoke term from project root")
      ("xv" counsel-projectile-switch-project-action-run-vterm "invoke vterm from project root")
      ("Oc" counsel-projectile-switch-project-action-org-capture "capture into project")
-     ("Oa" counsel-projectile-switch-project-action-org-agenda "open project agenda"))))
+     ("Oa" counsel-projectile-switch-project-action-org-agenda "open project agenda")))
  '(dabbrev-case-fold-search nil)
  '(dhall-format-command nil)
- '(dhall-format-options (quote ("--inplace")))
+ '(dhall-format-options '("--inplace"))
  '(dhall-use-header-line nil)
  '(dired-dwim-target t)
  '(dired-listing-switches "-alh")
  '(electric-indent-mode nil)
  '(emojify-composed-text-p t)
- '(emojify-display-style (quote image))
- '(emojify-emoji-styles (quote (unicode)))
+ '(emojify-display-style 'image)
+ '(emojify-emoji-styles '(unicode))
  '(enable-recursive-minibuffers t)
  '(enh-ruby-bounce-deep-indent nil)
  '(enh-ruby-deep-indent-paren-style nil)
  '(erc-autojoin-channels-alist
-   (quote
-    (("freenode.net" "#haskell-lens" "#purescript" "#emacs" "#haskell" "#nothaskell" "#atunit" "##guitar"))))
+   '(("freenode.net" "#haskell-lens" "#purescript" "#emacs" "#haskell" "#nothaskell" "#atunit" "##guitar")))
  '(erc-modules
-   (quote
-    (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp track)))
+   '(autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp track))
  '(erc-nick "NemesisD")
  '(erc-prompt-for-nickserv-password t)
  '(erc-server-auto-reconnect t)
  '(erc-server-reconnect-attempts 5)
- '(flycheck-check-syntax-automatically (quote (save idle-change mode-enabled)))
- '(flycheck-disabled-checkers (quote (make emacs-lisp-checkdoc)))
- '(flycheck-display-errors-function (quote ignore))
- '(flycheck-global-modes (quote (not org-mode haskell-mode)))
+ '(flycheck-check-syntax-automatically '(save idle-change mode-enabled))
+ '(flycheck-disabled-checkers '(make emacs-lisp-checkdoc))
+ '(flycheck-display-errors-function 'ignore)
+ '(flycheck-global-modes '(not org-mode haskell-mode))
  '(flycheck-haskell-runhaskell "runhaskell")
  '(flycheck-idle-change-delay 1)
  '(flycheck-rubocop-lint-only t)
@@ -78,7 +75,7 @@
  '(haskell-process-suggest-language-pragmas nil)
  '(haskell-process-suggest-overloaded-strings nil)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote auto))
+ '(haskell-process-type 'auto)
  '(haskell-stylish-on-save nil)
  '(haskell-tags-on-save nil)
  '(ido-auto-merge-work-directories-length -1)
@@ -93,35 +90,30 @@
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(markdown-command "marked")
- '(org-agenda-files (quote ("~/Dropbox/org")))
- '(org-export-backends (quote (ascii html icalendar latex md)))
+ '(org-agenda-files '("~/Dropbox/org"))
+ '(org-export-backends '(ascii html icalendar latex md))
  '(org-habit-show-all-today nil)
  '(org-habit-show-habits t)
  '(org-habit-show-habits-only-for-today nil)
  '(org-mobile-directory "~/Dropbox/org/MobileOrg")
  '(org-modules
-   (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
- '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
+   '(org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m))
+ '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-src-fontify-natively t)
  '(ormolu-extra-args
-   (quote
-    ("--ghc-opt" "-XTypeApplications" "--ghc-opt" "-XBangPatterns")))
+   '("--ghc-opt" "-XTypeApplications" "--ghc-opt" "-XBangPatterns"))
  '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
+   '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")
-     ("org" . "https://orgmode.org/elpa/"))))
+     ("org" . "https://orgmode.org/elpa/")))
  '(package-selected-packages
-   (quote
-    (git-commit magit with-editor async tao-theme ormolu lsp-haskell lsp-ivy flycheck-rust ivy-hydra emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode)))
+   '(envrc git-commit magit with-editor async tao-theme ormolu lsp-haskell lsp-ivy flycheck-rust ivy-hydra emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode))
  '(pomodoro-long-break-time 10)
  '(pomodoro-play-sounds nil)
  '(pomodoro-show-number t)
  '(pomodoro-work-start-message "Back to work, chum.")
  '(popwin:special-display-config
-   (quote
-    ((ag-mode :stick t)
+   '((ag-mode :stick t)
      (ripgrep-search-mode :stick t)
      ("*All*" :height 15 :noselect t)
      ("*Flycheck error messages*" :regexp nil :height 15 :noselect t)
@@ -159,55 +151,45 @@
      (slime-repl-mode)
      (slime-connection-list-mode)
      ("*HS-Error*" :height 15 :noselect t)
-     ("*xref*" :height 15 :noselect t))))
- '(projectile-completion-system (quote helm))
+     ("*xref*" :height 15 :noselect t)))
+ '(projectile-completion-system 'helm)
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
-   (quote
-    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".cabal-sandbox")))
- '(projectile-globally-ignored-file-suffixes (quote (".hi" ".dyn_hi" ".o" ".dyn_o" ".a" ".so")))
- '(projectile-switch-project-action (quote dired-cwd))
+   '(".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".cabal-sandbox"))
+ '(projectile-globally-ignored-file-suffixes '(".hi" ".dyn_hi" ".o" ".dyn_o" ".a" ".so"))
+ '(projectile-switch-project-action 'dired-cwd)
  '(psc-ide-debug nil)
  '(psc-ide-rebuild-on-save nil)
  '(restclient-inhibit-cookies t)
  '(restclient-log-request t)
  '(safe-local-variable-values
-   (quote
-    ((eval progn
-           (add-to-list
-            (quote exec-path)
-            "/opt/purescript/0.11.5/bin"))
+   '((eval progn
+           (add-to-list 'exec-path "/opt/purescript/0.11.5/bin"))
      (eval progn
-           (add-to-list
-            (quote exec-path)
-            "/opt/purescript/0.11.4/bin"))
+           (add-to-list 'exec-path "/opt/purescript/0.11.4/bin"))
      (haskell-process-use-ghci . t)
      (haskell-indent-spaces . 4)
      (eval progn
-           (add-to-list
-            (quote exec-path)
-            "/opt/purescript/0.10.7/bin"))
+           (add-to-list 'exec-path "/opt/purescript/0.10.7/bin"))
      (hindent-style . "chris-done")
-     (flycheck-disabled-checkers
-      (quote haskell-ghc))
-     (require-final-newline))))
+     (flycheck-disabled-checkers 'haskell-ghc)
+     (require-final-newline)))
  '(shell-file-name "zsh")
  '(shm-auto-insert-skeletons nil)
  '(shm-idle-timeout 0.5)
  '(show-trailing-whitespace t)
  '(smerge-command-prefix (kbd "C-c v"))
  '(sp-autoescape-string-quote nil)
- '(sp-ignore-modes-list (quote (minibuffer-inactive-mode erc-mode)))
+ '(sp-ignore-modes-list '(minibuffer-inactive-mode erc-mode))
  '(sql-postgres-login-params
-   (quote
-    ((user :default "michael")
+   '((user :default "michael")
      server
      (database :default "michael")
-     port)))
- '(sql-product (quote postgres))
+     port))
+ '(sql-product 'postgres)
  '(sql-server "localhost")
  '(suggest-key-bindings t)
- '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32)))
+ '(tab-stop-list '(2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32))
  '(tab-width 2)
  '(tags-add-tables t)
  '(tags-case-fold-search nil)
@@ -222,10 +204,9 @@
  '(web-mode-disable-auto-pairing t)
  '(web-mode-markup-indent-offset 2)
  '(web-mode-sql-indent-offset 2)
- '(yas-indent-line (quote fixed))
+ '(yas-indent-line 'fixed)
  '(yas-prompt-functions
-   (quote
-    (yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt))))
+   '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt)))
 
 (load "~/.emacs.d/general_config.el")
 (load "~/.emacs.d/blog_config.el")

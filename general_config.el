@@ -16,6 +16,7 @@
 (require 'swiper)
 (require 'emojify)
 (require 'magit)
+(require 'envrc)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
@@ -380,3 +381,5 @@
 (global-set-key (kbd "C-s") 'swiper)
 
 (add-hook 'after-init-hook #'global-emojify-mode)
+
+(envrc-global-mode)
