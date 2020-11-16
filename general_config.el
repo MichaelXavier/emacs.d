@@ -17,6 +17,7 @@
 (require 'emojify)
 (require 'magit)
 (require 'envrc)
+(require 'undo-tree)
 ;; when its bright out
 ;; (require 'solarized-theme)
 
