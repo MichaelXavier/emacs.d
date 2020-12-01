@@ -18,6 +18,17 @@
 (require 'magit)
 (require 'envrc)
 (require 'undo-tree)
+(require 'hl-line+ "~/.emacs.d/hl-line+.el")
+(require 'vline "~/.emacs.d/vline.el")
+(require 'col-highlight "~/.emacs.d/col-highlight.el")
+(require 'crosshairs "~/.emacs.d/crosshairs.el")
+
+;; Turn on a cursor crosshair only on idle. This is sadly for
+;; performance reasons because always on predictably introduces
+;; noticeable lag.
+(toggle-crosshairs-when-idle 1)
+(col-highlight-set-interval 1)
+
 ;; when its bright out
 ;; (require 'solarized-theme)
 
