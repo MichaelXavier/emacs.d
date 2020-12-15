@@ -395,3 +395,8 @@
 (add-hook 'after-init-hook #'global-emojify-mode)
 
 (envrc-global-mode)
+
+;; Previously hitting escape 3 times focuses the current window and
+;; closes the others. I almost always hit it by accident since my
+;; escape and ctrl are the same key
+(global-unset-key "\e\e\e")
