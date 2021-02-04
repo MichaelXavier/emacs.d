@@ -1,0 +1,2 @@
+;;; Generated package description from /home/michael/.emacs.d/elpa/inheritenv-20210203.709/inheritenv.el  -*- no-byte-compile: t -*-
+(define-package "inheritenv" "20210203.709" "Make temp buffers inherit buffer-local environment variables" '((emacs "24.4")) :commit "01806d256dfaa1adee419dee623b6a9cb079d148" :authors '(("Steve Purcell" . "steve@sanityinc.com")) :maintainer '("Steve Purcell" . "steve@sanityinc.com") :keywords '("unix") :url "https://github.com/purcell/inheritenv")
