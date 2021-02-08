@@ -1,2 +1,0 @@
-;;; Generated package description from /home/michael/.emacs.d/elpa/envrc-20210203.255/envrc.el  -*- no-byte-compile: t -*-
-(define-package "envrc" "20210203.255" "Support for `direnv' that operates buffer-locally" '((seq "2") (emacs "24.4") (inheritenv "0.1")) :commit "1c948c30de8569b29c046789cece9fb097959a45" :authors '(("Steve Purcell" . "steve@sanityinc.com")) :maintainer '("Steve Purcell" . "steve@sanityinc.com") :keywords '("processes" "tools") :url "https://github.com/purcell/envrc")
