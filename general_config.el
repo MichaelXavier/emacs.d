@@ -385,6 +385,9 @@
       (dumb-jump-go)))
 
 (define-key dumb-jump-mode-map (kbd "C-M-g") 'custom-dumb-jump-go)
+;; unbind dumb-jump-back which i always accidentally hit
+(define-key dumb-jump-mode-map (kbd "C-M-p") nil)
+
 
 ;; set up ivy/counsel/swiper
 (ivy-mode t)
