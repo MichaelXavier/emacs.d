@@ -19,3 +19,4 @@ transient/
 nix-buffer/
 recentf
 forge-database.sqlite
+eln-cache/
