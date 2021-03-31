@@ -8,7 +8,6 @@
 (require 'shm-case-split)
 (require 'ob-haskell)
 (require 'projectile)
-(require 'intero)
 (require 'hindent)
 (require 'mode-local)
 (require 'ormolu)
@@ -27,10 +26,6 @@
      (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)
      (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)
      ))
-
-;; I don't want to use intero's goto defintion. It is unreliable and
-;; requires buildable code.
-(defalias 'intero-goto-definition 'find-tag)
 
 ;; structured-haskell-mode keybindings
 (define-key shm-map (kbd "C-w") 'shm/backward-kill-word)
@@ -119,20 +114,8 @@
   (interactive)
   (shm-kill-node nil nil nil t))
 
-;; hook in intero
-;(add-hook 'haskell-mode-hook 'intero-mode-blacklist)
 (add-hook 'haskell-mode-hook #'hindent-mode)
 (define-key hindent-mode-map (kbd "C-c C-h") 'hindent-reformat-buffer)
 
 ;; Make it easier to toggle shm when it shits the bed
 (defalias 'shm 'structured-haskell-mode)
-
-
-;; a version of intero-targets that doesn't prompt you every time for
-(defun intero-targets-quiet (targets)
-  "intero-targets that never saves a dir-local of your decision"
-  (interactive (list (intero-read-targets)))
-  (intero-targets targets nil))
-
-(defalias 'itq 'intero-targets-quiet)
-
