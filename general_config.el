@@ -22,6 +22,7 @@
 (require 'vline "~/.emacs.d/vline.el")
 (require 'col-highlight "~/.emacs.d/col-highlight.el")
 (require 'crosshairs "~/.emacs.d/crosshairs.el")
+(require 'envrc)
 
 ;; Turn on a cursor crosshair only on idle. This is sadly for
 ;; performance reasons because always on predictably introduces
