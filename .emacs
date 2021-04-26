@@ -9,6 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
  '(coffee-tab-width 2)
+ '(comp-async-report-warnings-errors nil)
  '(company-echo-truncate-lines nil)
  '(confirm-kill-emacs 'y-or-n-p)
  '(counsel-projectile-rg-initial-input '(ivy-thing-at-point))
