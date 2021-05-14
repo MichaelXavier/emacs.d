@@ -1,6 +1,7 @@
 (require 'org)
 (require 'org-capture)
 (require 'projectile)
+(require 'smartparens)
 (setq org-log-done 'time)
 
 ;; org mode settings
@@ -120,3 +121,6 @@
 ; buffers. otherwise, archive files don't automatically get saved and
 ; are easy to forget about
 (advice-add 'org-archive-subtree-default :after #'org-save-all-org-buffers)
+
+;; org markdown supports strikethrough with + characters
+(sp-local-pair 'org-mode "+" "+")
