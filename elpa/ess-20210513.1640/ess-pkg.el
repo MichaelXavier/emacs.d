@@ -1,6 +1,6 @@
-(define-package "ess" "20210510.2052" "Emacs Speaks Statistics"
+(define-package "ess" "20210513.1640" "Emacs Speaks Statistics"
   '((emacs "25.1"))
-  :commit "5b807fdc1e5b564e17753b84fc634c1fbd2bfe7f" :authors
+  :commit "4dee0960ec641ec8a4d3c9c581a959c7ef3f4fa5" :authors
   '(("David Smith" . "dsmith@stats.adelaide.edu.au")
     ("A.J. Rossini" . "blindglobe@gmail.com")
     ("Richard M. Heiberger" . "rmh@temple.edu")

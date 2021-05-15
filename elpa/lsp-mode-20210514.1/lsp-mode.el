@@ -172,7 +172,7 @@ As defined by the Language Server Protocol 3.16."
          lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go
          lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json
          lsp-kotlin lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh
-         lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet
+         lsp-pyls lsp-pylsp lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet
          lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml
          lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)
   "List of the clients to be automatically required."
@@ -6801,14 +6801,16 @@ returns the command to execute."
                    (let* ((final-command (lsp-resolve-final-function local-command))
                           ;; wrap with stty to disable converting \r to \n
                           (process-name (generate-new-buffer-name name))
-                          (wrapped-command (append '("stty" "raw" ";")
-                                                   final-command
-                                                   (list
-                                                    (concat "2>"
-                                                            (or (when generate-error-file-fn
-                                                                  (funcall generate-error-file-fn name))
-                                                                (format "/tmp/%s-%s-stderr" name
-                                                                        (cl-incf lsp--stderr-index)))))))
+                          (wrapped-command (s-join
+                                            " "
+                                            (append '("stty" "raw" ";")
+                                                    final-command
+                                                    (list
+                                                     (concat "2>"
+                                                             (or (when generate-error-file-fn
+                                                                   (funcall generate-error-file-fn name))
+                                                                 (format "/tmp/%s-%s-stderr" name
+                                                                         (cl-incf lsp--stderr-index))))))))
                           (process-environment
                            (lsp--compute-process-environment environment-fn)))
                      (let ((proc (start-file-process-shell-command process-name
