@@ -23,6 +23,7 @@
 (require 'col-highlight "~/.emacs.d/col-highlight.el")
 (require 'crosshairs "~/.emacs.d/crosshairs.el")
 (require 'envrc)
+(require 'paradox)
 
 ;; Turn on a cursor crosshair only on idle. This is sadly for
 ;; performance reasons because always on predictably introduces
@@ -404,3 +405,6 @@
 ;; closes the others. I almost always hit it by accident since my
 ;; escape and ctrl are the same key
 (global-unset-key "\e\e\e")
+
+;; Enable the paradox package manager enhancements
+(paradox-enable)
