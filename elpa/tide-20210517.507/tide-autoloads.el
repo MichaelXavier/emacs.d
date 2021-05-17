@@ -1,4 +1,4 @@
-;;; tide-autoloads.el --- automatically extracted autoloads  -*- lexical-binding: t -*-
+;;; tide-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
 
@@ -26,16 +26,10 @@ Setup `tide-mode' in current buffer." t nil)
 (autoload 'tide-mode "tide" "\
 Minor mode for Typescript Interactive Development Environment.
 
-If called interactively, toggle `Tide mode'.  If the prefix
-argument is positive, enable the mode, and if it is zero or
-negative, disable the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
-
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
+If called interactively, enable Tide mode if ARG is positive, and
+disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+`toggle'; disable the mode otherwise.
 
 \\{tide-mode-map}
 
@@ -54,27 +48,21 @@ highlights from previously highlighted identifier." t nil)
 Highlight instances of the identifier at point after a short
 timeout.
 
-If called interactively, toggle `Tide-Hl-Identifier mode'.  If
-the prefix argument is positive, enable the mode, and if it is
-zero or negative, disable the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
-
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
+If called interactively, enable Tide-Hl-Identifier mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
 
 \(fn &optional ARG)" t nil)
 
-(register-definition-prefixes "tide" '("tide-" "xref-tide-xref-backend"))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "tide" '("tide-" "xref-tide-xref-backend")))
 
 ;;;***
 
 ;;;### (autoloads nil "tide-lv" "tide-lv.el" (0 0 0 0))
 ;;; Generated autoloads from tide-lv.el
 
-(register-definition-prefixes "tide-lv" '("tide-lv-"))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "tide-lv" '("tide-lv-")))
 
 ;;;***
 
