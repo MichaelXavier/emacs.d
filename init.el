@@ -1,6 +1,7 @@
 (require 'package)
 (package-initialize)
 (require 'f)
+(require 'load-relative)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -109,7 +110,7 @@
      ("melpa" . "https://melpa.org/packages/")
      ("org" . "https://orgmode.org/elpa/")))
  '(package-selected-packages
-   '(paradox po-mode undo-tree tide kotlin-mode envrc git-commit magit with-editor async tao-theme ormolu lsp-haskell lsp-ivy flycheck-rust ivy-hydra emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode))
+   '(load-relative paradox po-mode undo-tree tide kotlin-mode envrc git-commit magit with-editor async tao-theme ormolu lsp-haskell lsp-ivy flycheck-rust ivy-hydra emojify counsel counsel-projectile counsel-tramp swiper ivy dumb-jump dired-narrow ibuffer-projectile ibuffer-tramp ibuffer-vc flycheck-mypy terraform-mode rust-mode nix-buffer nix-mode yapfify dhall-mode thrift lua-mode smartparens f psc-ide web-mode yasnippet zoom-frm yaml-mode wgrep-ag web-beautify w3m urlenc tup-mode tuareg tss tracking tidy string-inflection smart-tab shorten shm sass-mode request-deferred purescript-mode projectile-ripgrep popwin ob-restclient multi-term lorem-ipsum less-css-mode js2-mode intero iedit ht hindent hi2 hexrgb hemisu-theme graphviz-dot-mode goto-last-change go-mode git-timemachine feature-mode exec-path-from-shell evil ess enh-ruby-mode elisp-slime-nav edit-server edit-color-stamp dockerfile-mode cucumber-goto-step crontab-mode column-marker coffee-mode birds-of-paradise-plus-theme better-defaults ample-zen-theme ample-theme alert alchemist ag ace-jump-mode))
  '(pomodoro-long-break-time 10)
  '(pomodoro-play-sounds nil)
  '(pomodoro-show-number t)
@@ -210,19 +211,19 @@
  '(yas-prompt-functions
    '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt yas-no-prompt)))
 
-(load "~/.emacs.d/general_config.el")
-(load "~/.emacs.d/blog_config.el")
-(load "~/.emacs.d/haskell_config.el")
-(load "~/.emacs.d/purescript_config.el")
-(load "~/.emacs.d/ruby_config.el")
-(load "~/.emacs.d/typescript_config.el")
-(load "~/.emacs.d/web_config.el")
-(load "~/.emacs.d/org_config.el")
-(load "~/.emacs.d/terminal_config.el")
-(load "~/.emacs.d/elisp_config.el")
-(load "~/.emacs.d/python_config.el")
-(load "~/.emacs.d/nix_config.el")
-(load "~/.emacs.d/rust_config.el")
+(load-relative "general_config.el")
+(load-relative "blog_config.el")
+(load-relative "haskell_config.el")
+(load-relative "purescript_config.el")
+(load-relative "ruby_config.el")
+(load-relative "typescript_config.el")
+(load-relative "web_config.el")
+(load-relative "org_config.el")
+(load-relative "terminal_config.el")
+(load-relative "elisp_config.el")
+(load-relative "python_config.el")
+(load-relative "nix_config.el")
+(load-relative "rust_config.el")
 (if (f-file? "~/.emacs.d/per_machine_config.el")
     (load "~/.emacs.d/per_machine_config.el"))
 

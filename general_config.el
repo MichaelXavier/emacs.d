@@ -18,10 +18,16 @@
 (require 'magit)
 (require 'envrc)
 (require 'undo-tree)
-(require 'hl-line+ "~/.emacs.d/hl-line+.el")
-(require 'vline "~/.emacs.d/vline.el")
-(require 'col-highlight "~/.emacs.d/col-highlight.el")
-(require 'crosshairs "~/.emacs.d/crosshairs.el")
+
+;; (require 'hl-line+ "~/.emacs.d/hl-line+.el")
+;; (require 'vline "~/.emacs.d/vline.el")
+;; (require 'col-highlight "~/.emacs.d/col-highlight.el")
+;; (require 'crosshairs "~/.emacs.d/crosshairs.el")
+(require-relative "hl-line+.el")
+(require-relative "vline.el")
+(require-relative "col-highlight.el")
+(require-relative "crosshairs.el")
+
 (require 'envrc)
 (require 'paradox)
 
